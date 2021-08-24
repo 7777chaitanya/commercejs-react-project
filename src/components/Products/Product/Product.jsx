@@ -13,7 +13,7 @@ import React from "react";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import useStyles from "./styles";
 
-const Product = ({ product }) => {
+const Product = ({ product, addToCart }) => {
   const classes = useStyles();
   return (
     <Card className={classes.root} raised={true}>
@@ -23,7 +23,7 @@ const Product = ({ product }) => {
           image={product.media.source}
           title="Contemplative Reptile"
         />
-        <CardContent style={{paddingBottom:"0"}}>
+        <CardContent style={{ paddingBottom: "0" }}>
           <Grid container justifyContent="space-between">
             <Grid item>
               <Typography
@@ -47,17 +47,26 @@ const Product = ({ product }) => {
             </Grid>
           </Grid>
 
-          <Typography dangerouslySetInnerHTML={{ __html:product.description }} variant="body2" color="textSecondary" />
-            
+          <Typography
+            dangerouslySetInnerHTML={{ __html: product.description }}
+            variant="body2"
+            color="textSecondary"
+          />
+
           {/* </Typography> */}
         </CardContent>
       </CardActionArea>
 
       <CardActions disableSpacing>
-        <Grid container justifyContent='flex-end'>
-            <IconButton aria-label="Add to cart">
-              <AddShoppingCartIcon color="primary" />
-            </IconButton>
+        <Grid container justifyContent="flex-end">
+          <IconButton
+            aria-label="Add to cart"
+            onClick={() => {
+              addToCart(product.id, 1);
+            }}
+          >
+            <AddShoppingCartIcon color="primary" />
+          </IconButton>
         </Grid>
       </CardActions>
     </Card>

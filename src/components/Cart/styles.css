@@ -1,0 +1,13 @@
+.MuiGrid-item{
+    text-align: center;
+}
+
+.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary{
+    padding: 0.2rem;
+    margin-right: 0.2rem;
+}
+
+.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedSecondary{
+    padding: 0.2rem;
+}
+

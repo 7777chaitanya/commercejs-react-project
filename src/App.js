@@ -1,30 +1,38 @@
-import commerce from './lib/commerce';
-import {NavBar, Products} from './components';
-import React, { useState,useEffect } from 'react';
+import commerce from "./lib/commerce";
+import { Cart, NavBar, Products } from "./components";
+import React, { useState, useEffect } from "react";
 
 const App = () => {
-    const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState([]);
+  const [cart, setCart] = useState({});
+  console.log(cart.line_items);
 
-    const fetchProducts = async () => {
-        const {data} = await commerce.products.list();
-        console.log("fetch products => ",data);
-        setProducts(data);
+  const fetchProducts = async () => {
+    const { data } = await commerce.products.list();
+    setProducts(data);
+  };
 
-    }
+  const fetchCart = async () => {
+    setCart(await commerce.cart.retrieve());
+  };
 
-    useEffect(() => {
-        fetchProducts();
-        
-    }, []);
+  const handleAddToCart = async (productId, quantity) => {
+    const result = await commerce.cart.add(productId, quantity);
+    setCart(result.cart);
+  };
 
+  useEffect(() => {
+    fetchProducts();
+    fetchCart();
+  }, []);
 
+  return (
+    <div>
+      <NavBar quantity={cart.total_items} />
+      {/* <Products products={products} addToCart={handleAddToCart} /> */}
+      <Cart cart={cart}/>
+    </div>
+  );
+};
 
-    return (
-        <div>
-            <NavBar/>
-            <Products products={products}/>
-        </div>
-    )
-}
-
-export default App
+export default App;
