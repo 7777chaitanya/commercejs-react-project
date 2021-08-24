@@ -13,7 +13,7 @@ import AddCircleIcon from "@material-ui/icons/AddCircle";
 import React from "react";
 import useStyles from "./styles.js";
 
-const CartItem = ({ cart, item }) => {
+const CartItem = ({ cart, item, incrementItem, decrementItem, removeItem, emptyCart}) => {
   const classes = useStyles();
   console.log("cartItem =>", item);
   return (
@@ -32,12 +32,12 @@ const CartItem = ({ cart, item }) => {
         <Grid container justifyContent="space-around">
           <Grid item>
             <Typography variant="body1">
-              {item.price.formatted_with_symbol}
+             ₹{item.price.raw*item.quantity}
             </Typography>
           </Grid>
 
           <Grid item>
-            <Button size="small" color="secondary" variant="contained">
+            <Button size="small" color="secondary" variant="contained" onClick={()=>removeItem(item.id)}>
               Remove Item
             </Button>
           </Grid>
@@ -45,8 +45,8 @@ const CartItem = ({ cart, item }) => {
 
         <Grid container justifyContent="center">
           <Grid item>
-            <IconButton aria-label="delete" color="primary">
-              <AddCircleIcon />
+            <IconButton aria-label="" color="secondary" onClick={()=>decrementItem(item,-1)}>
+              <IndeterminateCheckBoxIcon />
             </IconButton>
           </Grid>
           <Grid item>
@@ -55,8 +55,8 @@ const CartItem = ({ cart, item }) => {
             </Typography>
           </Grid>
           <Grid item>
-            <IconButton aria-label="delete" color="secondary">
-              <IndeterminateCheckBoxIcon />
+            <IconButton aria-label="increment" color="primary" onClick={()=>incrementItem(item, 1)}>
+              <AddCircleIcon />
             </IconButton>
           </Grid>
         </Grid>

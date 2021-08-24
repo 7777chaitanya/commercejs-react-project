@@ -1,3 +1,7 @@
 .MuiAppBar-colorPrimary{
     margin-bottom: 1rem;
 }
+
+.MuiTypography-root.MuiTypography-h4{
+    text-decoration: none;
+}
