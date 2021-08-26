@@ -47,7 +47,7 @@ const Cart = ({ cart, incrementItem, decrementItem, removeItem, emptyCart }) => 
                 </Button>
               </Grid>
               <Grid item>
-                <Button variant="contained" color="secondary">
+                <Button component={Link} to="/checkout" variant="contained" color="secondary">
                   CHECKOUT
                 </Button>
               </Grid>
@@ -65,7 +65,7 @@ const Cart = ({ cart, incrementItem, decrementItem, removeItem, emptyCart }) => 
 
   return (
     <>
-      <Typography variant="h4" color="textPrimary">
+      <Typography variant="h4" color="primary" align='center'>
         Your Shopping Cart
       </Typography>
       

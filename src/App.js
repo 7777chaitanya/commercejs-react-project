@@ -1,5 +1,5 @@
 import commerce from "./lib/commerce";
-import { Cart, NavBar, Products } from "./components";
+import { Cart, NavBar, Products, Checkout } from "./components";
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
@@ -27,26 +27,28 @@ const App = () => {
     fetchCart();
   }, []);
 
-    const incrementItemQuantity = async (item, quantity) =>{
-      const {cart} = await commerce.cart.add(item.product_id, quantity);
-      setCart(cart);
-    }
+  const incrementItemQuantity = async (item, quantity) => {
+    const { cart } = await commerce.cart.add(item.product_id, quantity);
+    setCart(cart);
+  };
 
-    const decrementItemQuantity = async (item, quantity) =>{
-      const {cart} = item.quantity<2 ? await commerce.cart.remove(item.id)
-      : await commerce.cart.add(item.product_id, quantity);
-      setCart(cart);
-    }
+  const decrementItemQuantity = async (item, quantity) => {
+    const { cart } =
+      item.quantity < 2
+        ? await commerce.cart.remove(item.id)
+        : await commerce.cart.add(item.product_id, quantity);
+    setCart(cart);
+  };
 
-    const removeItem = async (id) => {
-        const {cart} = await commerce.cart.remove(id);
-        setCart(cart);
-    }
+  const removeItem = async (id) => {
+    const { cart } = await commerce.cart.remove(id);
+    setCart(cart);
+  };
 
-    const emptyCart = async () => {
-      const { cart } = await commerce.cart.empty();
-      setCart(cart);
-    }
+  const emptyCart = async () => {
+    const { cart } = await commerce.cart.empty();
+    setCart(cart);
+  };
 
   return (
     <Router>
@@ -56,12 +58,16 @@ const App = () => {
           <Products products={products} addToCart={handleAddToCart} />
         </Route>
         <Route exact path="/cart">
-          <Cart cart={cart} 
+          <Cart
+            cart={cart}
             incrementItem={incrementItemQuantity}
             decrementItem={decrementItemQuantity}
             removeItem={removeItem}
             emptyCart={emptyCart}
           />
+        </Route>
+        <Route exact path="/checkout">
+          <Checkout /> 
         </Route>
       </Switch>
     </Router>

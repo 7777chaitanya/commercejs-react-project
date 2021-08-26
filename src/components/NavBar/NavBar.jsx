@@ -17,7 +17,7 @@ const NavBar = ({ quantity }) => {
       <Toolbar>
         <Grid container justifyContent="space-between">
           <Grid item>
-            <Typography   component={Link} to="/" variant="h4" className={classes.title}>
+            <Typography   component={Link} to="/" variant="h4" className={classes.title} color="primary">
               <img src={logo} alt="logo" height="25px" />
               HWH
             </Typography>
