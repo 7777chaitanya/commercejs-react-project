@@ -10,9 +10,21 @@ const steps = ["Shipping address", "Payment details"];
 const Checkout = () => {
   const classes = useStyles();
   const [activeStep, setActiveStep] = useState(0);
+  const [shippingData, setShippingData] = useState({});
+
+  const handleShippingData = (data) => {
+    setShippingData({...data});
+    console.log("Checkout shipping data => ", data);
+  }
+
+  const handleActiveStep = (step) => {
+    setActiveStep(step)
+  }
 
   const Form = () => {
-    return activeStep === 0 ? <AddressForm /> : <PaymentForm />;
+    return activeStep === 0 ? <AddressForm handleActiveStep={handleActiveStep}
+    handleShippingData={handleShippingData}
+    /> : <PaymentForm />;
   };
 
   return (
