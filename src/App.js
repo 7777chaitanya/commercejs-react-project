@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 const App = () => {
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState({});
-  console.log(cart.line_items);
+  console.log("App.js =>",process.env.REACT_APP_CHEC_PUBLIC_KEY);
 
   const fetchProducts = async () => {
     const { data } = await commerce.products.list();
@@ -67,7 +67,7 @@ const App = () => {
           />
         </Route>
         <Route exact path="/checkout">
-          <Checkout /> 
+          <Checkout cart={cart.line_items}/> 
         </Route>
       </Switch>
     </Router>

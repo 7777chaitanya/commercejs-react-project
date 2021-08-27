@@ -3,10 +3,10 @@ import Review from './Review/Review';
 import useStyles from "./styles";
 
 
-const PaymentForm = () => {
+const PaymentForm = ({cart}) => {
     return (
         <>
-            <Review/>
+            <Review cart={cart}/>
         </>
     )
 }

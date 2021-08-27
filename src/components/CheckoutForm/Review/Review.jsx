@@ -9,14 +9,7 @@ import {
 import React, { useEffect, useState } from "react";
 import commerce from "../../../lib/commerce.js";
 
-const Review = () => {
-  const [cart, setCart] = useState([]);
-
-  useEffect(async () => {
-    const { line_items } = await commerce.cart.retrieve();
-    setCart(line_items);
-  }, []);
-
+const Review = ({ cart }) => {
   const calculateTotal = () => {
     let total = 0;
     cart.map((item) => (total = total + item.price.raw * item.quantity));
@@ -44,20 +37,20 @@ const Review = () => {
             {/* <ListItemText>{`₹ ${cartItem.price.raw*2}`}</ListItemText> */}
           </ListItem>
         ))}
-      </List>
+      
 
       <ListItem>
         <ListItemText>
-            <Typography variant="h6" color="primary">
+          <Typography variant="h6" color="primary">
             OrderTotal :
-            </Typography>
-         
+          </Typography>
         </ListItemText>
 
         <Typography variant="h6" align="center" color="primary">
           {`₹ ${calculateTotal()}`}
         </Typography>
       </ListItem>
+      </List>
 
       <Divider />
     </div>
