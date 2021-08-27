@@ -11,7 +11,7 @@ const useStyles = makeStyles({
       height: 140,
     },
     qty:{
-        padding:0,
+        marginTop : "40%",
     },
   });
 

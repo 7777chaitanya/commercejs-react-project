@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Grid, Typography } from "@material-ui/core";
+import { Button, Divider, Grid, Typography } from "@material-ui/core";
 import { Link } from "react-router-dom";
 
 import "./styles.css";
@@ -32,7 +32,7 @@ const Cart = ({
         {/* <Review cart={cart} disabled /> */}
         <Grid container>
           {cart.line_items.map((item) => (
-            <Grid item xs={12} sm={6} md={3} lg={2}>
+            <Grid item xs={12} sm={6} md={4} lg={2}>
               <CartItem
                 cart={cart}
                 item={item}
@@ -43,6 +43,8 @@ const Cart = ({
             </Grid>
           ))}
         </Grid>
+        <Divider/>
+        <div style={{margin: "2%"}}>
         <Grid container justifyContent="space-around">
           <Grid item>
             <Typography variant="h6" display="inline">
@@ -73,6 +75,7 @@ const Cart = ({
             </Grid>
           </Grid>
         </Grid>
+        </div>
       </>
     );
   };

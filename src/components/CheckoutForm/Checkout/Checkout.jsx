@@ -7,7 +7,7 @@ import useStyles from "./styles.js";
 
 const steps = ["Shipping address", "Payment details"];
 
-const Checkout = ({cart}) => {
+const Checkout = ({cart, emptyCart}) => {
   const classes = useStyles();
   const [activeStep, setActiveStep] = useState(0);
   const [shippingData, setShippingData] = useState({});
@@ -24,7 +24,7 @@ const Checkout = ({cart}) => {
   const Form = () => {
     return activeStep === 0 ? <AddressForm handleActiveStep={handleActiveStep}
     handleShippingData={handleShippingData}
-    /> : <PaymentForm cart={cart}/>;
+    /> : <PaymentForm cart={cart} handleActiveStep={handleActiveStep} emptyCart={emptyCart}/>;
   };
 
   return (

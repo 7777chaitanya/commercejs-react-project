@@ -50,7 +50,7 @@ const CartItem = ({ cart, item, incrementItem, decrementItem, removeItem, emptyC
             </IconButton>
           </Grid>
           <Grid item>
-            <Typography variant="h6" color="textPrimary" className={classes.qty}>
+            <Typography variant="body2" color="textPrimary" className={classes.qty}>
               {item.quantity} pcs
             </Typography>
           </Grid>
