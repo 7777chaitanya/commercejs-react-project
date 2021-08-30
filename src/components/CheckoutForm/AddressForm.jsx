@@ -9,8 +9,10 @@ import {
   FormHelperText,
   Button,
   CssBaseline,
+  Box,
+  Card,
 } from "@material-ui/core";
-import { AccountCircle } from "@material-ui/icons";
+import { AccountCircle, ClassSharp } from "@material-ui/icons";
 import React, { useState, useEffect } from "react";
 import useStyles from "./styles";
 import commerce from "../../lib/commerce.js";
@@ -122,220 +124,198 @@ const AddressForm = ({ handleActiveStep, handleShippingData }) => {
 
   return (
     <>
-    <CssBaseline/>
-    
-    <div style={{border: "1px solid lightGray", width:"90%", margin: "auto", paddingLeft: "10%"}}>
-      <form onSubmit={handleSubmit}>
-        <Grid container xs={12} sm={6} md={6}>
-          <div style={{justifyContent:"center"}}>
-            <Grid item>
-              <div className={classes.margin}>
-                <Grid container spacing={1} alignItems="flex-end">
-                  <Grid item>
-                    <AccountCircle />
-                  </Grid>
-                  <Grid item>
-                    <TextField
-                      id="input-with-icon-grid"
-                      label="First name *"
-                      value={firstName}
-                      onChange={handleFirstnameChange}
-                    />
-                  </Grid>
+      <CssBaseline />
+      <Box className={classes.root}>
+        {/* <div style={{border: "1px solid lightGray", width:"90%", margin: "auto", paddingLeft: "10%"}}> */}
+        <Card className={classes.card}>
+          <form onSubmit={handleSubmit} className={classes.form}>
+            <Grid container xs={12} sm={6} md={6} className={classes.maingrid}>
+              <div style={{ justifyContent: "center" }}>
+                <Grid item>
+                  <div className={classes.margin}>
+                    <Grid container spacing={1} alignItems="flex-end">
+                      <Grid item>
+                        <AccountCircle />
+                      </Grid>
+                      <Grid item>
+                        <TextField
+                          id="input-with-icon-grid"
+                          label="First name *"
+                          value={firstName}
+                          onChange={handleFirstnameChange}
+                        />
+                      </Grid>
+                    </Grid>
+                  </div>
                 </Grid>
               </div>
-            </Grid>
-          </div>
-          <Grid item>
-            <div className={classes.margin}>
-              <Grid container spacing={1} alignItems="flex-end">
-                <Grid item>
-                  <AccountCircle />
-                </Grid>
-                <Grid item>
-                  <TextField
-                    id="input-with-icon-grid"
-                    label="Last name *"
-                    value={lastName}
-                    onChange={handleLastnameChange}
-                  />
-                </Grid>
+              <Grid item>
+                <div className={classes.margin}>
+                  <Grid container spacing={1} alignItems="flex-end">
+                    <Grid item>
+                      <AccountCircle />
+                    </Grid>
+                    <Grid item>
+                      <TextField
+                        id="input-with-icon-grid"
+                        label="Last name *"
+                        value={lastName}
+                        onChange={handleLastnameChange}
+                      />
+                    </Grid>
+                  </Grid>
+                </div>
               </Grid>
-            </div>
-          </Grid>
-          <Grid item>
-            <div className={classes.margin}>
-              <Grid container spacing={1} alignItems="flex-end">
-                <Grid item>
-                  <AccountCircle />
-                </Grid>
-                <Grid item>
-                  <TextField
-                    id="input-with-icon-grid"
-                    label="Address *"
-                    value={address}
-                    onChange={handleAddressChange}
-                  />
-                </Grid>
+              <Grid item>
+                <div className={classes.margin}>
+                  <Grid container spacing={1} alignItems="flex-end">
+                    <Grid item>
+                      <AccountCircle />
+                    </Grid>
+                    <Grid item>
+                      <TextField
+                        id="input-with-icon-grid"
+                        label="Address *"
+                        value={address}
+                        onChange={handleAddressChange}
+                      />
+                    </Grid>
+                  </Grid>
+                </div>
               </Grid>
-            </div>
-          </Grid>
-          <Grid item>
-            <div className={classes.margin}>
-              <Grid container spacing={1} alignItems="flex-end">
-                <Grid item>
-                  <AccountCircle />
-                </Grid>
-                <Grid item>
-                  <TextField
-                    id="input-with-icon-grid"
-                    label="Email *"
-                    value={email}
-                    onChange={handleEmailChange}
-                  />
-                </Grid>
+              <Grid item>
+                <div className={classes.margin}>
+                  <Grid container spacing={1} alignItems="flex-end">
+                    <Grid item>
+                      <AccountCircle />
+                    </Grid>
+                    <Grid item>
+                      <TextField
+                        id="input-with-icon-grid"
+                        label="Email *"
+                        value={email}
+                        onChange={handleEmailChange}
+                      />
+                    </Grid>
+                  </Grid>
+                </div>
               </Grid>
-            </div>
-          </Grid>
-          <Grid item>
-            <div className={classes.margin}>
-              <Grid container spacing={1} alignItems="flex-end">
-                <Grid item>
-                  <AccountCircle />
-                </Grid>
-                <Grid item>
-                  <TextField
-                    id="input-with-icon-grid"
-                    label="City *"
-                    value={city}
-                    onChange={handleCityChange}
-                  />
-                </Grid>
+              <Grid item>
+                <div className={classes.margin}>
+                  <Grid container spacing={1} alignItems="flex-end">
+                    <Grid item>
+                      <AccountCircle />
+                    </Grid>
+                    <Grid item>
+                      <TextField
+                        id="input-with-icon-grid"
+                        label="City *"
+                        value={city}
+                        onChange={handleCityChange}
+                      />
+                    </Grid>
+                  </Grid>
+                </div>
               </Grid>
-            </div>
-          </Grid>
-          <Grid item>
-            <div className={classes.margin}>
-              <Grid container spacing={1} alignItems="flex-end">
-                <Grid item>
-                  <AccountCircle />
-                </Grid>
-                <Grid item>
-                  <TextField
-                    id="input-with-icon-grid"
-                    label="Postal code *"
-                    value={postalCode}
-                    onChange={handlePostalCodeChange}
-                  />
-                </Grid>
+              <Grid item>
+                <div className={classes.margin}>
+                  <Grid container spacing={1} alignItems="flex-end">
+                    <Grid item>
+                      <AccountCircle />
+                    </Grid>
+                    <Grid item>
+                      <TextField
+                        id="input-with-icon-grid"
+                        label="Postal code *"
+                        value={postalCode}
+                        onChange={handlePostalCodeChange}
+                      />
+                    </Grid>
+                  </Grid>
+                </div>
               </Grid>
-            </div>
-          </Grid>
-          <Grid item>
-            <div className={classes.margin}>
-              <FormControl className={classes.formControl}>
-                <InputLabel id="demo-simple-select-helper-label">
-                  Shipping Country
-                </InputLabel>
-                <Select
-                  labelId="demo-simple-select-helper-label"
-                  id="demo-simple-select-helper"
-                  value={selectedShippingCountry}
-                  onChange={handleShippingCountryChange}
-                >
-                  {shippingCountryList.map((country) => (
-                    <MenuItem key={country} value={country}>
-                      {country}
-                    </MenuItem>
-                  ))}
-                </Select>
-                <FormHelperText>Please enter your Country</FormHelperText>
-              </FormControl>
-            </div>
-          </Grid>
-          <Grid item>
-            <div className={classes.margin}>
-              <FormControl
-                className={classes.formControl}
-                disabled={selectedShippingCountry === ""}
-              >
-                <InputLabel id="demo-simple-select-helper-label">
-                  Shipping State
-                </InputLabel>
-                <Select
-                  labelId="demo-simple-select-helper-label"
-                  id="demo-simple-select-helper"
-                  value={selectedShippingSubdivision}
-                  onChange={handleShippingSubdivisionChange}
-                >
-                  {shippingSubdivisionList.map((subdivision) => (
-                    <MenuItem key={subdivision} value={subdivision}>
-                      {subdivision}
-                    </MenuItem>
-                  ))}
-                </Select>
-                <FormHelperText>Please enter your State</FormHelperText>
-              </FormControl>
-            </div>
-          </Grid>
-          {/* <Grid item>
-            <div className={classes.margin}>
-              <FormControl
-                className={classes.formControl}
-                disabled={selectedShippingSubdivision === ""}
-              >
-                <InputLabel id="demo-simple-select-helper-label">
-                  Shipping Options
-                </InputLabel>
-                <Select
-                  labelId="demo-simple-select-helper-label"
-                  id="demo-simple-select-helper"
-                  value={selectedShippingOption}
-                  onChange={handleShippingOptionsChange}
-                >
-                  <MenuItem value="">
-                    <em>None</em>
-                  </MenuItem>
-                  <MenuItem value={10}>India</MenuItem>
-                  <MenuItem value={20}>Germany</MenuItem>
-                  <MenuItem value={30}>Sweden</MenuItem>
-                </Select>
-                <FormHelperText>Please enter your Country</FormHelperText>
-              </FormControl>
-            </div>
-          </Grid> */}
-        </Grid>
-        <Grid item>
-          <Grid container>
-            <Grid item>
-              <Button
-                variant="contained"
-                color="primary"
-                size="large"
-                className={classes.button}
-                startIcon={<ShoppingCartIcon />}
-                component={Link}
-                to="/cart"
-              >
-                Go back to cart page
-              </Button>
+              <Grid item>
+                <div className={classes.margin}>
+                  <FormControl className={classes.formControl}>
+                    <InputLabel id="demo-simple-select-helper-label">
+                      Shipping Country
+                    </InputLabel>
+                    <Select
+                      labelId="demo-simple-select-helper-label"
+                      id="demo-simple-select-helper"
+                      value={selectedShippingCountry}
+                      onChange={handleShippingCountryChange}
+                    >
+                      {shippingCountryList.map((country) => (
+                        <MenuItem key={country} value={country}>
+                          {country}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                    <FormHelperText>Please enter your Country</FormHelperText>
+                  </FormControl>
+                </div>
+              </Grid>
+              <Grid item>
+                <div className={classes.margin}>
+                  <FormControl
+                    className={classes.formControl}
+                    disabled={selectedShippingCountry === ""}
+                  >
+                    <InputLabel id="demo-simple-select-helper-label">
+                      Shipping State
+                    </InputLabel>
+                    <Select
+                      labelId="demo-simple-select-helper-label"
+                      id="demo-simple-select-helper"
+                      value={selectedShippingSubdivision}
+                      onChange={handleShippingSubdivisionChange}
+                    >
+                      {shippingSubdivisionList.map((subdivision) => (
+                        <MenuItem key={subdivision} value={subdivision}>
+                          {subdivision}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                    <FormHelperText>Please enter your State</FormHelperText>
+                  </FormControl>
+                </div>
+              </Grid>
+             
             </Grid>
             <Grid item>
-              <Button
-                variant="contained"
-                color="primary"
-                size="large"
-                className={classes.button}
-                startIcon={<NavigateNextIcon />}
-                type="submit"
-              >
-                Next
-              </Button>
+              <Grid container className={classes.endButtons}>
+                <Grid item>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    size="large"
+                    className={classes.button}
+                    startIcon={<ShoppingCartIcon />}
+                    component={Link}
+                    to="/cart"
+                  >
+                    Go back to cart page
+                  </Button>
+                </Grid>
+                <Grid item>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    size="large"
+                    className={classes.button}
+                    startIcon={<NavigateNextIcon />}
+                    type="submit"
+                  >
+                    Next
+                  </Button>
+                </Grid>
+              </Grid>
             </Grid>
-          </Grid>
-        </Grid>
-      </form>
-    </div>
+          </form>
+        </Card>
+        {/* </div> */}
+      </Box>
     </>
   );
 };
