@@ -1,4 +1,4 @@
-import { AppBar, Badge, IconButton, Toolbar, Grid } from "@material-ui/core";
+import { AppBar, Badge, IconButton, Toolbar, Grid, Box } from "@material-ui/core";
 import React from "react";
 import useStyles from "../Products/Product/styles";
 import { Typography } from "@material-ui/core";
@@ -7,12 +7,17 @@ import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import { Link, useLocation } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import "./styles.css";
+import { useAuth } from "../../contexts/AuthContext";
+import {useHistory} from "react-router-dom";
+import {useState} from "react";
 
 const NavBar = ({ quantity }) => {
   const classes = useStyles();
   const location = useLocation();
+  const { currentUser } = useAuth();
 
-  return (
+  const Appbar = () => {
+    return (
     <AppBar position="static" color="inherit">
       <Toolbar>
         <Grid container justifyContent="space-between">
@@ -22,6 +27,7 @@ const NavBar = ({ quantity }) => {
               HWH
             </Typography>
           </Grid>
+          
           <Grid item>
             {!(location.pathname === "/cart") && (
            
@@ -40,9 +46,15 @@ const NavBar = ({ quantity }) => {
             )}
           </Grid>
         </Grid>
+        
       </Toolbar>
-    </AppBar>
+    </AppBar>)
+  }
+
+  return (
+    (currentUser) ? <Appbar/> : null
   );
+            
 };
 
 export default NavBar;
