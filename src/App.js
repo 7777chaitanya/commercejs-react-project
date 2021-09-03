@@ -1,25 +1,25 @@
 import commerce from "./lib/commerce";
 import { Cart, NavBar, Products, Checkout } from "./components";
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Switch, Route, Link , useLocation} from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useLocation,
+} from "react-router-dom";
 import { AuthProvider } from "./contexts/AuthContext";
 import SignupForm from "./components/SignupForm";
 import LoginForm from "./components/LoginForm";
 // import Dashboard from "./Dashboard";
 
-import { useAuth } from "./contexts/AuthContext";
+// import { useAuth } from "./contexts/AuthContext";
 
-
-
-import app from "./components/firebase";
+// import app from "./components/firebase";
 import PrivateRoute from "./components/PrivateRoute";
 import LoginLogout from "./components/LoginLogout";
 
 const App = () => {
-  
-
-
-
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState({});
   console.log("App.js =>", products);
@@ -71,12 +71,14 @@ const App = () => {
   };
 
   return (
-    
-      <AuthProvider>
-        
-        <Router>
-        <NavBar quantity={cart.total_items} />
-        <LoginLogout/>
+    <AuthProvider>
+      <Router>
+        <Switch>
+          <NavBar quantity={cart.total_items} />
+        </Switch>
+        <Switch>
+          <LoginLogout />
+        </Switch>
         <Switch>
           {/* <Route path="/forgot-password" exact component={ForgotPassword} /> */}
           <Route path="/signup" exact component={SignupForm} />
@@ -94,14 +96,14 @@ const App = () => {
             <Checkout cart={cart.line_items} emptyCart={emptyCart} />
           </Route>
           <Route path="/" exact>
-            <Products
-            products={products}
-            addToCart={handleAddToCart}
-            />
+            <Products products={products} addToCart={handleAddToCart} />
           </Route>
-          </Switch>
-        </Router>
-      </AuthProvider>
+          {/* <PrivateRoute path="/" exact products={products} addToCart={handleAddToCart} component={Products} /> */}
+
+          {/* <PrivateRoute path="/" exact products={products} addToCart={handleAddToCart} component={Products} /> */}
+        </Switch>
+      </Router>
+    </AuthProvider>
   );
 };
 

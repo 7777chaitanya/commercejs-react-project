@@ -52,7 +52,8 @@ const NavBar = ({ quantity }) => {
   }
 
   return (
-    (currentUser) ? <Appbar/> : null
+    (location.pathname!=="/login" && location.pathname!=="/signup") ? <Appbar/>: null
+    // (currentUser) ? <Appbar/> : null
   );
             
 };

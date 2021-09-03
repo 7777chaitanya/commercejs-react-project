@@ -46,7 +46,7 @@ const LoginLogout = () => {
     }
   };
 
-  return currentUser ? (
+  return (location.pathname!=="/login" && location.pathname!=="/signup") ? (
     // <Box className={classes.main}>
     //   <Box className={classes.box}>
     //     {currentUser && <Typography className={classes.h2} variant="body2">
