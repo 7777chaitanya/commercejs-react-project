@@ -2,7 +2,7 @@ import commerce from "./lib/commerce";
 import { Cart, NavBar, Products, Checkout } from "./components";
 import React, { useState, useEffect } from "react";
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   Switch,
   Route,
   Link,
