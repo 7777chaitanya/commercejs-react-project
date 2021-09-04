@@ -38,6 +38,8 @@ const Wishlist = ({userDetails, quantity,fetchUserDetails, products, addToCart, 
                 addToCart={addToCart}
                 AddToWishlist={AddToWishlist}
                 deleteFromWishlist={deleteFromWishlist}
+                userDetails={userDetails}
+                
               />
             </Grid>
           ))}

@@ -35,6 +35,7 @@ const Products = ({
                 addToCart={addToCart}
                 AddToWishlist={AddToWishlist}
                 deleteFromWishlist={deleteFromWishlist}
+                userDetails={userDetails}
               />
             </Grid>
           ))}

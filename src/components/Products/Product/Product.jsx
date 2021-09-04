@@ -12,22 +12,47 @@ import {
 import React, { useState } from "react";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import useStyles from "./styles";
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 
-const Product = ({ product, addToCart, AddToWishlist, deleteFromWishlist }) => {
+const Product = ({
+  product,
+  addToCart,
+  AddToWishlist,
+  deleteFromWishlist,
+  userDetails,
+}) => {
   const classes = useStyles();
-  const [wishlistPresence, setWishlistPresence] = useState(false)
 
   const handleAddOrRemoveFromWishlist = (productId) => {
-      if(wishlistPresence){
-        deleteFromWishlist(productId);
+    if (wishlistPresence) {
+      deleteFromWishlist(productId);
+    } else {
+      AddToWishlist(productId);
+    }
+    setWishlistPresence(wishlistPresence ? false : true);
+  };
+
+
+  const isItemPresentInWishList = () => {
+    let flag = 0;
+    console.log("isItemPresentInWishList",product.id,userDetails)
+    Object.keys({...userDetails}).length && (
+    userDetails.wishlist.forEach((item) => {
+      if (item === product.id) {
+        flag = 1;
       }
-      else{
-        AddToWishlist(productId)
-      }
-      setWishlistPresence(wishlistPresence ? false : true);
+    }));
+    if (flag === 0) {
+      return false;
+    } else {
+      return true;
+    }
   }
+
+  
+    
+  const [wishlistPresence, setWishlistPresence] = useState(isItemPresentInWishList());
 
   return (
     <Card className={classes.root} raised={true}>
@@ -73,16 +98,17 @@ const Product = ({ product, addToCart, AddToWishlist, deleteFromWishlist }) => {
 
       <CardActions disableSpacing>
         <Grid container justifyContent="space-evenly">
-        <IconButton
+          <IconButton
             aria-label="Add to cart"
             onClick={() => {
-              handleAddOrRemoveFromWishlist(product.id)
+              handleAddOrRemoveFromWishlist(product.id);
             }}
           >
-
-            {wishlistPresence ? 
-            <FavoriteIcon color="primary" /> :
-            <FavoriteBorderIcon color="primary" />}
+            {wishlistPresence ? (
+              <FavoriteIcon color="primary" />
+            ) : (
+              <FavoriteBorderIcon color="primary" />
+            )}
           </IconButton>
           <IconButton
             aria-label="Add to cart"

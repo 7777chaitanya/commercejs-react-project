@@ -173,6 +173,9 @@ const App = () => {
               userDetails={userDetails}
               fetchUserDetails={fetchUserDetails}
               products={products}
+              AddToWishlist={AddToWishlist}
+              deleteFromWishlist={deleteFromWishlist}
+
 
             />
           </Route>
