@@ -30,7 +30,9 @@ const Cart = ({
   };
 
   useEffect(() => {
-    fetchUserDetails(currentUser.email);
+    currentUser && (
+      fetchUserDetails(currentUser.email)
+      )
   }, []);
 
   const LoadedCart = () => {

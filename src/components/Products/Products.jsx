@@ -20,7 +20,9 @@ const Products = ({
   const { currentUser } = useAuth();
 
   useEffect(() => {
-    fetchUserDetails(currentUser.email);
+    currentUser && (
+    fetchUserDetails(currentUser.email)
+    )
   }, []);
 
   return (
