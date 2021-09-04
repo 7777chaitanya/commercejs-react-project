@@ -12,10 +12,12 @@ import {
 import Alert from "@material-ui/lab/Alert";
 import React, { useRef, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import {Link, useHistory } from 'react-router-dom';
+import { Link, useHistory } from "react-router-dom";
 
 import { useAuth } from "../contexts/AuthContext";
-import { auth } from "./firebase";
+import { auth, db } from "./firebase";
+import { doc, setDoc } from "firebase/firestore"; 
+
 
 const useStyles = makeStyles({
   box: {
@@ -66,8 +68,8 @@ const useStyles = makeStyles({
   },
   link: {
     textAlign: "center",
-    textDecoration: "none", 
-    color : 'black',
+    textDecoration: "none",
+    color: "black",
   },
   typography: {
     color: "greenyellow",
@@ -76,6 +78,7 @@ const useStyles = makeStyles({
 
 const SignupForm = () => {
   const classes = useStyles();
+  const usernameRef = useRef();
   const emailRef = useRef();
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
@@ -97,15 +100,27 @@ const SignupForm = () => {
       setLoading(true);
       setSigninSuccess("");
 
+
+
+
       const result = await signup(
         auth,
         emailRef.current.value,
         passwordRef.current.value
       );
+     
+      const docSetting = await setDoc(doc(db, "customerDetails", emailRef.current.value), {
+        name: usernameRef.current.value,
+        wishlist : []
+      });
+     
       if (result) {
         setSigninSuccess("Account registered Successfully!");
       }
-      history.push('/');
+      console.log("documentSEtting => ",docSetting)
+
+     
+      history.push("/");
       console.log("result =>", result);
     } catch (error) {
       setError(error.code);
@@ -144,6 +159,19 @@ const SignupForm = () => {
           <Box className={classes.form}>
             <Box className={classes.box}>
               <FormControl>
+                <InputLabel htmlFor="my-input">Username</InputLabel>
+                <Input
+                  id="my-input"
+                  aria-describedby="my-helper-text"
+                  inputRef={usernameRef}
+                />
+                <FormHelperText id="my-helper-text">
+                  How do you want us to call you?
+                </FormHelperText>
+              </FormControl>
+            </Box>
+            <Box className={classes.box}>
+              <FormControl>
                 <InputLabel htmlFor="my-input">Email address</InputLabel>
                 <Input
                   id="my-input"
@@ -165,14 +193,14 @@ const SignupForm = () => {
                   inputRef={passwordRef}
                 />
                 <FormHelperText id="my-helper-text">
-                  We'll never share your password.
+                  Help us to keep your account safe
                 </FormHelperText>
               </FormControl>
             </Box>
             <Box className={classes.box}>
               <FormControl>
                 <InputLabel htmlFor="my-input">
-                  Password Confirmation
+                  Re-enter password
                 </InputLabel>
                 <Input
                   id="my-input"
@@ -181,7 +209,7 @@ const SignupForm = () => {
                   inputRef={passwordConfirmRef}
                 />
                 <FormHelperText id="my-helper-text">
-                  We'll never share your email.
+                  Please re-enter your password
                 </FormHelperText>
               </FormControl>
             </Box>
@@ -205,7 +233,12 @@ const SignupForm = () => {
       <Box className={classes.link}>
         {/* <a style={{ textDecoration: "none", color: "black" }} href="/login"> */}
 
-        <Typography variant="subtitle2" component={Link} to="/login" className={classes.link}>
+        <Typography
+          variant="subtitle2"
+          component={Link}
+          to="/login"
+          className={classes.link}
+        >
           Already have an Account? Log In!
         </Typography>
         {/* </a> */}

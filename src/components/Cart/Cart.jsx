@@ -1,10 +1,11 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { Button, Divider, Grid, Typography } from "@material-ui/core";
 import { Link } from "react-router-dom";
 
 import "./styles.css";
 import CartItem from "./CartItem/CartItem";
 import Review from "../CheckoutForm/Review/Review";
+import {useAuth} from "../../contexts/AuthContext";
 
 const Cart = ({
   cart,
@@ -12,7 +13,9 @@ const Cart = ({
   decrementItem,
   removeItem,
   emptyCart,
+  fetchUserDetails
 }) => {
+  const {currentUser} = useAuth();
   const Loading = () => {
     return <Typography variant="h5">Loading Your Cart....</Typography>;
   };
@@ -25,6 +28,10 @@ const Cart = ({
       </Typography>
     );
   };
+
+  useEffect(() => {
+    fetchUserDetails(currentUser.email);
+  }, []);
 
   const LoadedCart = () => {
     return (

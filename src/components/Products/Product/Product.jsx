@@ -9,12 +9,26 @@ import {
   Typography,
   Grid,
 } from "@material-ui/core";
-import React from "react";
+import React, { useState } from "react";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import useStyles from "./styles";
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 
-const Product = ({ product, addToCart }) => {
+const Product = ({ product, addToCart, AddToWishlist, deleteFromWishlist }) => {
   const classes = useStyles();
+  const [wishlistPresence, setWishlistPresence] = useState(false)
+
+  const handleAddOrRemoveFromWishlist = (productId) => {
+      if(wishlistPresence){
+        deleteFromWishlist(productId);
+      }
+      else{
+        AddToWishlist(productId)
+      }
+      setWishlistPresence(wishlistPresence ? false : true);
+  }
+
   return (
     <Card className={classes.root} raised={true}>
       <CardActionArea>
@@ -58,7 +72,18 @@ const Product = ({ product, addToCart }) => {
       </CardActionArea>
 
       <CardActions disableSpacing>
-        <Grid container justifyContent="flex-end">
+        <Grid container justifyContent="space-evenly">
+        <IconButton
+            aria-label="Add to cart"
+            onClick={() => {
+              handleAddOrRemoveFromWishlist(product.id)
+            }}
+          >
+
+            {wishlistPresence ? 
+            <FavoriteIcon color="primary" /> :
+            <FavoriteBorderIcon color="primary" />}
+          </IconButton>
           <IconButton
             aria-label="Add to cart"
             onClick={() => {

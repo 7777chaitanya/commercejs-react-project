@@ -75,7 +75,7 @@ const useStyles = makeStyles({
   },
 });
 
-const SignupForm = () => {
+const LoginForm = () => {
   const classes = useStyles();
   const emailRef = useRef();
   const passwordRef = useRef();
@@ -208,4 +208,4 @@ const SignupForm = () => {
   );
 };
 
-export default SignupForm;
+export default LoginForm;
