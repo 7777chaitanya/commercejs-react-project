@@ -80,9 +80,7 @@ const NavBar = ({ quantity, userDetails }) => {
                   HWH
                 </Typography>
               </Grid>
-              {/* <Grid item>
-                {Object.keys(userDetails).length !== 0 && userDetails.name}
-              </Grid> */}
+            
 
               <Grid item>
                 {/* {!(location.pathname === "/cart") && ( */}

@@ -1,4 +1,5 @@
 import { makeStyles } from "@material-ui/core";
+import { FullscreenExitTwoTone } from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -9,7 +10,14 @@ const useStyles = makeStyles((theme) => ({
     // backgroundColor: "green",
   },
   card : {
-    maxWidth: "100vw",
+    [theme.breakpoints.down('sm')]: {
+      minWidth:"100vw",
+    },
+    [theme.breakpoints.up('sm')]: {
+      minWidth: "50vw",
+      maxWidth: "70vw",
+    },
+   
     backgroundColor: "lightred",
     margin: "2px 0px",
     // paddingLeft: "15vw",
@@ -18,12 +26,21 @@ const useStyles = makeStyles((theme) => ({
   },
   margin: {
     margin: theme.spacing(1),
-    // textAlign: 'center'
-    // paddingRight: "auto",
+   display : "flex",
+   justifyContent: "center",
+   alignItems:"center"
+
   },
-  // form : {
-  //   justifyContent: 'center',
-  // },
+  eachTextFieldSubItem:{
+display:"flex",
+justifyContent : "center",
+alignItems : "center"
+  },
+  eachTextFieldIcon:{
+    paddingTop : "1.8rem",
+    paddingRight : "1rem"
+  },
+  
   endButtons : {
     display : "flex", 
     justifyContent: "space-around",
@@ -32,11 +49,23 @@ const useStyles = makeStyles((theme) => ({
   button : {
     marginBottom : '1rem',
   },
-  // maingrid : {
-  //   display : " flex ", 
-  //   direction: 'column',
-  //   justifyContent: "center",
-  // },
+  inputFieldBox:{
+    display : "flex",
+    justifyContent:"center",
+  },
+  buttonBox:{
+    display: "flex",
+    justifyContent:"space-evenly",
+    alignItems :"center",
+
+    [theme.breakpoints.down('sm')]: {
+      flexDirection: "column"
+    },
+    [theme.breakpoints.up('sm')]: {
+      flexDirection: "row"
+    },
+  }
+ 
   
 }));
 

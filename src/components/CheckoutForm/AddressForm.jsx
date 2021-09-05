@@ -126,115 +126,110 @@ const AddressForm = ({ handleActiveStep, handleShippingData }) => {
     <>
       <CssBaseline />
       <Box className={classes.root}>
-        {/* <div style={{border: "1px solid lightGray", width:"90%", margin: "auto", paddingLeft: "10%"}}> */}
         <Card className={classes.card}>
           <form onSubmit={handleSubmit} className={classes.form}>
-            <Grid container xs={12} sm={6} md={6} className={classes.maingrid}>
-              <div style={{ justifyContent: "center" }}>
-                <Grid item>
-                  <div className={classes.margin}>
-                    <Grid container spacing={1} alignItems="flex-end">
-                      <Grid item>
-                        <AccountCircle />
-                      </Grid>
-                      <Grid item>
-                        <TextField
-                          id="input-with-icon-grid"
-                          label="First name *"
-                          value={firstName}
-                          onChange={handleFirstnameChange}
-                        />
-                      </Grid>
-                    </Grid>
-                  </div>
-                </Grid>
-              </div>
-              <Grid item>
+            <Box>
+              <Box className={classes.inputFieldBox}>
+                <Box className={classes.margin}>
+                  <Box className={classes.eachTextFieldIcon}>
+                    <AccountCircle />
+                  </Box>
+                  <Box className={classes.eachTextFieldSubItem}>
+                    <TextField
+                      id="input-with-icon-grid"
+                      label="First name *"
+                      value={firstName}
+                      onChange={handleFirstnameChange}
+                    />
+                  </Box>
+                </Box>
+              </Box>
+              <Box className={classes.inputFieldBox}>
                 <div className={classes.margin}>
-                  <Grid container spacing={1} alignItems="flex-end">
-                    <Grid item>
-                      <AccountCircle />
-                    </Grid>
-                    <Grid item>
-                      <TextField
-                        id="input-with-icon-grid"
-                        label="Last name *"
-                        value={lastName}
-                        onChange={handleLastnameChange}
-                      />
-                    </Grid>
-                  </Grid>
+                  <Box className={classes.eachTextFieldIcon}>
+                    <AccountCircle />
+                  </Box>
+                  <Box className={classes.eachTextFieldSubItem}>
+
+                  <TextField
+                    id="input-with-icon-grid"
+                    label="Last name *"
+                    value={lastName}
+                    onChange={handleLastnameChange}
+                  />
+                  </Box>
                 </div>
-              </Grid>
-              <Grid item>
+              </Box>
+
+              <Box className={classes.inputFieldBox}>
                 <div className={classes.margin}>
-                  <Grid container spacing={1} alignItems="flex-end">
-                    <Grid item>
-                      <AccountCircle />
-                    </Grid>
-                    <Grid item>
-                      <TextField
-                        id="input-with-icon-grid"
-                        label="Address *"
-                        value={address}
-                        onChange={handleAddressChange}
-                      />
-                    </Grid>
-                  </Grid>
+                  <Box className={classes.eachTextFieldIcon}>
+                    <AccountCircle />
+                  </Box>
+                  <Box className={classes.eachTextFieldSubItem}>
+
+                  <TextField
+                    id="input-with-icon-grid"
+                    label="Address *"
+                    value={address}
+                    onChange={handleAddressChange}
+                  />
+                  </Box>
                 </div>
-              </Grid>
-              <Grid item>
+              </Box>
+
+              <Box className={classes.inputFieldBox}>
                 <div className={classes.margin}>
-                  <Grid container spacing={1} alignItems="flex-end">
-                    <Grid item>
-                      <AccountCircle />
-                    </Grid>
-                    <Grid item>
-                      <TextField
-                        id="input-with-icon-grid"
-                        label="Email *"
-                        value={email}
-                        onChange={handleEmailChange}
-                      />
-                    </Grid>
-                  </Grid>
+                  <Box className={classes.eachTextFieldIcon}>
+                    <AccountCircle />
+                  </Box>
+                  <Box className={classes.eachTextFieldSubItem}>
+
+                  <TextField
+                    id="input-with-icon-grid"
+                    label="Email *"
+                    value={email}
+                    onChange={handleEmailChange}
+                  />
+                  </Box>
                 </div>
-              </Grid>
-              <Grid item>
+              </Box>
+
+              <Box className={classes.inputFieldBox}>
                 <div className={classes.margin}>
-                  <Grid container spacing={1} alignItems="flex-end">
-                    <Grid item>
-                      <AccountCircle />
-                    </Grid>
-                    <Grid item>
-                      <TextField
-                        id="input-with-icon-grid"
-                        label="City *"
-                        value={city}
-                        onChange={handleCityChange}
-                      />
-                    </Grid>
-                  </Grid>
+                  <Box className={classes.eachTextFieldIcon}>
+                    <AccountCircle />
+                  </Box>
+                  <Box className={classes.eachTextFieldSubItem}>
+
+                  <TextField
+                    id="input-with-icon-grid"
+                    label="City *"
+                    value={city}
+                    onChange={handleCityChange}
+                  />
+                  </Box>
                 </div>
-              </Grid>
-              <Grid item>
+              </Box>
+
+              <Box className={classes.inputFieldBox}>
                 <div className={classes.margin}>
-                  <Grid container spacing={1} alignItems="flex-end">
-                    <Grid item>
-                      <AccountCircle />
-                    </Grid>
-                    <Grid item>
-                      <TextField
-                        id="input-with-icon-grid"
-                        label="Postal code *"
-                        value={postalCode}
-                        onChange={handlePostalCodeChange}
-                      />
-                    </Grid>
-                  </Grid>
+                  <Box className={classes.eachTextFieldIcon}>
+                    <AccountCircle />
+                  </Box>
+                  <Box className={classes.eachTextFieldSubItem}>
+
+                  <TextField
+                    id="input-with-icon-grid"
+                    label="Postal code *"
+                    value={postalCode}
+                    onChange={handlePostalCodeChange}
+                  />
+                  </Box>
                 </div>
-              </Grid>
-              <Grid item>
+              </Box>
+
+              <Box className={classes.inputFieldBox}>
                 <div className={classes.margin}>
                   <FormControl className={classes.formControl}>
                     <InputLabel id="demo-simple-select-helper-label">
@@ -255,8 +250,9 @@ const AddressForm = ({ handleActiveStep, handleShippingData }) => {
                     <FormHelperText>Please enter your Country</FormHelperText>
                   </FormControl>
                 </div>
-              </Grid>
-              <Grid item>
+              </Box>
+
+              <Box className={classes.inputFieldBox}>
                 <div className={classes.margin}>
                   <FormControl
                     className={classes.formControl}
@@ -280,41 +276,34 @@ const AddressForm = ({ handleActiveStep, handleShippingData }) => {
                     <FormHelperText>Please enter your State</FormHelperText>
                   </FormControl>
                 </div>
-              </Grid>
-             
-            </Grid>
-            <Grid item>
-              <Grid container className={classes.endButtons}>
-                <Grid item>
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    size="large"
-                    className={classes.button}
-                    startIcon={<ShoppingCartIcon />}
-                    component={Link}
-                    to="/cart"
-                  >
-                    Go back to cart page
-                  </Button>
-                </Grid>
-                <Grid item>
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    size="large"
-                    className={classes.button}
-                    startIcon={<NavigateNextIcon />}
-                    type="submit"
-                  >
-                    Next
-                  </Button>
-                </Grid>
-              </Grid>
-            </Grid>
+              </Box>
+
+              <Box className={classes.buttonBox}>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  size="large"
+                  className={classes.button}
+                  startIcon={<ShoppingCartIcon />}
+                  component={Link}
+                  to="/cart"
+                >
+                  Go back to cart page
+                </Button>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  size="large"
+                  className={classes.button}
+                  startIcon={<NavigateNextIcon />}
+                  type="submit"
+                >
+                  Next
+                </Button>
+              </Box>
+            </Box>
           </form>
         </Card>
-        {/* </div> */}
       </Box>
     </>
   );
