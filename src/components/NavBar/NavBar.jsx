@@ -7,6 +7,7 @@ import {
   Box,
   ThemeProvider,
   createTheme,
+  InputBase,
 } from "@material-ui/core";
 import React, { useEffect } from "react";
 import useStyles from "../Products/Product/styles";
@@ -19,6 +20,7 @@ import HWH from "../../assets/HWH.png";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import PersonIcon from "@material-ui/icons/Person";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import SearchIcon from '@material-ui/icons/Search';
 
 import "./styles.css";
 import { useAuth } from "../../contexts/AuthContext";
@@ -32,7 +34,10 @@ const NavBar = ({ quantity, userDetails }) => {
   const classes = useStyles();
   const location = useLocation();
   const { currentUser } = useAuth();
-  const [userName, setUserName] = useState(userDetails.name);
+  const [userName, setUserName] = useState(userDetails);
+  console.log("state in navbar=>",userDetails)
+
+  console.log("userName in navbar=>",userDetails.name)
 
   const theme = createTheme({
     palette: {
@@ -80,6 +85,24 @@ const NavBar = ({ quantity, userDetails }) => {
                   HWH
                 </Typography>
               </Grid>
+              {/* ----------------------------------------------------------- */}
+              <Grid item>
+              <div className={classes.search}>
+            <div className={classes.searchIcon}>
+              <SearchIcon />
+            </div>
+            <InputBase
+              placeholder="Search…"
+              classes={{
+                root: classes.inputRoot,
+                input: classes.inputInput,
+              }}
+              inputProps={{ 'aria-label': 'search' }}
+            />
+          </div>
+              </Grid>
+
+              {/* ------------------------------------------------------------------ */}
             
 
               <Grid item>
@@ -101,9 +124,9 @@ const NavBar = ({ quantity, userDetails }) => {
                   </Grid>
                   <Grid item>
                     <Typography>
-                      Hi,{" "}
+                      Hi,
                       {Object.keys(userDetails).length !== 0 &&
-                        userDetails.name}{" "}
+                        userDetails.name}
                     </Typography>
                   </Grid>
                 </Grid>

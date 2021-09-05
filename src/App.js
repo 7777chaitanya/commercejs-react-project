@@ -1,5 +1,5 @@
 import commerce from "./lib/commerce";
-import { Cart, NavBar, Products, Checkout, Wishlist } from "./components";
+import { Cart, NavBar, Products, Checkout, Wishlist, NavBar2 } from "./components";
 import React, { useState, useEffect } from "react";
 import {
   HashRouter as Router,
@@ -138,7 +138,9 @@ const App = () => {
       <AuthProvider>
         <Router>
           {/* <Switch> */}
-          <NavBar quantity={cart.total_items} userDetails={userDetails} />
+          {/* <NavBar quantity={cart.total_items} userDetails={userDetails} /> */}
+          <NavBar2 quantity={cart.total_items} userDetails={userDetails} />
+
           {/* </Switch> */}
           {/* <Switch> */}
           {/* <LoginLogout /> */}

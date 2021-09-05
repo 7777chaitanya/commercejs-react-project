@@ -11,7 +11,9 @@ const Wishlist = ({userDetails, quantity,fetchUserDetails, products, addToCart, 
 
 
   useEffect(() => {
-    fetchUserDetails(currentUser.email);
+    currentUser && (
+      fetchUserDetails(currentUser.email)
+      )
   }, []);
 
   const {currentUser} = useAuth();
