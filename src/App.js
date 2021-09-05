@@ -177,6 +177,8 @@ const App = () => {
               products={products}
               AddToWishlist={AddToWishlist}
               deleteFromWishlist={deleteFromWishlist}
+              addToCart={handleAddToCart}
+
 
 
             />

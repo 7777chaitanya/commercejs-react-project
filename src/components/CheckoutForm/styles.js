@@ -48,6 +48,8 @@ alignItems : "center"
   },
   button : {
     marginBottom : '1rem',
+    paddingLeft: "1rem",
+    paddingRight : "5rem"
   },
   inputFieldBox:{
     display : "flex",
