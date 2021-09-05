@@ -33,7 +33,9 @@ const useStyles = makeStyles({
     padding: "0px 5rem",
     boxShadow:
       "0rem 0.1rem 0.1rem 0.1rem linear-gradient(165deg, lightcyan, greenyellow)",
-    backgroundImage: "linear-gradient(165deg, lightcyan, greenyellow)",
+    // backgroundImage: "linear-gradient(165deg, lightcyan, greenyellow)",
+    backgroundImage: "linear-gradient(165deg, lightcyan, darkslateblue)",
+
   },
   button: {
     // background: "linear-gradient(135deg, lightgray, greenyellow)",
@@ -72,7 +74,8 @@ const useStyles = makeStyles({
     color: "black",
   },
   typography: {
-    color: "greenyellow",
+    // color: "greenyellow",
+    color : "darkslateblue"
   },
 });
 

@@ -1,5 +1,5 @@
 import commerce from "./lib/commerce";
-import { Cart, NavBar, Products, Checkout, Wishlist, NavBar2 } from "./components";
+import { Cart, NavBar, Products, Checkout, Wishlist, NavBar2, Notifications, Messages } from "./components";
 import React, { useState, useEffect } from "react";
 import {
   HashRouter as Router,
@@ -17,6 +17,27 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { db } from "./components/firebase";
 import { doc, getDoc, setDoc } from "firebase/firestore";
+import { ThemeProvider } from "@material-ui/styles";
+import { createTheme } from "@material-ui/core";
+
+const theme = createTheme({
+  palette: {
+    // primary: {
+      // Purple and green play nicely together.
+      // main: purple[500],
+      // main: "rgb(249,205,84)",
+      // main :"rgb(222,79,78)"
+    // },
+    secondary: {
+      // This is green.A700 as hex.
+      // main: '#11cb5f',
+      main: "rgb(222,79,78)",
+      // main : "rgb(0,0,0)",
+      // main : "rgb(145,145,145)",
+      // main :"rgb(190,123,255)",
+    },
+  },
+});
 
 const App = () => {
   const [products, setProducts] = useState([]);
@@ -135,7 +156,9 @@ const App = () => {
 
   return (
     <>
+
       <AuthProvider>
+        <ThemeProvider theme={theme}>
         <Router>
           {/* <Switch> */}
           {/* <NavBar quantity={cart.total_items} userDetails={userDetails} /> */}
@@ -183,6 +206,12 @@ const App = () => {
 
             />
           </Route>
+          <Route path="/notifications" exact>
+            <Notifications/>
+          </Route>
+          <Route path="/messages" exact>
+            <Messages/>
+          </Route>
           <Route path="/" exact>
             <Products
               products={products}
@@ -200,6 +229,7 @@ const App = () => {
           {/* <PrivateRoute path="/" exact products={products} addToCart={handleAddToCart} component={Products} /> */}
           {/* </Switch> */}
         </Router>
+        </ThemeProvider>
       </AuthProvider>
       <ToastContainer />
     </>

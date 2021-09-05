@@ -156,7 +156,7 @@ export default function NavBar2({ quantity, userDetails }) {
       onClose={handleMobileMenuClose}
     >
       <MenuItem>
-        <IconButton aria-label="show 4 new mails" color="inherit">
+        <IconButton aria-label="show 4 new mails" color="inherit" component={Link} to="/messages">
           <Badge badgeContent={4} color="secondary">
             <MailIcon />
           </Badge>
@@ -164,7 +164,7 @@ export default function NavBar2({ quantity, userDetails }) {
         <p>Messages</p>
       </MenuItem>
       <MenuItem>
-        <IconButton aria-label="show 11 new notifications" color="inherit">
+        <IconButton aria-label="show 11 new notifications" color="inherit" component={Link} to="/notifications">
           <Badge badgeContent={11} color="secondary">
             <NotificationsIcon />
           </Badge>
@@ -203,7 +203,7 @@ export default function NavBar2({ quantity, userDetails }) {
               <ShoppingCartIcon />
             </Badge>
           </IconButton>
-          <p>Wishlist</p>
+          <p>My Cart</p>
         </MenuItem>
       )}
 
@@ -281,14 +281,14 @@ export default function NavBar2({ quantity, userDetails }) {
             </IconButton>
             </Tooltip>
             <Tooltip title="Messages">
-              <IconButton aria-label="show 4 new mails" color="inherit">
+              <IconButton aria-label="show 4 new mails" color="inherit" component={Link} to="/messages">
                 <Badge badgeContent={0} color="secondary">
                   <MailIcon />
                 </Badge>
               </IconButton>
             </Tooltip>
             <Tooltip title="Notifications">
-              <IconButton aria-label="show 17 new notifications" color="inherit">
+              <IconButton aria-label="show 17 new notifications" color="inherit" component={Link} to="/notifications" >
                 <Badge badgeContent={0} color="secondary">
                   <NotificationsIcon />
                 </Badge>

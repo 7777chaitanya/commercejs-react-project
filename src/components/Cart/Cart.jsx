@@ -1,11 +1,47 @@
 import React, {useEffect} from "react";
-import { Button, Divider, Grid, Typography } from "@material-ui/core";
+import { Button, Divider, Grid, makeStyles, Typography } from "@material-ui/core";
+import { Paper, Box } from "@material-ui/core";
+
 import { Link } from "react-router-dom";
 
 import "./styles.css";
 import CartItem from "./CartItem/CartItem";
 import Review from "../CheckoutForm/Review/Review";
 import {useAuth} from "../../contexts/AuthContext";
+
+const useStyles = makeStyles(theme => ({
+  wishlistPaper: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection :"column",
+    [theme.breakpoints.down('sm')]: {
+      width : "100vw",
+      height : "60vh",
+    paddingLeft : "5vh" , 
+    paddingRight : "5vh",
+
+    },
+    [theme.breakpoints.up('sm')]: {
+      width : "80vw",
+      height : "40vh",    },
+      text:{
+        marginTop : "5vh"
+      },
+    
+   
+    
+  },
+  centerPaper:{
+    display :"flex",
+    justifyContent: "center",
+    alignItems: "center",
+    height : "80vh",
+  },
+  pageTitle:{
+    marginBottom : "1rem"
+  }
+}));
 
 const Cart = ({
   cart,
@@ -15,18 +51,29 @@ const Cart = ({
   emptyCart,
   fetchUserDetails
 }) => {
+  const classes = useStyles();
   const {currentUser} = useAuth();
   const Loading = () => {
     return <Typography variant="h5">Loading Your Cart....</Typography>;
   };
 
   const EmptyCart = () => {
-    return (
-      <Typography variant="body1">
-        Your cart has no items. <Link to="/">Go back to products page </Link>to
-        add more products.
-      </Typography>
-    );
+      return (
+        <Box className={classes.centerPaper}>
+      <Paper className={classes.wishlistPaper} elevation={5}>
+        <Box>
+          <Typography display="block" variant="h4" align="center" >Your Cart is empty</Typography>
+        </Box>
+        <Box>
+        <Typography variant="h6" display="block" className={classes.text}>
+          <Link to="/">
+            Click here 
+            </Link>{' '}
+          to add some items to the the wishlist
+        </Typography>
+        </Box>
+      </Paper>
+      </Box>);
   };
 
   useEffect(() => {
@@ -61,11 +108,11 @@ const Cart = ({
             </Typography>
           </Grid>
           <Grid item>
-            <Grid container>
+            <Grid container spacing={4}>
               <Grid item>
                 <Button
                   variant="contained"
-                  color="primary"
+                  color="secondary"
                   onClick={() => emptyCart()}
                 >
                   EMPTY CART
@@ -76,7 +123,7 @@ const Cart = ({
                   component={Link}
                   to="/checkout"
                   variant="contained"
-                  color="secondary"
+                  color="primary"
                 >
                   CHECKOUT
                 </Button>
@@ -95,7 +142,7 @@ const Cart = ({
 
   return (
     <>
-      <Typography variant="h4" color="primary" align="center">
+      <Typography variant="h4" color="primary" align="center" className={classes.pageTitle}>
         Your Shopping Cart
       </Typography>
 
