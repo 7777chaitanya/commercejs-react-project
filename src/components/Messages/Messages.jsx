@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
     },
     [theme.breakpoints.up("sm")]: {
       width: "80vw",
-      height: "40vh",
+      height: "47vh",
     },
     // text: {
     //   marginTop: "5vh",
@@ -37,10 +37,19 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    height: "70vh",
+    
+    padding:"1rem"
   },
   pageTitle: {
     marginBottom: "1rem",
+  },
+  [theme.breakpoints.down("sm")]: {
+    height: "60vh",
+
+  },
+  [theme.breakpoints.up("sm")]: {
+    height: "80vh",
+
   },
 }));
 
@@ -74,7 +83,7 @@ const Messages = () => {
           </Box>
         </Paper>
       </Box>
-      )
+      
     </div>
   );
 };

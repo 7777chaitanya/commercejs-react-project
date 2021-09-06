@@ -1,5 +1,5 @@
 import commerce from "./lib/commerce";
-import { Cart, NavBar, Products, Checkout, Wishlist, NavBar2, Notifications, Messages } from "./components";
+import { Cart, NavBar, Products, Checkout, Wishlist, NavBar2, Notifications, Messages, ProductDescription, Footer } from "./components";
 import React, { useState, useEffect } from "react";
 import {
   HashRouter as Router,
@@ -65,13 +65,14 @@ const App = () => {
 
   const AddToWishlist = async (id) => {
     const userDetailsCopy = { ...userDetails };
-    console.log(
-      "before entering add to wish list => ",
-      userDetailsCopy.wishlist
-    );
+    // console.log(
+    //   "before entering add to wish list => ",
+    //   userDetailsCopy.wishlist
+    // );
     if (userDetailsCopy.wishlist.indexOf(id) === -1) {
       userDetailsCopy.wishlist.push(id);
-    }
+    
+  }
     console.log("AddToWishlist =>", userDetailsCopy);
 
     try {
@@ -91,7 +92,7 @@ const App = () => {
       return prodId !== id;
     });
     userDetailsCopy.wishlist = [...modifiedWishlistArray];
-    console.log("deleteFromWishlist =>", userDetailsCopy);
+    // console.log("deleteFromWishlist =>", userDetailsCopy);
     try {
       setUserDetails(userDetailsCopy);
       await setDoc(doc(db, "customerDetails", userEmail), {
@@ -212,6 +213,27 @@ const App = () => {
           <Route path="/messages" exact>
             <Messages/>
           </Route>
+          {/* <Route path="/products/:productId" exact>
+            <ProductDescription products={products}  />
+          </Route> */}
+          <Route 
+            path="/products/:productId" 
+            exact
+            // component={<ProductDescription/>}
+            render={(props)=> <ProductDescription products={products} 
+            addToCart={handleAddToCart}
+              // fetchUserDetails={fetchUserDetails}
+              AddToWishlist={AddToWishlist}
+              deleteFromWishlist={deleteFromWishlist}
+              // quantity={cart.total_items}
+              userDetails={userDetails}
+            {...props}/>}
+            />
+          
+          
+            {/* <Messages/>
+          </Route> */}
+          
           <Route path="/" exact>
             <Products
               products={products}
@@ -228,7 +250,9 @@ const App = () => {
 
           {/* <PrivateRoute path="/" exact products={products} addToCart={handleAddToCart} component={Products} /> */}
           {/* </Switch> */}
+          <Footer/>
         </Router>
+        
         </ThemeProvider>
       </AuthProvider>
       <ToastContainer />

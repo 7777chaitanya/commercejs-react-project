@@ -14,6 +14,7 @@ import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import useStyles from "./styles";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
+import { Link } from 'react-router-dom';
 
 const Product = ({
   product,
@@ -60,7 +61,9 @@ const Product = ({
         <CardMedia
           className={classes.media}
           image={product.media.source}
-          title="Contemplative Reptile"
+          title={product.name}
+          component={Link}
+          to={`/products/${product.id}`}
         />
         <CardContent style={{ paddingBottom: "0" }}>
           <Grid container justifyContent="space-between">

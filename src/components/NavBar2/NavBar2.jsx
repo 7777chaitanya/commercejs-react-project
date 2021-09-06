@@ -27,6 +27,8 @@ import { Tooltip } from "@material-ui/core";
 const useStyles = makeStyles((theme) => ({
   grow: {
     flexGrow: 1,
+    position : "sticky",
+    zIndex: 5
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -222,7 +224,8 @@ export default function NavBar2({ quantity, userDetails }) {
   );
 
   return (
-    <div className={classes.grow}>
+   ((location.pathname!=="/signup") && (location.pathname!=="/login"))  ?
+    (<div className={classes.grow}>
       <AppBar position="static">
         <Toolbar>
           <IconButton
@@ -354,6 +357,6 @@ export default function NavBar2({ quantity, userDetails }) {
       </AppBar>
       {renderMobileMenu}
       {renderMenu}
-    </div>
+    </div>) : null
   );
 }
