@@ -39,7 +39,7 @@ const Footer = () => {
           </Tooltip>
         </a>
 
-        <a href="https://github.com/Chaitanya7666" target="_blank">
+        <a href="https://twitter.com/chaitanya7666" target="_blank">
           <Tooltip title="Twitter">
             <IconButton color="primary" aria-label="twitter">
               <TwitterIcon />

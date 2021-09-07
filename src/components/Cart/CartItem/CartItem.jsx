@@ -12,6 +12,7 @@ import IndeterminateCheckBoxIcon from "@material-ui/icons/IndeterminateCheckBox"
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import React from "react";
 import useStyles from "./styles.js";
+import {Link} from "react-router-dom"
 
 const CartItem = ({ cart, item, incrementItem, decrementItem, removeItem, emptyCart}) => {
   const classes = useStyles();
@@ -22,7 +23,9 @@ const CartItem = ({ cart, item, incrementItem, decrementItem, removeItem, emptyC
         <CardMedia
           className={classes.media}
           image={item.media.source}
-          title="Contemplative Reptile"
+          title={item.name}
+          component={Link}
+          to={`/products/${item.product_id}`}
         />
         <CardContent>
           <Typography gutterBottom={false} variant="h6" component="h2">

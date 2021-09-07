@@ -1,5 +1,16 @@
 import commerce from "./lib/commerce";
-import { Cart, NavBar, Products, Checkout, Wishlist, NavBar2, Notifications, Messages, ProductDescription, Footer } from "./components";
+import {
+  Cart,
+  NavBar,
+  Products,
+  Checkout,
+  Wishlist,
+  NavBar2,
+  Notifications,
+  Messages,
+  ProductDescription,
+  Footer,
+} from "./components";
 import React, { useState, useEffect } from "react";
 import {
   HashRouter as Router,
@@ -23,10 +34,10 @@ import { createTheme } from "@material-ui/core";
 const theme = createTheme({
   palette: {
     // primary: {
-      // Purple and green play nicely together.
-      // main: purple[500],
-      // main: "rgb(249,205,84)",
-      // main :"rgb(222,79,78)"
+    // Purple and green play nicely together.
+    // main: purple[500],
+    // main: "rgb(249,205,84)",
+    // main :"rgb(222,79,78)"
     // },
     secondary: {
       // This is green.A700 as hex.
@@ -71,8 +82,7 @@ const App = () => {
     // );
     if (userDetailsCopy.wishlist.indexOf(id) === -1) {
       userDetailsCopy.wishlist.push(id);
-    
-  }
+    }
     console.log("AddToWishlist =>", userDetailsCopy);
 
     try {
@@ -119,8 +129,13 @@ const App = () => {
   };
 
   const handleAddToCart = async (productId, quantity) => {
-    const result = await commerce.cart.add(productId, quantity);
-    setCart(result.cart);
+    try {
+      const result = await commerce.cart.add(productId, quantity);
+      toast.success("Added to Cart");
+      setCart(result.cart);
+    } catch (e) {
+      toast.error("Error occured while adding to Cart");
+    }
   };
 
   useEffect(() => {
@@ -148,114 +163,123 @@ const App = () => {
   const removeItem = async (id) => {
     const { cart } = await commerce.cart.remove(id);
     setCart(cart);
+    toast.success("Item removed")
   };
 
   const emptyCart = async () => {
     const { cart } = await commerce.cart.empty();
     setCart(cart);
+    toast.success("Cart emptied")
   };
 
   return (
     <>
-
       <AuthProvider>
         <ThemeProvider theme={theme}>
-        <Router>
-          {/* <Switch> */}
-          {/* <NavBar quantity={cart.total_items} userDetails={userDetails} /> */}
-          <NavBar2 quantity={cart.total_items} userDetails={userDetails} />
+          <Router>
+            {/* <Switch> */}
+            {/* <NavBar quantity={cart.total_items} userDetails={userDetails} /> */}
+            <NavBar2 quantity={cart.total_items} userDetails={userDetails} />
 
-          {/* </Switch> */}
-          {/* <Switch> */}
-          {/* <LoginLogout /> */}
-          {/* </Switch> */}
-          {/* <Switch> */}
-          {/* <Route path="/forgot-password" exact component={ForgotPassword} /> */}
-          <Route path="/signup" exact component={SignupForm} />
-          <Route path="/login" exact component={LoginForm} />
-          <Route exact path="/cart">
-            <Cart
-              cart={cart}
-              incrementItem={incrementItemQuantity}
-              decrementItem={decrementItemQuantity}
-              removeItem={removeItem}
-              emptyCart={emptyCart}
-              quantity={cart.total_items}
-              userDetails={userDetails}
-              fetchUserDetails={fetchUserDetails}
-
-            />
-          </Route>
-          <Route exact path="/checkout">
-            <Checkout
-              cart={cart.line_items}
-              emptyCart={emptyCart}
-              fetchUserDetails={fetchUserDetails}
-            />
-          </Route>
-          <Route path="/wishlist" exact>
-            <Wishlist
-              quantity={cart.total_items}
-              userDetails={userDetails}
-              fetchUserDetails={fetchUserDetails}
-              products={products}
-              AddToWishlist={AddToWishlist}
-              deleteFromWishlist={deleteFromWishlist}
-              addToCart={handleAddToCart}
-
-
-
-            />
-          </Route>
-          <Route path="/notifications" exact>
-            <Notifications/>
-          </Route>
-          <Route path="/messages" exact>
-            <Messages/>
-          </Route>
-          {/* <Route path="/products/:productId" exact>
+            {/* </Switch> */}
+            {/* <Switch> */}
+            {/* <LoginLogout /> */}
+            {/* </Switch> */}
+            {/* <Switch> */}
+            {/* <Route path="/forgot-password" exact component={ForgotPassword} /> */}
+            <Route path="/signup" exact component={SignupForm} />
+            <Route path="/login" exact component={LoginForm} />
+            <Route exact path="/cart">
+              <Cart
+                cart={cart}
+                incrementItem={incrementItemQuantity}
+                decrementItem={decrementItemQuantity}
+                removeItem={removeItem}
+                emptyCart={emptyCart}
+                quantity={cart.total_items}
+                userDetails={userDetails}
+                fetchUserDetails={fetchUserDetails}
+              />
+            </Route>
+            <Route exact path="/checkout">
+              <Checkout
+                cart={cart.line_items}
+                emptyCart={emptyCart}
+                fetchUserDetails={fetchUserDetails}
+              />
+            </Route>
+            <Route path="/wishlist" exact>
+              <Wishlist
+                quantity={cart.total_items}
+                userDetails={userDetails}
+                fetchUserDetails={fetchUserDetails}
+                products={products}
+                AddToWishlist={AddToWishlist}
+                deleteFromWishlist={deleteFromWishlist}
+                addToCart={handleAddToCart}
+              />
+            </Route>
+            <Route path="/notifications" exact>
+              <Notifications />
+            </Route>
+            <Route path="/messages" exact>
+              <Messages />
+            </Route>
+            {/* <Route path="/products/:productId" exact>
             <ProductDescription products={products}  />
           </Route> */}
-          <Route 
-            path="/products/:productId" 
-            exact
-            // component={<ProductDescription/>}
-            render={(props)=> <ProductDescription products={products} 
-            addToCart={handleAddToCart}
-              // fetchUserDetails={fetchUserDetails}
-              AddToWishlist={AddToWishlist}
-              deleteFromWishlist={deleteFromWishlist}
-              // quantity={cart.total_items}
-              userDetails={userDetails}
-            {...props}/>}
+            <Route
+              path="/products/:productId"
+              exact
+              // component={<ProductDescription/>}
+              render={(props) => (
+                <ProductDescription
+                  products={products}
+                  addToCart={handleAddToCart}
+                  // fetchUserDetails={fetchUserDetails}
+                  AddToWishlist={AddToWishlist}
+                  deleteFromWishlist={deleteFromWishlist}
+                  // quantity={cart.total_items}
+                  userDetails={userDetails}
+                  {...props}
+                />
+              )}
             />
-          
-          
+
             {/* <Messages/>
           </Route> */}
-          
-          <Route path="/" exact>
-            <Products
-              products={products}
-              addToCart={handleAddToCart}
-              fetchUserDetails={fetchUserDetails}
-              AddToWishlist={AddToWishlist}
-              deleteFromWishlist={deleteFromWishlist}
-              quantity={cart.total_items}
-              userDetails={userDetails}
-            />
-          </Route>
 
-          {/* <PrivateRoute path="/" exact products={products} addToCart={handleAddToCart} component={Products} /> */}
+            <Route path="/" exact>
+              <Products
+                products={products}
+                addToCart={handleAddToCart}
+                fetchUserDetails={fetchUserDetails}
+                AddToWishlist={AddToWishlist}
+                deleteFromWishlist={deleteFromWishlist}
+                quantity={cart.total_items}
+                userDetails={userDetails}
+              />
+            </Route>
 
-          {/* <PrivateRoute path="/" exact products={products} addToCart={handleAddToCart} component={Products} /> */}
-          {/* </Switch> */}
-          <Footer/>
-        </Router>
-        
+            {/* <PrivateRoute path="/" exact products={products} addToCart={handleAddToCart} component={Products} /> */}
+
+            {/* <PrivateRoute path="/" exact products={products} addToCart={handleAddToCart} component={Products} /> */}
+            {/* </Switch> */}
+            <Footer />
+          </Router>
         </ThemeProvider>
       </AuthProvider>
-      <ToastContainer />
+      <ToastContainer 
+        position="top-right"
+        autoClose={2500}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </>
   );
 };

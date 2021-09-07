@@ -159,7 +159,7 @@ export default function NavBar2({ quantity, userDetails }) {
     >
       <MenuItem>
         <IconButton aria-label="show 4 new mails" color="inherit" component={Link} to="/messages">
-          <Badge badgeContent={4} color="secondary">
+          <Badge badgeContent={0} color="secondary">
             <MailIcon />
           </Badge>
         </IconButton>
@@ -167,7 +167,7 @@ export default function NavBar2({ quantity, userDetails }) {
       </MenuItem>
       <MenuItem>
         <IconButton aria-label="show 11 new notifications" color="inherit" component={Link} to="/notifications">
-          <Badge badgeContent={11} color="secondary">
+          <Badge badgeContent={0} color="secondary">
             <NotificationsIcon />
           </Badge>
         </IconButton>
