@@ -89,11 +89,11 @@ const Product = ({
             </Grid>
           </Grid>
 
-          <Typography
+          {/* <Typography
             dangerouslySetInnerHTML={{ __html: product.description }}
             variant="body2"
             color="textSecondary"
-          />
+          /> */}
 
           {/* </Typography> */}
         </CardContent>

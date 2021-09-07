@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { alpha, makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -23,6 +23,7 @@ import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import HWH from "../../assets/HWH.png";
 import { Tooltip } from "@material-ui/core";
+
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -91,6 +92,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function NavBar2({ quantity, userDetails }) {
+  const searchRef = useRef();
   const classes = useStyles();
   const [error, setError] = useState("");
   const location = useLocation();
@@ -260,6 +262,7 @@ export default function NavBar2({ quantity, userDetails }) {
                 input: classes.inputInput,
               }}
               inputProps={{ "aria-label": "search" }}
+              
             />
           </div>
           <div className={classes.grow} />
