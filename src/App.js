@@ -10,6 +10,7 @@ import {
   Messages,
   ProductDescription,
   Footer,
+  Profile
 } from "./components";
 import React, { useState, useEffect } from "react";
 import {
@@ -273,6 +274,10 @@ const App = () => {
               quantity={cart.total_items}
               userDetails={userDetails}
             />
+
+            <Route path="/profile" exact>
+              <Profile userDetails={userDetails} fetchUserDetails={fetchUserDetails}/>
+            </Route>
 
             {/* <PrivateRoute path="/" exact products={products} addToCart={handleAddToCart} component={Products} /> */}
             {/* </Switch> */}

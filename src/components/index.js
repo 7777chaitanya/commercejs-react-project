@@ -8,5 +8,6 @@ export {default as Notifications} from './Notifications/Notifications';
 export {default as Messages} from './Messages/Messages';
 export {default as ProductDescription} from './ProductDescription/ProductDescription';
 export {default as Footer} from './Footer/Footer';
+export {default as Profile} from './Profile/Profile';
 
 

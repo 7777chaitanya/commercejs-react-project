@@ -143,8 +143,10 @@ export default function NavBar2({ quantity, userDetails }) {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      {/* <MenuItem onClick={handleMenuClose}>Profile</MenuItem> */}
+      <MenuItem component={Link} to="/profile">Profile</MenuItem>
+
+      {/* <MenuItem onClick={handleMenuClose}>My account</MenuItem> */}
     </Menu>
   );
 
