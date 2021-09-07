@@ -25,7 +25,7 @@ const PrivateRoute = ({
                AddToWishlist={AddToWishlist}
                deleteFromWishlist={deleteFromWishlist}
                quantity={quantity}
-               userDetails={quantity} />  : <Redirect to="/login"/>
+               userDetails={userDetails} />  : <Redirect to="/login"/>
         }}
         >
         

@@ -249,7 +249,7 @@ const App = () => {
             {/* <Messages/>
           </Route> */}
 
-            <Route path="/" exact>
+            {/* <Route path="/" exact>
               <Products
                 products={products}
                 addToCart={handleAddToCart}
@@ -259,9 +259,9 @@ const App = () => {
                 quantity={cart.total_items}
                 userDetails={userDetails}
               />
-            </Route>
+            </Route> */}
 
-            {/* <PrivateRoute
+            <PrivateRoute
               component={Products}
               path="/"
               exact
@@ -272,7 +272,7 @@ const App = () => {
               deleteFromWishlist={deleteFromWishlist}
               quantity={cart.total_items}
               userDetails={userDetails}
-            /> */}
+            />
 
             {/* <PrivateRoute path="/" exact products={products} addToCart={handleAddToCart} component={Products} /> */}
             {/* </Switch> */}
