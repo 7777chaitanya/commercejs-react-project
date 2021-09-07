@@ -163,13 +163,13 @@ const App = () => {
   const removeItem = async (id) => {
     const { cart } = await commerce.cart.remove(id);
     setCart(cart);
-    toast.success("Item removed")
+    toast.success("Item removed");
   };
 
   const emptyCart = async () => {
     const { cart } = await commerce.cart.empty();
     setCart(cart);
-    toast.success("Cart emptied")
+    toast.success("Cart emptied");
   };
 
   return (
@@ -261,7 +261,18 @@ const App = () => {
               />
             </Route>
 
-            {/* <PrivateRoute path="/" exact products={products} addToCart={handleAddToCart} component={Products} /> */}
+            {/* <PrivateRoute
+              component={Products}
+              path="/"
+              exact
+              products={products}
+              addToCart={handleAddToCart}
+              fetchUserDetails={fetchUserDetails}
+              AddToWishlist={AddToWishlist}
+              deleteFromWishlist={deleteFromWishlist}
+              quantity={cart.total_items}
+              userDetails={userDetails}
+            /> */}
 
             {/* <PrivateRoute path="/" exact products={products} addToCart={handleAddToCart} component={Products} /> */}
             {/* </Switch> */}
@@ -269,7 +280,7 @@ const App = () => {
           </Router>
         </ThemeProvider>
       </AuthProvider>
-      <ToastContainer 
+      <ToastContainer
         position="top-right"
         autoClose={2500}
         hideProgressBar={false}
