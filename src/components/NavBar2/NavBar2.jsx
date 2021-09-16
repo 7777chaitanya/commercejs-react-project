@@ -23,6 +23,8 @@ import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import HWH from "../../assets/HWH.png";
 import { Tooltip } from "@material-ui/core";
+import PopUp from '../PopUp/PopUp';
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -91,7 +93,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function NavBar2({ quantity, userDetails }) {
+export default function NavBar2({ quantity, userDetails, products }) {
+  const [displayPopUp, setDisplayPopUp] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+
   const searchRef = useRef();
   const classes = useStyles();
   const [error, setError] = useState("");
@@ -227,19 +232,35 @@ export default function NavBar2({ quantity, userDetails }) {
     </Menu>
   );
 
+  const handleDisplayPopUp = (e) =>{
+    setDisplayPopUp(true);
+    setSearchTerm(e.target.value)
+  }
+  const handleKeyPress = (e) => {
+    if(e.key === "Escape") {
+      setDisplayPopUp(false);
+      setSearchTerm("");
+  }
+  }
+
+  const handleProductClick = (e) => {
+    setDisplayPopUp(false);
+    setSearchTerm("");
+  }
+
   return (
    ((location.pathname!=="/signup") && (location.pathname!=="/login"))  ?
     (<div className={classes.grow}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton
+          {/* <IconButton
             edge="start"
             className={classes.menuButton}
             color="inherit"
             aria-label="open drawer"
           >
             <MenuIcon />
-          </IconButton>
+          </IconButton> */}
           {/* <Typography className={classes.title} variant="h6" noWrap>
             Material-UI
           </Typography> */}
@@ -264,6 +285,9 @@ export default function NavBar2({ quantity, userDetails }) {
                 input: classes.inputInput,
               }}
               inputProps={{ "aria-label": "search" }}
+              onChange={handleDisplayPopUp}
+              onKeyDown={handleKeyPress}
+              value={searchTerm}
               
             />
           </div>
@@ -360,8 +384,13 @@ export default function NavBar2({ quantity, userDetails }) {
           </div>
         </Toolbar>
       </AppBar>
+      {displayPopUp && 
+      <PopUp searchTerm={searchTerm} products={products} handleProductClick={handleProductClick}/>}
       {renderMobileMenu}
       {renderMenu}
+      
     </div>) : null
+    
+
   );
 }

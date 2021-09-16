@@ -180,7 +180,7 @@ const App = () => {
           <Router>
             {/* <Switch> */}
             {/* <NavBar quantity={cart.total_items} userDetails={userDetails} /> */}
-            <NavBar2 quantity={cart.total_items} userDetails={userDetails} />
+            <NavBar2 quantity={cart?.total_items} userDetails={userDetails} products={products} />
 
             {/* </Switch> */}
             {/* <Switch> */}
