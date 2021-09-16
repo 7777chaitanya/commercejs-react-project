@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme =>({
     display: "flex",
     justifyContent: "space-evenly",
     [theme.breakpoints.down("sm")]: {
-      marginBottom: "34vh",
+      marginBottom: "18vh",
     },
     [theme.breakpoints.up("sm")]: {
       marginBottom: "10vh",
