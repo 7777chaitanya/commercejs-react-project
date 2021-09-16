@@ -5,6 +5,7 @@ import useStyles from "./styles";
 import commerce from "../../lib/commerce";
 import { useAuth } from "../../contexts/AuthContext";
 import NavBar from '../NavBar/NavBar';
+import ContinuousSlider from "../Slider/Slider";
 
 const Products = ({
   products,
@@ -18,6 +19,11 @@ const Products = ({
   const classes = useStyles();
   console.log("products comp =>", products);
   const { currentUser } = useAuth();
+  const [productValue, setproductValue] = useState(30000)
+
+  const handleProductsValueChange = (value) =>{
+    setproductValue(value)
+  }
 
   useEffect(() => {
     currentUser && (
@@ -25,12 +31,16 @@ const Products = ({
     )
   }, []);
 
+  let productsToRender = products?.filter(product => product?.price?.raw <= productValue)
+  console.log("new value => ",productsToRender)
+
   return (
     <div>
+      <ContinuousSlider handleProductsValueChange={handleProductsValueChange} />
 
       <Grid container spacing={1} justifyContent="center">
-        {products &&
-          products.map((product) => (
+        {productsToRender &&
+          productsToRender?.map((product) => (
             <Grid key={product.id} item xs={12} sm={6} md={3}>
               <Product
                 product={product}

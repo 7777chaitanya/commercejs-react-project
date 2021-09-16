@@ -23,15 +23,14 @@ import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import HWH from "../../assets/HWH.png";
 import { Tooltip } from "@material-ui/core";
-import PopUp from '../PopUp/PopUp';
-
-
+import PopUp from "../PopUp/PopUp";
+import CancelIcon from "@material-ui/icons/Cancel";
 
 const useStyles = makeStyles((theme) => ({
   grow: {
     flexGrow: 1,
-    position : "sticky",
-    zIndex: 5
+    position: "sticky",
+    zIndex: 5,
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -49,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
     "&:hover": {
       backgroundColor: alpha(theme.palette.common.white, 0.25),
     },
-    marginRight: theme.spacing(2),
+    // marginRight: theme.spacing(2),
     marginLeft: 0,
     width: "100%",
     [theme.breakpoints.up("sm")]: {
@@ -65,6 +64,17 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+  },
+  closeIcon: {
+    // padding: theme.spacing(0, 2),
+    height: "100%",
+    // position: "absolute",
+    // pointerEvents: "none",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    // right : "0.5rem",
+    cursor: "pointer",
   },
   inputRoot: {
     color: "inherit",
@@ -149,7 +159,9 @@ export default function NavBar2({ quantity, userDetails, products }) {
       onClose={handleMenuClose}
     >
       {/* <MenuItem onClick={handleMenuClose}>Profile</MenuItem> */}
-      <MenuItem component={Link} to="/profile">Profile</MenuItem>
+      <MenuItem component={Link} to="/profile">
+        Profile
+      </MenuItem>
 
       {/* <MenuItem onClick={handleMenuClose}>My account</MenuItem> */}
     </Menu>
@@ -167,7 +179,12 @@ export default function NavBar2({ quantity, userDetails, products }) {
       onClose={handleMobileMenuClose}
     >
       <MenuItem>
-        <IconButton aria-label="show 4 new mails" color="inherit" component={Link} to="/messages">
+        <IconButton
+          aria-label="show 4 new mails"
+          color="inherit"
+          component={Link}
+          to="/messages"
+        >
           <Badge badgeContent={0} color="secondary">
             <MailIcon />
           </Badge>
@@ -175,7 +192,12 @@ export default function NavBar2({ quantity, userDetails, products }) {
         <p>Messages</p>
       </MenuItem>
       <MenuItem>
-        <IconButton aria-label="show 11 new notifications" color="inherit" component={Link} to="/notifications">
+        <IconButton
+          aria-label="show 11 new notifications"
+          color="inherit"
+          component={Link}
+          to="/notifications"
+        >
           <Badge badgeContent={0} color="secondary">
             <NotificationsIcon />
           </Badge>
@@ -232,25 +254,24 @@ export default function NavBar2({ quantity, userDetails, products }) {
     </Menu>
   );
 
-  const handleDisplayPopUp = (e) =>{
+  const handleDisplayPopUp = (e) => {
     setDisplayPopUp(true);
-    setSearchTerm(e.target.value)
-  }
+    setSearchTerm(e.target.value);
+  };
   const handleKeyPress = (e) => {
-    if(e.key === "Escape") {
+    if (e.key === "Escape") {
       setDisplayPopUp(false);
       setSearchTerm("");
-  }
-  }
+    }
+  };
 
   const handleProductClick = (e) => {
     setDisplayPopUp(false);
     setSearchTerm("");
-  }
+  };
 
-  return (
-   ((location.pathname!=="/signup") && (location.pathname!=="/login"))  ?
-    (<div className={classes.grow}>
+  return location.pathname !== "/signup" && location.pathname !== "/login" ? (
+    <div className={classes.grow}>
       <AppBar position="static">
         <Toolbar>
           {/* <IconButton
@@ -288,9 +309,16 @@ export default function NavBar2({ quantity, userDetails, products }) {
               onChange={handleDisplayPopUp}
               onKeyDown={handleKeyPress}
               value={searchTerm}
-              
             />
           </div>
+          {displayPopUp && (
+            <div className={classes.closeIcon}>
+              <IconButton onClick={handleProductClick}>
+                <CancelIcon />
+              </IconButton>
+            </div>
+          )}
+
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             <Tooltip title="Your Wishlist">
@@ -303,24 +331,34 @@ export default function NavBar2({ quantity, userDetails, products }) {
               >
                 <Badge
                   badgeContent={
-                    Object.keys(userDetails).length && userDetails.wishlist.length
+                    Object.keys(userDetails).length &&
+                    userDetails.wishlist.length
                   }
                   color="secondary"
                 >
                   <FavoriteIcon />
                 </Badge>
-            
-            </IconButton>
+              </IconButton>
             </Tooltip>
             <Tooltip title="Messages">
-              <IconButton aria-label="show 4 new mails" color="inherit" component={Link} to="/messages">
+              <IconButton
+                aria-label="show 4 new mails"
+                color="inherit"
+                component={Link}
+                to="/messages"
+              >
                 <Badge badgeContent={0} color="secondary">
                   <MailIcon />
                 </Badge>
               </IconButton>
             </Tooltip>
             <Tooltip title="Notifications">
-              <IconButton aria-label="show 17 new notifications" color="inherit" component={Link} to="/notifications" >
+              <IconButton
+                aria-label="show 17 new notifications"
+                color="inherit"
+                component={Link}
+                to="/notifications"
+              >
                 <Badge badgeContent={0} color="secondary">
                   <NotificationsIcon />
                 </Badge>
@@ -384,13 +422,15 @@ export default function NavBar2({ quantity, userDetails, products }) {
           </div>
         </Toolbar>
       </AppBar>
-      {displayPopUp && 
-      <PopUp searchTerm={searchTerm} products={products} handleProductClick={handleProductClick}/>}
+      {displayPopUp && (
+        <PopUp
+          searchTerm={searchTerm}
+          products={products}
+          handleProductClick={handleProductClick}
+        />
+      )}
       {renderMobileMenu}
       {renderMenu}
-      
-    </div>) : null
-    
-
-  );
+    </div>
+  ) : null;
 }
