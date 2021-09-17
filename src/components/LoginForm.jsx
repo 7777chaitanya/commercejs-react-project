@@ -23,6 +23,7 @@ const useStyles = makeStyles({
     display: "flex",
     justifyContent: "center",
     margin: "1rem",
+    flexDirection : "column"
   },
   form: {
     border: "1px solid lightgray",
@@ -40,7 +41,8 @@ const useStyles = makeStyles({
     // background: "linear-gradient(135deg, lightgray, greenyellow)",
     backround: "lightgray",
     padding: "0.25rem 2rem",
-    width: "20vw",
+    // width: "20vw",
+    width : "auto"
   },
   mainForm: {
     display: "flex",
@@ -88,7 +90,7 @@ const LoginForm = () => {
   const history = useHistory();
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e && e.preventDefault();
     console.log("sign up method =>", auth);
 
     
@@ -109,6 +111,12 @@ const LoginForm = () => {
     }
     setLoading(false);
   };
+
+  const handleAutoLogin = () =>{
+    emailRef.current.value = "chaitu.y25@gmail.com";
+    passwordRef.current.value = "asdfgh";
+    handleSubmit()
+  }
 
   return (
     <>
@@ -174,6 +182,14 @@ const LoginForm = () => {
                 disabled={loading}
               >
                 Login
+              </Button>
+              <Button
+                color="white"
+                className={classes.button}
+                onClick={handleAutoLogin}
+                disabled={loading}
+              >
+                Login with test credentials
               </Button>
             </Box>
           </Box>
