@@ -1,6 +1,7 @@
 import { makeStyles } from "@material-ui/core";
 import { FullscreenExitTwoTone } from "@material-ui/icons";
 
+
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
@@ -37,6 +38,10 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: "1.8rem",
     paddingRight: "1rem",
   },
+  eachTextFieldIconDropdown:{
+    paddingTop: "1.8rem",
+    paddingRight: "2rem",
+  },
 
   endButtons: {
     display: "flex",
@@ -64,6 +69,15 @@ const useStyles = makeStyles((theme) => ({
       flexDirection: "row",
     },
   },
+  formControl:{
+    paddingRight : "3rem"
+  },
+  buttonIcon:{
+    marginLeft : "1rem"
+  },
+  buttonIconText : {
+    marginRight : "1rem"
+  }
 }));
 
 export default useStyles;

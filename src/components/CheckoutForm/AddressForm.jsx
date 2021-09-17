@@ -11,12 +11,13 @@ import {
   CssBaseline,
   Box,
   Card,
+  Typography,
 } from "@material-ui/core";
 import { AccountCircle, ClassSharp } from "@material-ui/icons";
-import FaceIcon from '@material-ui/icons/Face';
-import HouseIcon from '@material-ui/icons/House';
-import MailOutlineIcon from '@material-ui/icons/MailOutline';
-import PersonPinCircleIcon from '@material-ui/icons/PersonPinCircle';
+import FaceIcon from "@material-ui/icons/Face";
+import HouseIcon from "@material-ui/icons/House";
+import MailOutlineIcon from "@material-ui/icons/MailOutline";
+import PersonPinCircleIcon from "@material-ui/icons/PersonPinCircle";
 import React, { useState, useEffect } from "react";
 import useStyles from "./styles";
 import commerce from "../../lib/commerce.js";
@@ -24,9 +25,13 @@ import invertedCountriesWithKeys from "../../utils/invertObjectKeysAndValues";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 import { Link } from "react-router-dom";
-import LocationCityIcon from '@material-ui/icons/LocationCity';
+import LocationCityIcon from "@material-ui/icons/LocationCity";
+import PublicIcon from "@material-ui/icons/Public";
+import LanguageIcon from "@material-ui/icons/Language";
+import FileCopyIcon from "@material-ui/icons/FileCopy";
+import TextFieldsIcon from "@material-ui/icons/TextFields";
 
-const AddressForm = ({ handleActiveStep, handleShippingData }) => {
+const AddressForm = ({ handleActiveStep, handleShippingData, userDetails }) => {
   const classes = useStyles();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -49,15 +54,15 @@ const AddressForm = ({ handleActiveStep, handleShippingData }) => {
     const { countries } = await commerce?.services?.localeListCountries();
     setCountriesWithKeys(countries);
     let countryCodes;
-    if(countries){
-    countryCodes = Object.keys(countries);
+    if (countries) {
+      countryCodes = Object.keys(countries);
     }
     let countriesArray;
-    if(countryCodes){
-     countriesArray = countryCodes?.map((eachCountryCode) => {
-      return countries[eachCountryCode];
-    });
-  }
+    if (countryCodes) {
+      countriesArray = countryCodes?.map((eachCountryCode) => {
+        return countries[eachCountryCode];
+      });
+    }
     setShippingCountryList(countriesArray);
   }, []);
 
@@ -113,6 +118,36 @@ const AddressForm = ({ handleActiveStep, handleShippingData }) => {
     setSelecteShippingSubdivision(event.target.value);
   };
 
+  const handleAddressAutoFill = async () => {
+    setFirstName(userDetails.name);
+    setLastName("J");
+    setAddress("FF-1, Block-B, M-Apartments");
+    setEmail(userDetails.email);
+    setCity("Kakinada");
+    setPostalCode("533001");
+    setSelectedShippingCountry("India");
+    await fetchShippingSubDivisions("India");
+
+    setSelecteShippingSubdivision("Andhra Pradesh");
+  };
+
+  const checkIfAllFieldsAreFilled = () => {
+    if (
+      firstName &&
+      lastName &&
+      address &&
+      email &&
+      city &&
+      postalCode &&
+      selectedShippingCountry &&
+      selectedShippingSubdivision
+    ) {
+      return false;
+    } else {
+      return true;
+    }
+  };
+
   // const handleShippingOptionsChange = (event) => {
   //   setSelectedShippingOption(event.target.value);
   // };
@@ -161,13 +196,12 @@ const AddressForm = ({ handleActiveStep, handleShippingData }) => {
                     <FaceIcon />
                   </Box>
                   <Box className={classes.eachTextFieldSubItem}>
-
-                  <TextField
-                    id="input-with-icon-grid"
-                    label="Last name *"
-                    value={lastName}
-                    onChange={handleLastnameChange}
-                  />
+                    <TextField
+                      id="input-with-icon-grid"
+                      label="Last name *"
+                      value={lastName}
+                      onChange={handleLastnameChange}
+                    />
                   </Box>
                 </div>
               </Box>
@@ -178,13 +212,12 @@ const AddressForm = ({ handleActiveStep, handleShippingData }) => {
                     <HouseIcon />
                   </Box>
                   <Box className={classes.eachTextFieldSubItem}>
-
-                  <TextField
-                    id="input-with-icon-grid"
-                    label="Address *"
-                    value={address}
-                    onChange={handleAddressChange}
-                  />
+                    <TextField
+                      id="input-with-icon-grid"
+                      label="Address *"
+                      value={address}
+                      onChange={handleAddressChange}
+                    />
                   </Box>
                 </div>
               </Box>
@@ -195,13 +228,12 @@ const AddressForm = ({ handleActiveStep, handleShippingData }) => {
                     <MailOutlineIcon />
                   </Box>
                   <Box className={classes.eachTextFieldSubItem}>
-
-                  <TextField
-                    id="input-with-icon-grid"
-                    label="Email *"
-                    value={email}
-                    onChange={handleEmailChange}
-                  />
+                    <TextField
+                      id="input-with-icon-grid"
+                      label="Email *"
+                      value={email}
+                      onChange={handleEmailChange}
+                    />
                   </Box>
                 </div>
               </Box>
@@ -212,13 +244,12 @@ const AddressForm = ({ handleActiveStep, handleShippingData }) => {
                     <LocationCityIcon />
                   </Box>
                   <Box className={classes.eachTextFieldSubItem}>
-
-                  <TextField
-                    id="input-with-icon-grid"
-                    label="City *"
-                    value={city}
-                    onChange={handleCityChange}
-                  />
+                    <TextField
+                      id="input-with-icon-grid"
+                      label="City *"
+                      value={city}
+                      onChange={handleCityChange}
+                    />
                   </Box>
                 </div>
               </Box>
@@ -229,64 +260,89 @@ const AddressForm = ({ handleActiveStep, handleShippingData }) => {
                     <PersonPinCircleIcon />
                   </Box>
                   <Box className={classes.eachTextFieldSubItem}>
-
-                  <TextField
-                    id="input-with-icon-grid"
-                    label="Postal code *"
-                    value={postalCode}
-                    onChange={handlePostalCodeChange}
-                  />
+                    <TextField
+                      id="input-with-icon-grid"
+                      label="Postal code *"
+                      value={postalCode}
+                      onChange={handlePostalCodeChange}
+                    />
                   </Box>
                 </div>
               </Box>
 
               <Box className={classes.inputFieldBox}>
                 <div className={classes.margin}>
-                  <FormControl className={classes.formControl}>
-                    <InputLabel id="demo-simple-select-helper-label">
-                      Shipping Country
-                    </InputLabel>
-                    <Select
-                      labelId="demo-simple-select-helper-label"
-                      id="demo-simple-select-helper"
-                      value={selectedShippingCountry}
-                      onChange={handleShippingCountryChange}
-                    >
-                      {shippingCountryList.map((country) => (
-                        <MenuItem key={country} value={country}>
-                          {country}
-                        </MenuItem>
-                      ))}
-                    </Select>
-                    <FormHelperText>Please enter your Country</FormHelperText>
-                  </FormControl>
+                  <Box className={classes.eachTextFieldIconDropdown}>
+                    <PublicIcon />
+                  </Box>
+                  <Box className={classes.eachTextFieldSubItem}>
+                    <FormControl className={classes.formControl}>
+                      <InputLabel id="demo-simple-select-helper-label">
+                        Shipping Country
+                      </InputLabel>
+                      <Select
+                        labelId="demo-simple-select-helper-label"
+                        id="demo-simple-select-helper"
+                        value={selectedShippingCountry}
+                        onChange={handleShippingCountryChange}
+                      >
+                        {shippingCountryList.map((country) => (
+                          <MenuItem key={country} value={country}>
+                            {country}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                      <FormHelperText>Please enter your Country</FormHelperText>
+                    </FormControl>
+                  </Box>
                 </div>
               </Box>
 
               <Box className={classes.inputFieldBox}>
                 <div className={classes.margin}>
-                  <FormControl
-                    className={classes.formControl}
-                    disabled={selectedShippingCountry === ""}
-                  >
-                    <InputLabel id="demo-simple-select-helper-label">
-                      Shipping State
-                    </InputLabel>
-                    <Select
-                      labelId="demo-simple-select-helper-label"
-                      id="demo-simple-select-helper"
-                      value={selectedShippingSubdivision}
-                      onChange={handleShippingSubdivisionChange}
+                  <Box className={classes.eachTextFieldIconDropdown}>
+                    <LanguageIcon />
+                  </Box>
+                  <Box className={classes.eachTextFieldSubItem}>
+                    <FormControl
+                      className={classes.formControl}
+                      disabled={selectedShippingCountry === ""}
                     >
-                      {shippingSubdivisionList.map((subdivision) => (
-                        <MenuItem key={subdivision} value={subdivision}>
-                          {subdivision}
-                        </MenuItem>
-                      ))}
-                    </Select>
-                    <FormHelperText>Please enter your State</FormHelperText>
-                  </FormControl>
+                      <InputLabel id="demo-simple-select-helper-label">
+                        Shipping State
+                      </InputLabel>
+                      <Select
+                        labelId="demo-simple-select-helper-label"
+                        id="demo-simple-select-helper"
+                        value={selectedShippingSubdivision}
+                        onChange={handleShippingSubdivisionChange}
+                      >
+                        {shippingSubdivisionList.map((subdivision) => (
+                          <MenuItem key={subdivision} value={subdivision}>
+                            {subdivision}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                      <FormHelperText>Please enter your State</FormHelperText>
+                    </FormControl>
+                  </Box>
                 </div>
+              </Box>
+              <Box className={classes.buttonBox}>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  size="large"
+                  className={classes.button}
+                  startIcon={<TextFieldsIcon className={classes.buttonIcon} />}
+                  onClick={handleAddressAutoFill}
+                  // component={Link}
+                  // to="/cart"
+                >
+                  <Typography className={classes.buttonIconText}>
+                    Autofill test address
+                  </Typography>
+                </Button>
               </Box>
 
               <Box className={classes.buttonBox}>
@@ -295,21 +351,30 @@ const AddressForm = ({ handleActiveStep, handleShippingData }) => {
                   color="primary"
                   size="large"
                   className={classes.button}
-                  startIcon={<ShoppingCartIcon />}
+                  startIcon={
+                    <ShoppingCartIcon className={classes.buttonIcon} />
+                  }
                   component={Link}
                   to="/cart"
                 >
-                  Go back to cart page
+                  <Typography className={classes.buttonIconText}>
+                    Go back to cart page
+                  </Typography>
                 </Button>
                 <Button
                   variant="contained"
                   color="primary"
                   size="large"
                   className={classes.button}
-                  startIcon={<NavigateNextIcon />}
+                  startIcon={
+                    <NavigateNextIcon className={classes.buttonIcon} />
+                  }
                   type="submit"
+                  disabled={checkIfAllFieldsAreFilled()}
                 >
-                  Next
+                  <Typography className={classes.buttonIconText}>
+                    Next
+                  </Typography>
                 </Button>
               </Box>
             </Box>
