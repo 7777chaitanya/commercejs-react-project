@@ -13,6 +13,10 @@ import {
   Card,
 } from "@material-ui/core";
 import { AccountCircle, ClassSharp } from "@material-ui/icons";
+import FaceIcon from '@material-ui/icons/Face';
+import HouseIcon from '@material-ui/icons/House';
+import MailOutlineIcon from '@material-ui/icons/MailOutline';
+import PersonPinCircleIcon from '@material-ui/icons/PersonPinCircle';
 import React, { useState, useEffect } from "react";
 import useStyles from "./styles";
 import commerce from "../../lib/commerce.js";
@@ -20,6 +24,7 @@ import invertedCountriesWithKeys from "../../utils/invertObjectKeysAndValues";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 import { Link } from "react-router-dom";
+import LocationCityIcon from '@material-ui/icons/LocationCity';
 
 const AddressForm = ({ handleActiveStep, handleShippingData }) => {
   const classes = useStyles();
@@ -138,7 +143,7 @@ const AddressForm = ({ handleActiveStep, handleShippingData }) => {
               <Box className={classes.inputFieldBox}>
                 <Box className={classes.margin}>
                   <Box className={classes.eachTextFieldIcon}>
-                    <AccountCircle />
+                    <FaceIcon />
                   </Box>
                   <Box className={classes.eachTextFieldSubItem}>
                     <TextField
@@ -153,7 +158,7 @@ const AddressForm = ({ handleActiveStep, handleShippingData }) => {
               <Box className={classes.inputFieldBox}>
                 <div className={classes.margin}>
                   <Box className={classes.eachTextFieldIcon}>
-                    <AccountCircle />
+                    <FaceIcon />
                   </Box>
                   <Box className={classes.eachTextFieldSubItem}>
 
@@ -170,7 +175,7 @@ const AddressForm = ({ handleActiveStep, handleShippingData }) => {
               <Box className={classes.inputFieldBox}>
                 <div className={classes.margin}>
                   <Box className={classes.eachTextFieldIcon}>
-                    <AccountCircle />
+                    <HouseIcon />
                   </Box>
                   <Box className={classes.eachTextFieldSubItem}>
 
@@ -187,7 +192,7 @@ const AddressForm = ({ handleActiveStep, handleShippingData }) => {
               <Box className={classes.inputFieldBox}>
                 <div className={classes.margin}>
                   <Box className={classes.eachTextFieldIcon}>
-                    <AccountCircle />
+                    <MailOutlineIcon />
                   </Box>
                   <Box className={classes.eachTextFieldSubItem}>
 
@@ -204,7 +209,7 @@ const AddressForm = ({ handleActiveStep, handleShippingData }) => {
               <Box className={classes.inputFieldBox}>
                 <div className={classes.margin}>
                   <Box className={classes.eachTextFieldIcon}>
-                    <AccountCircle />
+                    <LocationCityIcon />
                   </Box>
                   <Box className={classes.eachTextFieldSubItem}>
 
@@ -221,7 +226,7 @@ const AddressForm = ({ handleActiveStep, handleShippingData }) => {
               <Box className={classes.inputFieldBox}>
                 <div className={classes.margin}>
                   <Box className={classes.eachTextFieldIcon}>
-                    <AccountCircle />
+                    <PersonPinCircleIcon />
                   </Box>
                   <Box className={classes.eachTextFieldSubItem}>
 
