@@ -41,12 +41,18 @@ const AddressForm = ({ handleActiveStep, handleShippingData }) => {
   // const [selectedShippingOption, setSelectedShippingOption] = useState("");
 
   useEffect(async () => {
-    const { countries } = await commerce.services.localeListCountries();
+    const { countries } = await commerce?.services?.localeListCountries();
     setCountriesWithKeys(countries);
-    const countryCodes = Object.keys(countries);
-    const countriesArray = countryCodes.map((eachCountryCode) => {
+    let countryCodes;
+    if(countries){
+    countryCodes = Object.keys(countries);
+    }
+    let countriesArray;
+    if(countryCodes){
+     countriesArray = countryCodes?.map((eachCountryCode) => {
       return countries[eachCountryCode];
     });
+  }
     setShippingCountryList(countriesArray);
   }, []);
 

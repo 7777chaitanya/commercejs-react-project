@@ -114,7 +114,8 @@ const SignupForm = () => {
      
       const docSetting = await setDoc(doc(db, "customerDetails", emailRef.current.value), {
         name: usernameRef.current.value,
-        wishlist : []
+        wishlist : [],
+        addresses : []
       });
      
       if (result) {

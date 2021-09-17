@@ -34,12 +34,14 @@ import { createTheme } from "@material-ui/core";
 
 const theme = createTheme({
   palette: {
-    // primary: {
+    primary: {
     // Purple and green play nicely together.
     // main: purple[500],
     // main: "rgb(249,205,84)",
-    // main :"rgb(222,79,78)"
-    // },
+    // main :"rgb(222,79,78)",
+    // main : 'rgb(7, 177, 77,0.70)',
+    main : "rgb(63,81,181,0.9)"
+    },
     secondary: {
       // This is green.A700 as hex.
       // main: '#11cb5f',
@@ -81,8 +83,8 @@ const App = () => {
     //   "before entering add to wish list => ",
     //   userDetailsCopy.wishlist
     // );
-    if (userDetailsCopy.wishlist.indexOf(id) === -1) {
-      userDetailsCopy.wishlist.push(id);
+    if (userDetailsCopy?.wishlist?.indexOf(id) === -1) {
+      userDetailsCopy?.wishlist?.push(id);
     }
     console.log("AddToWishlist =>", userDetailsCopy);
 
@@ -204,9 +206,11 @@ const App = () => {
             </Route>
             <Route exact path="/checkout">
               <Checkout
-                cart={cart.line_items}
+                cart={cart?.line_items}
                 emptyCart={emptyCart}
                 fetchUserDetails={fetchUserDetails}
+                userDetails={userDetails}
+                setUserDetails={setUserDetails}
               />
             </Route>
             <Route path="/wishlist" exact>

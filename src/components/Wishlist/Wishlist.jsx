@@ -57,7 +57,7 @@ const Wishlist = ({
         <Typography component={Link} to="/" variant="h6" display="inline" >
           Click here 
         </Typography>{" "}
-        to add some items to the the wishlist
+        to add some items to your wishlist
       </Typography>
       </Box>
     </Paper>

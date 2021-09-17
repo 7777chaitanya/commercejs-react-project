@@ -22,9 +22,10 @@ const UserCard = ({ item, searchTerm, handleProductClick }) => {
             />
           }
           title={item.name}
+          className={classes.productname}
         />
       ) : (
-        <CardHeader title={item.name} />
+        <CardHeader title={item.name} className={classes.productname}/>
       )}
     </Card>
   );

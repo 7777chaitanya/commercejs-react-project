@@ -69,7 +69,7 @@ const Cart = ({
           <Link to="/">
             Click here 
             </Link>{' '}
-          to add some items to the the wishlist
+          to add some items to your cart
         </Typography>
         </Box>
       </Paper>

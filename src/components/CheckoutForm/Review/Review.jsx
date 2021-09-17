@@ -24,7 +24,7 @@ const Review = ({ cart }) => {
         Order Summary
       </Typography>
       <List>
-        {cart.map((cartItem) => (
+        {cart?.map((cartItem) => (
           <ListItem key={cartItem.id}>
             <ListItemText
               primary={cartItem.name}
