@@ -30,6 +30,7 @@ import PublicIcon from "@material-ui/icons/Public";
 import LanguageIcon from "@material-ui/icons/Language";
 import FileCopyIcon from "@material-ui/icons/FileCopy";
 import TextFieldsIcon from "@material-ui/icons/TextFields";
+import Progress from "../Progress/Progress";
 
 const AddressForm = ({ handleActiveStep, handleShippingData, userDetails }) => {
   const classes = useStyles();
@@ -118,7 +119,22 @@ const AddressForm = ({ handleActiveStep, handleShippingData, userDetails }) => {
     setSelecteShippingSubdivision(event.target.value);
   };
 
-  const handleAddressAutoFill = async () => {
+  // const handleSetShippingSubDivision =  () => {
+  //   fetchShippingSubDivisions("India");
+
+  //   setSelecteShippingSubdivision("Andhra Pradesh");
+  // }
+
+  const handleAddressAutoFill2 = () => {
+    if(shippingSubdivisionList===[]){
+      handleAddressAutoFill2();
+      }
+    setSelecteShippingSubdivision("Andhra Pradesh");
+    
+
+  };
+
+  const handleAddressAutoFill = () => {
     setFirstName(userDetails.name);
     setLastName("J");
     setAddress("FF-1, Block-B, M-Apartments");
@@ -126,9 +142,12 @@ const AddressForm = ({ handleActiveStep, handleShippingData, userDetails }) => {
     setCity("Kakinada");
     setPostalCode("533001");
     setSelectedShippingCountry("India");
-    await fetchShippingSubDivisions("India");
+    fetchShippingSubDivisions("India");
 
     setSelecteShippingSubdivision("Andhra Pradesh");
+    if(shippingSubdivisionList===[]){
+    handleAddressAutoFill2();
+    }
   };
 
   const checkIfAllFieldsAreFilled = () => {

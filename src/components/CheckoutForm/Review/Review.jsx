@@ -8,11 +8,13 @@ import {
 } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import commerce from "../../../lib/commerce.js";
+import useStyles from "./styles"
 
 const Review = ({ cart }) => {
+  const classes=useStyles();
   const calculateTotal = () => {
     let total = 0;
-    cart.map((item) => (total = total + item.price.raw * item.quantity));
+    cart?.map((item) => (total = total + item.price.raw * item.quantity));
     return total;
   };
 
@@ -23,7 +25,7 @@ const Review = ({ cart }) => {
       <Typography variant="h5" color="primary" align="center">
         Order Summary
       </Typography>
-      <List>
+      <List className={classes.reviewList}>
         {cart?.map((cartItem) => (
           <ListItem key={cartItem.id}>
             <ListItemText

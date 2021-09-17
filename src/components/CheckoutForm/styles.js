@@ -77,6 +77,15 @@ const useStyles = makeStyles((theme) => ({
   },
   buttonIconText : {
     marginRight : "1rem"
+  },
+  cardElement:{
+    [theme.breakpoints.down("sm")]: {
+      // flexDirection: "column",
+    },
+    [theme.breakpoints.up("sm")]: {
+      marginLeft : "10rem",
+      marginRight : "10rem"
+    },
   }
 }));
 

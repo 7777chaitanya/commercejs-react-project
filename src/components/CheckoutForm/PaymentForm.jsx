@@ -9,16 +9,18 @@ import {
   useElements,
 } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-import commerce from '../../lib/commerce'
+import commerce from '../../lib/commerce';
+import Progress from "../Progress/Progress";
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 
 
 
 const PaymentForm = ({ cart, handleActiveStep, emptyCart }) => {
+  const classes = useStyles();
   const handleSubmit = async (event, elements, stripe) => {
-    
         event.preventDefault();
+        
     
         if (!stripe || !elements) {
           return;
@@ -45,6 +47,12 @@ const PaymentForm = ({ cart, handleActiveStep, emptyCart }) => {
 
   };
 
+  const handleProgressSubmit = () => {
+    handleActiveStep(2);
+        emptyCart();
+        
+  }
+
   const calculateTotal = () => {
     let total = 0;
     cart.map((item) => (total = total + item.price.raw * item.quantity));
@@ -64,10 +72,10 @@ const PaymentForm = ({ cart, handleActiveStep, emptyCart }) => {
         Payment method
       </Typography>
       <Elements stripe={stripePromise}>
-        <ElementsConsumer>
+        <ElementsConsumer >
           {({ elements, stripe }) => (
-            <form onSubmit={(e) => handleSubmit(e, elements, stripe)}>
-              <div style={{margin: "0px auto"}}>
+            <form onSubmit={(e) => handleSubmit(e, elements, stripe)} className={classes.cardElement}>
+              <div >
                 <CardElement />
               </div>
 
@@ -85,6 +93,7 @@ const PaymentForm = ({ cart, handleActiveStep, emptyCart }) => {
                 >
                   {`Pay ₹ ${calculateTotal()}`}{" "}
                 </Button>
+                <Progress buttonContent={`Pay ₹ ${calculateTotal()}`} handleProgressSubmit={handleProgressSubmit}/>
               </div>
             </form>
           )}
