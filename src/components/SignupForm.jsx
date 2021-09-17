@@ -116,7 +116,8 @@ const SignupForm = () => {
         name: usernameRef.current.value,
         wishlist : [],
         addresses : [],
-        email : emailRef.current.value
+        email : emailRef.current.value,
+        orders : []
       });
      
       if (result) {

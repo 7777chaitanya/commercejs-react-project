@@ -49,7 +49,7 @@ const Checkout = ({cart, emptyCart, userDetails, setUserDetails, fetchUserDetail
   const Form = () => {
     return activeStep === 0 ? <AddressForm handleActiveStep={handleActiveStep}
     handleShippingData={handleShippingData} userDetails={userDetails}
-    /> : <PaymentForm cart={cart} handleActiveStep={handleActiveStep} emptyCart={emptyCart}/>;
+    /> : <PaymentForm cart={cart} handleActiveStep={handleActiveStep} emptyCart={emptyCart} userDetails={userDetails} setUserDetails={setUserDetails} />;
   };
 
   return (
@@ -65,7 +65,7 @@ const Checkout = ({cart, emptyCart, userDetails, setUserDetails, fetchUserDetail
             </Step>
           ))}
         </Stepper>
-        {activeStep === steps.length ? <Confirmation /> : <Form />}
+        {activeStep === steps.length ? <Confirmation userDetails={userDetails}/> : <Form />}
       </div>
     </>
   );

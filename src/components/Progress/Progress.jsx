@@ -8,7 +8,6 @@ import Fab from "@material-ui/core/Fab";
 import CheckIcon from "@material-ui/icons/Check";
 import SaveIcon from "@material-ui/icons/Save";
 
-
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
@@ -41,7 +40,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Progress({buttonContent, handleProgressSubmit}) {
+export default function Progress({
+  buttonContent,
+  handleProgressSubmit,
+  submitCartToFirestore,
+  userDetails,
+  setUserDetails,
+  cart
+}) {
   const classes = useStyles();
   const [loading, setLoading] = React.useState(false);
   const [success, setSuccess] = React.useState(false);
@@ -61,16 +67,24 @@ export default function Progress({buttonContent, handleProgressSubmit}) {
     if (!loading) {
       setSuccess(false);
       setLoading(true);
+      submitCartToFirestore();
       timer.current = window.setTimeout(() => {
         setSuccess(true);
         setLoading(false);
+        let orderNumber = userDetails?.orders?.length + 1;
+
+        setUserDetails((prevState) => {
+          let prevStateCopy = { ...prevState };
+          prevStateCopy.orders.push({orderNumber, date : new Date()});
+          prevStateCopy[orderNumber] = [...cart];
+          return { ...prevState };
+        });
+        console.log("is userDetails updated =>",userDetails.orders.length)
         setTimeout(() => {
-            handleProgressSubmit()
+          handleProgressSubmit();
         }, 100);
-        
-      }, 4000);
+      }, 3000);
     }
-  
   };
 
   return (

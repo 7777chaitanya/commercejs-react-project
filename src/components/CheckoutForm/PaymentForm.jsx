@@ -9,48 +9,69 @@ import {
   useElements,
 } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-import commerce from '../../lib/commerce';
+import commerce from "../../lib/commerce";
 import Progress from "../Progress/Progress";
+import { doc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore";
+import { db } from "../firebase";
+
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 
-
-
-const PaymentForm = ({ cart, handleActiveStep, emptyCart }) => {
+const PaymentForm = ({ cart, handleActiveStep, emptyCart, setUserDetails, userDetails }) => {
   const classes = useStyles();
+  console.log("payment form => ", cart);
   const handleSubmit = async (event, elements, stripe) => {
-        event.preventDefault();
-        
-    
-        if (!stripe || !elements) {
-          return;
-        }
-    
-        const cardElement = elements.getElement(CardElement);
-    
-        const {error, paymentMethod} = await stripe.createPaymentMethod({
-          type: 'card',
-          card: cardElement,
-        });
-    
-        if (error) {
-          console.log('[error]', error);
-        } else {
-          console.log('[PaymentMethod]', paymentMethod);
-        }
+    event.preventDefault();
 
-        handleActiveStep(2);
-        emptyCart();
-        
+    if (!stripe || !elements) {
+      return;
+    }
 
+    const cardElement = elements.getElement(CardElement);
 
+    const { error, paymentMethod } = await stripe.createPaymentMethod({
+      type: "card",
+      card: cardElement,
+    });
 
+    if (error) {
+      console.log("[error]", error);
+    } else {
+      console.log("[PaymentMethod]", paymentMethod);
+    }
+
+    handleActiveStep(2);
+    emptyCart();
   };
 
   const handleProgressSubmit = () => {
     handleActiveStep(2);
-        emptyCart();
+    emptyCart();
+  };
+
+  const submitCartToFirestore = async () => {
+    const userDocRef = doc(db, "customerDetails", userDetails.email);
+    let orderArrayObject = {};
+    
+    let orderNumber = userDetails?.orders?.length+1;
+    orderArrayObject.orderNumber = userDetails?.orders?.length+1;
+    orderArrayObject.date = new Date();
+    let objectToPost = {};
+    objectToPost[orderNumber] = [...cart];
+    // setUserDetails(prevState => {
+    //   let prevStateCopy = {...prevState};
+    //   prevStateCopy.orders.push(orderNumber);
+    //   prevStateCopy[orderNumber] = [...cart];
+    //   return {...prevState};
+    // })
+
+
+    await updateDoc(userDocRef, {
+        orders: arrayUnion(orderArrayObject),
+        ...objectToPost
         
+    });
+    
   }
 
   const calculateTotal = () => {
@@ -72,17 +93,24 @@ const PaymentForm = ({ cart, handleActiveStep, emptyCart }) => {
         Payment method
       </Typography>
       <Elements stripe={stripePromise}>
-        <ElementsConsumer >
+        <ElementsConsumer>
           {({ elements, stripe }) => (
-            <form onSubmit={(e) => handleSubmit(e, elements, stripe)} className={classes.cardElement}>
-              <div >
+            <form
+              onSubmit={(e) => handleSubmit(e, elements, stripe)}
+              className={classes.cardElement}
+            >
+              <div>
                 <CardElement />
               </div>
 
               <br />
               <br />
               <div style={{ display: "flex", justifyContent: "space-between" }}>
-                <Button variant="contained" color="primary" onClick={() => handleActiveStep(0)}>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={() => handleActiveStep(0)}
+                >
                   Back
                 </Button>
                 <Button
@@ -93,7 +121,14 @@ const PaymentForm = ({ cart, handleActiveStep, emptyCart }) => {
                 >
                   {`Pay ₹ ${calculateTotal()}`}{" "}
                 </Button>
-                <Progress buttonContent={`Pay ₹ ${calculateTotal()}`} handleProgressSubmit={handleProgressSubmit}/>
+                <Progress
+                  buttonContent={`Pay ₹ ${calculateTotal()}`}
+                  handleProgressSubmit={handleProgressSubmit}
+                  submitCartToFirestore={submitCartToFirestore}
+                  setUserDetails={setUserDetails}
+                  userDetails={userDetails}
+                  cart={cart}
+                />
               </div>
             </form>
           )}

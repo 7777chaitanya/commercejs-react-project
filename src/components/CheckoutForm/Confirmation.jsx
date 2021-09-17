@@ -5,7 +5,7 @@ import { Button, Divider, Typography } from '@material-ui/core';
 import {Link} from "react-router-dom";
 // import commerce from "../../lib/commerce";
 
-const Confirmation = () => {
+const Confirmation = ({userDetails}) => {
     
     return (
         <div >
