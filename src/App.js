@@ -23,6 +23,7 @@ import {
 import { AuthProvider } from "./contexts/AuthContext";
 import SignupForm from "./components/SignupForm";
 import LoginForm from "./components/LoginForm";
+import ForgotPassword from "./components/ForgotPassword"
 import PrivateRoute from "./components/PrivateRoute";
 import LoginLogout from "./components/LoginLogout";
 import { ToastContainer, toast } from "react-toastify";
@@ -191,7 +192,7 @@ const App = () => {
             {/* <LoginLogout /> */}
             {/* </Switch> */}
             {/* <Switch> */}
-            {/* <Route path="/forgot-password" exact component={ForgotPassword} /> */}
+            <Route path="/forgot-password" exact component={ForgotPassword} />
             <Route path="/signup" exact component={SignupForm} />
             <Route path="/login" exact component={LoginForm} />
             <Route exact path="/cart">

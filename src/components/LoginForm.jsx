@@ -203,7 +203,7 @@ const LoginForm = () => {
         <Typography
           variant="subtitle2"
           component={Link}
-          to="/signup"
+          to="/forgot-password"
           className={classes.link}
           
         >

@@ -290,7 +290,7 @@ export default function NavBar2({ quantity, userDetails, products }) {
     setSearchTerm("");
   };
 
-  return location.pathname !== "/signup" && location.pathname !== "/login" ? (
+  return location.pathname !== "/signup" && location.pathname !== "/login" && location.pathname!=="/forgot-password" ? (
     <div className={classes.grow}>
       <AppBar position="static">
         <Toolbar>

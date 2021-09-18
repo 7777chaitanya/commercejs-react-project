@@ -14,7 +14,7 @@ import React, { useRef, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Link} from "react-router-dom";
 
-import { useAuth } from "./contexts/AuthContext";
+import { useAuth } from "../contexts/AuthContext";
 import { auth } from "./firebase";
 
 const useStyles = makeStyles({
@@ -31,11 +31,13 @@ const useStyles = makeStyles({
     padding: "0px 5rem",
     boxShadow:
       "0rem 0.1rem 0.1rem 0.1rem linear-gradient(165deg, lightcyan, greenyellow)",
-    backgroundImage: "linear-gradient(165deg, lightcyan, greenyellow)",
+    // backgroundImage: "linear-gradient(165deg, lightcyan, greenyellow)",
+    backgroundImage: "linear-gradient(165deg, lightcyan, darkslateblue)",
+
   },
   button: {
-    background: "linear-gradient(15deg, yellow, greenyellow)",
-    //   backround: "lightgray",
+    // background: "linear-gradient(135deg, lightgray, greenyellow)",
+    backround: "lightgray",
     padding: "0.25rem 2rem",
     width: "20vw",
   },
@@ -70,7 +72,8 @@ const useStyles = makeStyles({
     color: "black",
   },
   typography: {
-    color: "greenyellow",
+    // color: "greenyellow",
+    color : "darkslateblue"
   },
 });
 
