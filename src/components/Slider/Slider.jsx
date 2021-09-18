@@ -7,10 +7,11 @@ import VolumeDown from '@material-ui/icons/VolumeDown';
 import VolumeUp from '@material-ui/icons/VolumeUp';
 import TrendingUpIcon from '@material-ui/icons/TrendingUp';
 import TrendingDownIcon from '@material-ui/icons/TrendingDown';
+import { Tooltip } from '@material-ui/core';
 
 const useStyles = makeStyles({
   root: {
-    width: 200,
+    width: 300,
   },
 });
 
@@ -28,17 +29,21 @@ export default function ContinuousSlider({handleProductsValueChange}) {
   return (
     <div className={classes.root}>
       <Typography id="continuous-slider" gutterBottom>
-        Price
+        
       </Typography>
       <Grid container spacing={2}>
         <Grid item>
+          <Tooltip title="LowerPrice">
           <TrendingDownIcon />
+          </Tooltip>
         </Grid>
         <Grid item xs>
-          <Slider value={value} onChange={handleChange} aria-labelledby="continuous-slider" min={600} max={30000}/>
+          <Slider value={value} onChange={handleChange} aria-labelledby="continuous-slider" min={650} max={30000} valueLabelDisplay="auto"/>
         </Grid>
         <Grid item>
+          <Tooltip title="HigherPrice">
           <TrendingUpIcon />
+          </Tooltip>
         </Grid>
       </Grid>
       {/* <Typography id="disabled-slider" gutterBottom>

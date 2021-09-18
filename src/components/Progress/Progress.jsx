@@ -50,7 +50,8 @@ export default function Progress({
   setUserDetails,
   cart,
   shippingData,
-  makeid
+  makeid,
+  referenceNumber
 }) {
   const classes = useStyles();
   const [loading, setLoading] = React.useState(false);
@@ -71,21 +72,24 @@ export default function Progress({
   }, []);
 
   const handleButtonClick = () => {
+    // makeid();
     if (!loading) {
       setSuccess(false);
       setLoading(true);
+      
       submitCartToFirestore();
       timer.current = window.setTimeout(() => {
         setSuccess(true);
         setLoading(false);
         let orderNumber = userDetails?.orders?.length + 1;
-
+        // makeid();
         setCurrentUserDoc((prevState) => {
           let prevStateCopy = { ...prevState };
-          prevStateCopy.orders.push({orderNumber, date : new Date(), shippingAddress : {...shippingData}});
+          prevStateCopy.orders.push({orderNumber, date : new Date(), shippingAddress : {...shippingData}, referenceNumber:makeid()});
           prevStateCopy[orderNumber] = [...cart];
           return { ...prevStateCopy };
         });
+        // submitCartToFirestore();
         setTimeout(() => {
           handleProgressSubmit();
         }, 100);

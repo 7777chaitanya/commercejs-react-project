@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useContext } from "react";
 import { alpha, makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -25,6 +25,7 @@ import HWH from "../../assets/HWH.png";
 import { Tooltip } from "@material-ui/core";
 import PopUp from "../PopUp/PopUp";
 import CancelIcon from "@material-ui/icons/Cancel";
+import { CurrentUserDetailsContext } from "../../contexts/userDetails";
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -106,6 +107,9 @@ const useStyles = makeStyles((theme) => ({
 export default function NavBar2({ quantity, userDetails, products }) {
   const [displayPopUp, setDisplayPopUp] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
+  const [currentUserDoc, setCurrentUserDoc] = useContext(
+    CurrentUserDetailsContext
+  );
 
   const searchRef = useRef();
   const classes = useStyles();
@@ -395,7 +399,7 @@ export default function NavBar2({ quantity, userDetails, products }) {
                 <ExitToAppIcon />
               </IconButton>
             </Tooltip>
-            <Tooltip title={`Hi, ${userDetails.name}`} aria-label="account">
+            <Tooltip title={`Hi, ${currentUserDoc.name}`} aria-label="account">
               <IconButton
                 edge="end"
                 aria-label="account of current user"

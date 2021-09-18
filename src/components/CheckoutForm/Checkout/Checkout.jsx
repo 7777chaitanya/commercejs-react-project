@@ -65,8 +65,9 @@ const [referenceNumber, setReferenceNumber] = useState("");
   const Form = () => {
     return activeStep === 0 ? <AddressForm handleActiveStep={handleActiveStep}
     handleShippingData={handleShippingData} userDetails={userDetails}
-    /> : <PaymentForm cart={cart} handleActiveStep={handleActiveStep} emptyCart={emptyCart} userDetails={userDetails} setUserDetails={setUserDetails} shippingData={shippingData} makeid={makeid} />;
+    /> : <PaymentForm cart={cart} handleActiveStep={handleActiveStep} emptyCart={emptyCart} userDetails={userDetails} setUserDetails={setUserDetails} shippingData={shippingData} makeid={makeid} referenceNumber={referenceNumber}/>;
   };
+
 
   return (
     <>

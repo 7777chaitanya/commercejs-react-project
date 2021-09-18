@@ -1,4 +1,4 @@
-import { Grid } from "@material-ui/core";
+import { Box, Grid } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import Product from "./Product/Product";
 import useStyles from "./styles";
@@ -23,7 +23,7 @@ const Products = ({
   const { currentUser } = useAuth();
   const [productValue, setproductValue] = useState(30000);
   const [pageNumber, setPageNumber] = useState(1);
-  const itemsPerPage = 4;
+  const itemsPerPage = 8;
 
   const handleProductsValueChange = (value) =>{
     setproductValue(value)
@@ -49,8 +49,9 @@ const Products = ({
 
   return (
     <div>
+      <Box className={classes.slider}>
       <ContinuousSlider handleProductsValueChange={handleProductsValueChange} />
-
+      </Box>
       <Grid container spacing={1} justifyContent="center">
         {productsInCurrentPage &&
           productsInCurrentPage?.map((product) => (
@@ -65,8 +66,9 @@ const Products = ({
             </Grid>
           ))}
       </Grid>
+      <Box className={classes.paginationBox}>
       <Pagination count={Math.ceil((productsToRender.length)/(4))} onChange={handlePaginationChange} color="primary"/>
-
+      </Box>
     </div>
   );
 };

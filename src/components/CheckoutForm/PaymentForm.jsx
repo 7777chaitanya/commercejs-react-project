@@ -18,9 +18,21 @@ import { CurrentUserDetailsContext } from "../../contexts/userDetails";
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 
-const PaymentForm = ({ cart, handleActiveStep, emptyCart, setUserDetails, userDetails, shippingData, makeid }) => {
+const PaymentForm = ({ cart, handleActiveStep, emptyCart, setUserDetails, userDetails, shippingData, makeid, referenceNumber }) => {
   const classes = useStyles();
   const [currentUserDoc, setCurrentUserDoc] = useContext(CurrentUserDetailsContext);
+
+  const generateReferenceNumber = () => {
+    var result           = '';
+    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    var charactersLength = 10;
+    for ( var i = 0; i < 10; i++ ) {
+      result += characters.charAt(Math.floor(Math.random() * 
+ charactersLength));
+   }
+  //  setReferenceNumber(`HWH${result}`)
+   return `HWH${result}`;
+}
 
   console.log("payment form => ", cart);
   const handleSubmit = async (event, elements, stripe) => {
@@ -48,6 +60,7 @@ const PaymentForm = ({ cart, handleActiveStep, emptyCart, setUserDetails, userDe
   };
 
   const handleProgressSubmit = () => {
+    
     handleActiveStep(2);
     emptyCart();
   };
@@ -60,6 +73,7 @@ const PaymentForm = ({ cart, handleActiveStep, emptyCart, setUserDetails, userDe
     orderArrayObject.orderNumber = currentUserDoc?.orders?.length+1;
     orderArrayObject.date = new Date();
     orderArrayObject.shippingAddress={...shippingData};
+    orderArrayObject.referenceNumber=generateReferenceNumber();
     let objectToPost = {};
     objectToPost[orderNumber] = [...cart];
     // setUserDetails(prevState => {
@@ -83,6 +97,7 @@ const PaymentForm = ({ cart, handleActiveStep, emptyCart, setUserDetails, userDe
     cart.map((item) => (total = total + item.price.raw * item.quantity));
     return total;
   };
+  
 
   return (
     <>
@@ -134,6 +149,7 @@ const PaymentForm = ({ cart, handleActiveStep, emptyCart, setUserDetails, userDe
                   cart={cart}
                   shippingData={shippingData}
                   makeid={makeid}
+                  referenceNumber={referenceNumber}
                 />
               </div>
             </form>
