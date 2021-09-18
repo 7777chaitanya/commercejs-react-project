@@ -9,6 +9,10 @@ const useStyles = makeStyles((theme)=>({
   },
   media: {
     height: 140,
+    width : 200,
+    marginLeft : "auto",
+    marginRight : 'auto'
+    // height : "auto"
   },
   root: {
     flexGrow: 1,

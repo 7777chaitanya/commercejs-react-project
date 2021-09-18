@@ -67,7 +67,7 @@ const Products = ({
           ))}
       </Grid>
       <Box className={classes.paginationBox}>
-      <Pagination count={Math.ceil((productsToRender.length)/(4))} onChange={handlePaginationChange} color="primary"/>
+      <Pagination count={Math.ceil((productsToRender.length)/(8))} onChange={handlePaginationChange} color="primary"/>
       </Box>
     </div>
   );

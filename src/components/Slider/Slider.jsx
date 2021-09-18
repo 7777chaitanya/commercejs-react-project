@@ -38,7 +38,7 @@ export default function ContinuousSlider({handleProductsValueChange}) {
           </Tooltip>
         </Grid>
         <Grid item xs>
-          <Slider value={value} onChange={handleChange} aria-labelledby="continuous-slider" min={650} max={30000} valueLabelDisplay="auto"/>
+          <Slider value={value} onChange={handleChange} aria-labelledby="continuous-slider" min={650} max={30000} valueLabelDisplay="auto" color="primary"/>
         </Grid>
         <Grid item>
           <Tooltip title="HigherPrice">

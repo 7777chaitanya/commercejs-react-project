@@ -37,10 +37,17 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(2),
   },
   title: {
-    display: "none",
+    // display: "none",
     [theme.breakpoints.up("sm")]: {
       display: "block",
     },
+    marginRight:'0.5rem'
+  },
+  hwh:{
+    [theme.breakpoints.down("sm")]: {
+      display: "none",
+    },
+
   },
   search: {
     position: "relative",
@@ -297,7 +304,9 @@ export default function NavBar2({ quantity, userDetails, products }) {
             color="secondary"
           >
             <img src={HWH} alt="logo" height="25px" />
+            <span className={classes.hwh}>
             HWH
+            </span>
           </Typography>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
