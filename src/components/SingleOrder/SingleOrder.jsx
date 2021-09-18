@@ -72,6 +72,14 @@ const SingleOrder = ({ eachOrder }) => {
             color="primary"
             className={classes.statusAndDate}
           >
+            Order reference number :{" "}
+            <span className={classes.address}>{eachOrder?.referenceNumber}</span>
+          </Typography>
+          <Typography
+            variant="body1"
+            color="primary"
+            className={classes.statusAndDate}
+          >
             Shipping Address :{" "}
             <span className={classes.address}>{address}</span>
           </Typography>
