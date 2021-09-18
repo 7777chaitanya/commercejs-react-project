@@ -113,7 +113,7 @@ const LoginForm = () => {
   };
 
   const handleAutoLogin = () =>{
-    emailRef.current.value = "chaitu.y25@gmail.com";
+    emailRef.current.value = "ratan@tata.com";
     passwordRef.current.value = "asdfgh";
     handleSubmit()
   }

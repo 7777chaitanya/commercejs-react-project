@@ -36,7 +36,7 @@ const Addresses = () => {
     if(currentUserDoc.addresses.length === 0){
         return(
             <>
-            <Typography variant="h4" color="primary">You don't have any saved address. Fill the below form to save a new address!</Typography>
+            <Typography variant="h5" color="primary" className={classes.typo}>You don't have any saved address. Fill the below form to save a new address!</Typography>
             <AddressForm handleShippingData={handleShippingData} />
             </>
             )
