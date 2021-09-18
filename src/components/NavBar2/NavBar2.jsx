@@ -170,7 +170,7 @@ export default function NavBar2({ quantity, userDetails, products }) {
       onClose={handleMenuClose}
     >
       {/* <MenuItem onClick={handleMenuClose}>Profile</MenuItem> */}
-      <MenuItem component={Link} to="/profile">
+      <MenuItem component={Link} to="/profile" onClick={handleMenuClose}>
         Profile
       </MenuItem>
 
@@ -195,6 +195,7 @@ export default function NavBar2({ quantity, userDetails, products }) {
           color="inherit"
           component={Link}
           to="/messages"
+          onClick={handleMenuClose}
         >
           <Badge badgeContent={0} color="secondary">
             <MailIcon />
@@ -208,6 +209,7 @@ export default function NavBar2({ quantity, userDetails, products }) {
           color="inherit"
           component={Link}
           to="/notifications"
+          onClick={handleMenuClose}
         >
           <Badge badgeContent={0} color="secondary">
             <NotificationsIcon />
@@ -221,6 +223,7 @@ export default function NavBar2({ quantity, userDetails, products }) {
           aria-label="menu"
           component={Link}
           to="/wishlist"
+          onClick={handleMenuClose}
         >
           <Badge
             badgeContent={
@@ -242,6 +245,7 @@ export default function NavBar2({ quantity, userDetails, products }) {
             aria-label="menu"
             component={Link}
             to="/cart"
+            onClick={handleMenuClose}
           >
             <Badge badgeContent={quantity} color="secondary">
               <ShoppingCartIcon />
@@ -251,12 +255,17 @@ export default function NavBar2({ quantity, userDetails, products }) {
         </MenuItem>
       )}
 
-      <MenuItem onClick={handleProfileMenuOpen}>
+      <MenuItem 
+      // onClick={handleProfileMenuOpen}
+      component={Link}
+      to="/profile"
+      >
         <IconButton
           aria-label="account of current user"
           aria-controls="primary-search-account-menu"
           aria-haspopup="true"
           color="inherit"
+          onClick={handleMenuClose}
         >
           <AccountCircle />
         </IconButton>
@@ -414,8 +423,10 @@ export default function NavBar2({ quantity, userDetails, products }) {
                 aria-label="account of current user"
                 aria-controls={menuId}
                 aria-haspopup="true"
-                onClick={handleProfileMenuOpen}
+                // onClick={handleProfileMenuOpen}
                 color="inherit"
+                component={Link}
+                to="/profile"
               >
                 <AccountCircle />
               </IconButton>
