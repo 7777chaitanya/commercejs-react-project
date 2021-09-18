@@ -4,6 +4,7 @@ import useStyles from "./styles";
 import { useAuth } from "../../contexts/AuthContext";
 import {Link, useHistory} from "react-router-dom";
 import { auth } from "../firebase";
+import ButtonGroupComponent from "../ButtonGroupComponent/ButtonGroupComponent"
 
 
 const Profile = ({ userDetails, fetchUserDetails }) => {
@@ -48,6 +49,8 @@ const Profile = ({ userDetails, fetchUserDetails }) => {
           <Button variant="outlined" color="primary" component={Link} to="/">Back to Shop</Button>
           <Button variant="outlined" color="secondary" onClick={handleLogout}>Logout</Button>
       </Box>
+
+      <ButtonGroupComponent userDetails={userDetails} fetchUserDetails={fetchUserDetails}/>
     </Box>
   );
 };

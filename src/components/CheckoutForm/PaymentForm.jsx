@@ -17,7 +17,7 @@ import { db } from "../firebase";
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 
-const PaymentForm = ({ cart, handleActiveStep, emptyCart, setUserDetails, userDetails }) => {
+const PaymentForm = ({ cart, handleActiveStep, emptyCart, setUserDetails, userDetails, shippingData }) => {
   const classes = useStyles();
   console.log("payment form => ", cart);
   const handleSubmit = async (event, elements, stripe) => {
@@ -56,6 +56,7 @@ const PaymentForm = ({ cart, handleActiveStep, emptyCart, setUserDetails, userDe
     let orderNumber = userDetails?.orders?.length+1;
     orderArrayObject.orderNumber = userDetails?.orders?.length+1;
     orderArrayObject.date = new Date();
+    orderArrayObject.shippingAddress={...shippingData};
     let objectToPost = {};
     objectToPost[orderNumber] = [...cart];
     // setUserDetails(prevState => {
@@ -113,14 +114,14 @@ const PaymentForm = ({ cart, handleActiveStep, emptyCart, setUserDetails, userDe
                 >
                   Back
                 </Button>
-                <Button
+                {/* <Button
                   variant="contained"
                   type="submit"
                   disabled={!stripe}
                   color="primary"
                 >
                   {`Pay ₹ ${calculateTotal()}`}{" "}
-                </Button>
+                </Button> */}
                 <Progress
                   buttonContent={`Pay ₹ ${calculateTotal()}`}
                   handleProgressSubmit={handleProgressSubmit}
@@ -128,6 +129,7 @@ const PaymentForm = ({ cart, handleActiveStep, emptyCart, setUserDetails, userDe
                   setUserDetails={setUserDetails}
                   userDetails={userDetails}
                   cart={cart}
+                  shippingData={shippingData}
                 />
               </div>
             </form>

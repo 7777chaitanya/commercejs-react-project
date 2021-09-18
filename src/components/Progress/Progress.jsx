@@ -46,7 +46,8 @@ export default function Progress({
   submitCartToFirestore,
   userDetails,
   setUserDetails,
-  cart
+  cart,
+  shippingData
 }) {
   const classes = useStyles();
   const [loading, setLoading] = React.useState(false);
@@ -75,7 +76,7 @@ export default function Progress({
 
         setUserDetails((prevState) => {
           let prevStateCopy = { ...prevState };
-          prevStateCopy.orders.push({orderNumber, date : new Date()});
+          prevStateCopy.orders.push({orderNumber, date : new Date(), shippingAddress : {...shippingData}});
           prevStateCopy[orderNumber] = [...cart];
           return { ...prevState };
         });

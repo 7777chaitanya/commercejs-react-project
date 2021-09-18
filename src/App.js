@@ -31,6 +31,7 @@ import { db } from "./components/firebase";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { ThemeProvider } from "@material-ui/styles";
 import { createTheme } from "@material-ui/core";
+import {CurrentUserDetailsProvider} from "./contexts/userDetails"
 
 const theme = createTheme({
   palette: {
@@ -65,7 +66,7 @@ const App = () => {
     const docRef = doc(db, "customerDetails", userEmail);
     const docSnap = await getDoc(docRef);
 
-    if (docSnap.exists()) {
+    if (docSnap?.exists()) {
       console.log("Document data:", docSnap.data());
     } else {
       console.log("No such document!");
@@ -178,6 +179,7 @@ const App = () => {
   return (
     <>
       <AuthProvider>
+        <CurrentUserDetailsProvider>
         <ThemeProvider theme={theme}>
           <Router>
             {/* <Switch> */}
@@ -288,6 +290,7 @@ const App = () => {
             <Footer />
           </Router>
         </ThemeProvider>
+        </CurrentUserDetailsProvider>
       </AuthProvider>
       <ToastContainer
         position="top-right"

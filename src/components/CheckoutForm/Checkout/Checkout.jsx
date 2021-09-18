@@ -49,7 +49,7 @@ const Checkout = ({cart, emptyCart, userDetails, setUserDetails, fetchUserDetail
   const Form = () => {
     return activeStep === 0 ? <AddressForm handleActiveStep={handleActiveStep}
     handleShippingData={handleShippingData} userDetails={userDetails}
-    /> : <PaymentForm cart={cart} handleActiveStep={handleActiveStep} emptyCart={emptyCart} userDetails={userDetails} setUserDetails={setUserDetails} />;
+    /> : <PaymentForm cart={cart} handleActiveStep={handleActiveStep} emptyCart={emptyCart} userDetails={userDetails} setUserDetails={setUserDetails} shippingData={shippingData}/>;
   };
 
   return (
