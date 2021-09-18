@@ -295,7 +295,7 @@ const App = () => {
       </AuthProvider>
       <ToastContainer
         position="top-right"
-        autoClose={2500}
+        autoClose={1000}
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick
