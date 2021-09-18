@@ -302,7 +302,7 @@ const App = () => {
         rtl={false}
         pauseOnFocusLoss
         draggable
-        pauseOnHover
+        // pauseOnHover
       />
     </>
   );
