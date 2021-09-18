@@ -5,7 +5,7 @@ import { Button, Divider, Typography } from '@material-ui/core';
 import {Link} from "react-router-dom";
 // import commerce from "../../lib/commerce";
 
-const Confirmation = ({userDetails}) => {
+const Confirmation = ({userDetails,referenceNumber}) => {
     
     return (
         <div >
@@ -13,7 +13,7 @@ const Confirmation = ({userDetails}) => {
             <div style={{margin:"3%"}}></div>
             <Divider/>
             <div style={{margin:"3%"}}></div>
-            <Typography variant="h6" align="center">Order Reference Number :  <Typography display="inline" variant="subtitle2"> HWH8569634788589</Typography></Typography>
+            <Typography variant="h6" align="center">Order Reference Number :  <Typography display="inline" variant="subtitle2"> {referenceNumber}</Typography></Typography>
             <Button variant="contained" component={Link} to="/">Back to Home</Button>
 
         </div>

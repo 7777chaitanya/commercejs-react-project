@@ -1,5 +1,5 @@
 import { Button, Divider, Typography } from "@material-ui/core";
-import React from "react";
+import React, {useContext} from "react";
 import Review from "./Review/Review";
 import useStyles from "./styles";
 import {
@@ -13,12 +13,15 @@ import commerce from "../../lib/commerce";
 import Progress from "../Progress/Progress";
 import { doc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore";
 import { db } from "../firebase";
+import { CurrentUserDetailsContext } from "../../contexts/userDetails";
 
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 
-const PaymentForm = ({ cart, handleActiveStep, emptyCart, setUserDetails, userDetails, shippingData }) => {
+const PaymentForm = ({ cart, handleActiveStep, emptyCart, setUserDetails, userDetails, shippingData, makeid }) => {
   const classes = useStyles();
+  const [currentUserDoc, setCurrentUserDoc] = useContext(CurrentUserDetailsContext);
+
   console.log("payment form => ", cart);
   const handleSubmit = async (event, elements, stripe) => {
     event.preventDefault();
@@ -50,11 +53,11 @@ const PaymentForm = ({ cart, handleActiveStep, emptyCart, setUserDetails, userDe
   };
 
   const submitCartToFirestore = async () => {
-    const userDocRef = doc(db, "customerDetails", userDetails.email);
+    const userDocRef = doc(db, "customerDetails", currentUserDoc.email);
     let orderArrayObject = {};
     
-    let orderNumber = userDetails?.orders?.length+1;
-    orderArrayObject.orderNumber = userDetails?.orders?.length+1;
+    let orderNumber = currentUserDoc?.orders?.length+1;
+    orderArrayObject.orderNumber = currentUserDoc?.orders?.length+1;
     orderArrayObject.date = new Date();
     orderArrayObject.shippingAddress={...shippingData};
     let objectToPost = {};
@@ -130,6 +133,7 @@ const PaymentForm = ({ cart, handleActiveStep, emptyCart, setUserDetails, userDe
                   userDetails={userDetails}
                   cart={cart}
                   shippingData={shippingData}
+                  makeid={makeid}
                 />
               </div>
             </form>

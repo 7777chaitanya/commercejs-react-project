@@ -19,11 +19,23 @@ const Checkout = ({cart, emptyCart, userDetails, setUserDetails, fetchUserDetail
   const [shippingData, setShippingData] = useState({});
   const { currentUser } = useAuth();
   const [currentUserDoc, setCurrentUserDoc] = useContext(CurrentUserDetailsContext);
-
+const [referenceNumber, setReferenceNumber] = useState("");
 
   useEffect(() => {
-    fetchUserDetails(currentUser.email);
-  }, [])
+    fetchUserDetails(currentUserDoc.email);
+  }, []);
+
+  const makeid = () => {
+    var result           = '';
+    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    var charactersLength = 10;
+    for ( var i = 0; i < 10; i++ ) {
+      result += characters.charAt(Math.floor(Math.random() * 
+ charactersLength));
+   }
+   setReferenceNumber(`HWH${result}`)
+   return `HWH${result}`;
+}
 
 
 
@@ -53,7 +65,7 @@ const Checkout = ({cart, emptyCart, userDetails, setUserDetails, fetchUserDetail
   const Form = () => {
     return activeStep === 0 ? <AddressForm handleActiveStep={handleActiveStep}
     handleShippingData={handleShippingData} userDetails={userDetails}
-    /> : <PaymentForm cart={cart} handleActiveStep={handleActiveStep} emptyCart={emptyCart} userDetails={userDetails} setUserDetails={setUserDetails} shippingData={shippingData}/>;
+    /> : <PaymentForm cart={cart} handleActiveStep={handleActiveStep} emptyCart={emptyCart} userDetails={userDetails} setUserDetails={setUserDetails} shippingData={shippingData} makeid={makeid} />;
   };
 
   return (
@@ -69,7 +81,7 @@ const Checkout = ({cart, emptyCart, userDetails, setUserDetails, fetchUserDetail
             </Step>
           ))}
         </Stepper>
-        {activeStep === steps.length ? <Confirmation userDetails={userDetails}/> : <Form />}
+        {activeStep === steps.length ? <Confirmation userDetails={userDetails} referenceNumber={referenceNumber} /> : <Form />}
       </div>
     </>
   );

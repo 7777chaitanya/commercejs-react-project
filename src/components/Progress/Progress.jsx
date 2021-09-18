@@ -49,7 +49,8 @@ export default function Progress({
   userDetails,
   setUserDetails,
   cart,
-  shippingData
+  shippingData,
+  makeid
 }) {
   const classes = useStyles();
   const [loading, setLoading] = React.useState(false);
@@ -85,7 +86,6 @@ export default function Progress({
           prevStateCopy[orderNumber] = [...cart];
           return { ...prevStateCopy };
         });
-        console.log("is userDetails updated =>",userDetails.orders.length)
         setTimeout(() => {
           handleProgressSubmit();
         }, 100);
