@@ -1,10 +1,15 @@
 import React, { useContext } from "react";
 import useStyles from "./styles";
 import { CurrentUserDetailsContext } from "../../contexts/userDetails";
-import { ListItem, List, ListItemText, Typography, Card } from "@material-ui/core";
+import {
+  ListItem,
+  List,
+  ListItemText,
+  Typography,
+  Card,
+} from "@material-ui/core";
 import moment from "moment";
-import {Link} from "react-router-dom"
-
+import { Link } from "react-router-dom";
 
 const SingleOrder = ({ eachOrder }) => {
   const classes = useStyles();
@@ -16,7 +21,11 @@ const SingleOrder = ({ eachOrder }) => {
 
   const calculateTotal = (cart) => {
     let total = 0;
-    cart?.map((item) => (total = total + item.price.raw * item.quantity));
+    cart?.forEach(item => {
+      total = total + (item.price.raw * item.quantity);
+      
+    })
+    // cart?.map((item) => (total = total + item.price.raw * item.quantity));
     return total;
   };
 
@@ -28,33 +37,61 @@ const SingleOrder = ({ eachOrder }) => {
                  Postalcode : ${eachOrder?.shippingAddress?.postalCode}
                  Email : ${eachOrder?.shippingAddress?.email}`;
 
-// console.log("address => ",address);
-// console.log("first Name address => ",eachOrder?.address?.firstName)
+  // console.log("address => ",address);
+  // console.log("first Name address => ",eachOrder?.address?.firstName)
+
+  const dateChecker = () => {
+    if (eachOrder?.date.getMonth) {
+      return moment(eachOrder?.date).format("MMMM Do YYYY, h:mm:ss a");
+    } else {
+      return moment(eachOrder?.date?.toDate()).format("MMMM Do YYYY, h:mm:ss a");
+    }
+  };
   return (
     <div>
       <Card className={classes.root}>
         <List className={classes.reviewList}>
-          <Typography variant="body1" color="primary" className={classes.statusAndDate}>Order status : <span className={classes.value}>Success</span></Typography>
-          <Typography variant="body1" color="primary" className={classes.statusAndDate}>
-            Date :{" "}
-            <span className={classes.date}>
-            {moment(eachOrder?.date?.toDate()).format(
-              "MMMM Do YYYY, h:mm:ss a"
-            )}
-            </span>
+          <Typography
+            variant="body1"
+            color="primary"
+            className={classes.statusAndDate}
+          >
+            Order status : <span className={classes.value}>Success</span>
           </Typography>
-          <Typography variant="body1" color="primary" className={classes.statusAndDate}>Shipping Address : <span className={classes.address}>{address}</span></Typography>
+          <Typography
+            variant="body1"
+            color="primary"
+            className={classes.statusAndDate}
+          >
+            Date : <span className={classes.date}>{dateChecker()}</span>
+          </Typography>
+          <Typography
+            variant="body1"
+            color="primary"
+            className={classes.statusAndDate}
+          >
+            Shipping Address :{" "}
+            <span className={classes.address}>{address}</span>
+          </Typography>
 
           {thisOrder?.map((cartItem) => (
-            <ListItem key={cartItem.id}  component={Link} to={`/products/${cartItem.product_id}`}>
-                <img src={cartItem.media.source} alt="" className={classes.cartImage} />
+            <ListItem
+              key={cartItem.id}
+              component={Link}
+              to={`/products/${cartItem.product_id}`}
+            >
+              <img
+                src={cartItem.media.source}
+                alt=""
+                className={classes.cartImage}
+              />
               <ListItemText
                 primary={cartItem.name}
                 secondary={`Qty: ${cartItem.quantity}`}
               />
               {/* <ListItemText>{cartItem.quantity}</ListItemText> */}
               <Typography variant="body2" className={classes.priceText}>{`₹ ${
-                cartItem.price.raw * 2
+                cartItem.price.raw * cartItem.quantity
               }`}</Typography>
               {/* <ListItemText>{`₹ ${cartItem.price.raw*2}`}</ListItemText> */}
             </ListItem>

@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useContext} from "react";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 import CircularProgress from "@material-ui/core/CircularProgress";
@@ -7,6 +7,8 @@ import Button from "@material-ui/core/Button";
 import Fab from "@material-ui/core/Fab";
 import CheckIcon from "@material-ui/icons/Check";
 import SaveIcon from "@material-ui/icons/Save";
+import {CurrentUserDetailsContext} from "../../contexts/userDetails"
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -53,6 +55,9 @@ export default function Progress({
   const [loading, setLoading] = React.useState(false);
   const [success, setSuccess] = React.useState(false);
   const timer = React.useRef();
+  const [currentUserDoc, setCurrentUserDoc] = useContext(CurrentUserDetailsContext);
+
+  
 
   const buttonClassname = clsx({
     [classes.buttonSuccess]: success,
@@ -74,11 +79,11 @@ export default function Progress({
         setLoading(false);
         let orderNumber = userDetails?.orders?.length + 1;
 
-        setUserDetails((prevState) => {
+        setCurrentUserDoc((prevState) => {
           let prevStateCopy = { ...prevState };
           prevStateCopy.orders.push({orderNumber, date : new Date(), shippingAddress : {...shippingData}});
           prevStateCopy[orderNumber] = [...cart];
-          return { ...prevState };
+          return { ...prevStateCopy };
         });
         console.log("is userDetails updated =>",userDetails.orders.length)
         setTimeout(() => {

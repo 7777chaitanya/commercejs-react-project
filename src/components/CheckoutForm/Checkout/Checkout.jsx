@@ -1,5 +1,5 @@
 import { Stepper, Typography, Step, StepLabel } from "@material-ui/core";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import AddressForm from "../AddressForm.jsx";
 import Confirmation from "../Confirmation.jsx";
 import PaymentForm from "../PaymentForm.jsx";
@@ -7,6 +7,8 @@ import useStyles from "./styles.js";
 import { useAuth } from '../../../contexts/AuthContext';
 import { db } from "../../firebase.js";
 import { arrayUnion, doc, updateDoc } from "@firebase/firestore";
+import {CurrentUserDetailsContext} from "../../../contexts/userDetails"
+
 
 
 const steps = ["Shipping address", "Payment details"];
@@ -16,6 +18,8 @@ const Checkout = ({cart, emptyCart, userDetails, setUserDetails, fetchUserDetail
   const [activeStep, setActiveStep] = useState(0);
   const [shippingData, setShippingData] = useState({});
   const { currentUser } = useAuth();
+  const [currentUserDoc, setCurrentUserDoc] = useContext(CurrentUserDetailsContext);
+
 
   useEffect(() => {
     fetchUserDetails(currentUser.email);
@@ -25,12 +29,12 @@ const Checkout = ({cart, emptyCart, userDetails, setUserDetails, fetchUserDetail
 
   const handleShippingData = async (data) => {
     setShippingData({...data});
-    let addresses = [...userDetails.addresses];
+    let addresses = [...currentUserDoc.addresses];
     console.log("userDetails in checkotu=> ", userDetails )
-    if(userDetails.addresses.indexOf({...data})===-1){
+    if(addresses.indexOf({...data})===-1){
       addresses.push({...data})
     }
-    setUserDetails(prevState =>{
+    setCurrentUserDoc(prevState =>{
       return {...prevState, addresses : addresses}
     }
     )

@@ -14,7 +14,12 @@ const Review = ({ cart }) => {
   const classes=useStyles();
   const calculateTotal = () => {
     let total = 0;
-    cart?.map((item) => (total = total + item.price.raw * item.quantity));
+    cart?.forEach(item => {
+      total = total + (item.price.raw * item.quantity);
+      
+    })
+    console.log("total calculated =>", total)
+    // cart?.map((item) => (total = total + (item.price.raw * item.quantity)));
     return total;
   };
 
@@ -34,7 +39,7 @@ const Review = ({ cart }) => {
             />
             {/* <ListItemText>{cartItem.quantity}</ListItemText> */}
             <Typography variant="body2">{`₹ ${
-              cartItem.price.raw * 2
+              cartItem.price.raw * cartItem.quantity
             }`}</Typography>
             {/* <ListItemText>{`₹ ${cartItem.price.raw*2}`}</ListItemText> */}
           </ListItem>

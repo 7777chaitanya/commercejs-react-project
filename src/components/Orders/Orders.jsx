@@ -8,7 +8,7 @@ const Orders = ({userDetails, fetchUserDetails}) => {
     const [currentUserDoc, setCurrentUserDoc] = useContext(CurrentUserDetailsContext);
     
     
-    let ordersArray = [...currentUserDoc.orders.reverse()];
+    let ordersArray = [...currentUserDoc?.orders?.reverse()];
     return (
         <>
         {ordersArray.map(eachOrder => (<SingleOrder eachOrder={eachOrder} />))}
