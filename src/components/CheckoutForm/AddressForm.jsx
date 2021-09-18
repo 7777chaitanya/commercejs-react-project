@@ -125,14 +125,14 @@ const AddressForm = ({ handleActiveStep, handleShippingData, userDetails }) => {
   //   setSelecteShippingSubdivision("Andhra Pradesh");
   // }
 
-  const handleAddressAutoFill2 = () => {
-    if(shippingSubdivisionList===[]){
-      handleAddressAutoFill2();
-      }
-    setSelecteShippingSubdivision("Andhra Pradesh");
+  // const handleAddressAutoFill2 = () => {
+  //   if(shippingSubdivisionList===[]){
+  //     handleAddressAutoFill2();
+  //     }
+  //   setSelecteShippingSubdivision("Andhra Pradesh");
     
 
-  };
+  // };
 
   const handleAddressAutoFill = () => {
     setFirstName(userDetails.name);
@@ -141,12 +141,15 @@ const AddressForm = ({ handleActiveStep, handleShippingData, userDetails }) => {
     setEmail(userDetails.email);
     setCity("Kakinada");
     setPostalCode("533001");
+    if(shippingCountryList===[]){
+      handleAddressAutoFill();
+    }
     setSelectedShippingCountry("India");
     fetchShippingSubDivisions("India");
 
     setSelecteShippingSubdivision("Andhra Pradesh");
     if(shippingSubdivisionList===[]){
-    handleAddressAutoFill2();
+    handleAddressAutoFill();
     }
   };
 
