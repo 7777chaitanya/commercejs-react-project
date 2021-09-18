@@ -54,7 +54,19 @@ const useStyles = makeStyles(theme =>({
       },
       statusAndDate:{
           marginLeft : "1rem"
-      }
+      },
+      dividerBox: {
+        padding: "1rem",
+        width: "fullWidth",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      },
+      divider: {
+        height: "0.3rem",
+        width: "40vw",
+        marginBottom :"1rem"
+      },
 
 }));
 

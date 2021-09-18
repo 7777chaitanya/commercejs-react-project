@@ -61,20 +61,20 @@ const AddressCard = ({ eachAddress }) => {
     <>
       <Card className={classes.root}>
         <Box className={classes.addressBox}>
-          <Typography variant="body1" display="inline">
-            {eachAddress?.firstName} {eachAddress?.lastName}
+          <Typography variant="h6" display="inline">
+            {eachAddress?.firstName} {eachAddress?.lastName},
           </Typography>
           {/* <Typography variant="body1" display >{eachAddress?.lastName}</Typography> */}
-          <Typography variant="body1">{eachAddress?.address}</Typography>
-          <Typography variant="body1">{eachAddress?.city}</Typography>
+          <Typography variant="body1">{eachAddress?.address},</Typography>
+          <Typography variant="body1">{eachAddress?.city},</Typography>
           <Typography variant="body1">
-            {eachAddress?.selectedShippingSubdivision}
+            {eachAddress?.selectedShippingSubdivision},
           </Typography>
           <Typography variant="body1">
-            {eachAddress?.selectedShippingCountry}
+            {eachAddress?.selectedShippingCountry},
           </Typography>
           <Typography variant="body1">
-            Postalcode : {eachAddress?.postalCode}
+            Postalcode : {eachAddress?.postalCode}.
           </Typography>
           <Typography variant="body1">Email : {eachAddress?.email}</Typography>
         </Box>

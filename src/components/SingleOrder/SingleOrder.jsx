@@ -7,6 +7,8 @@ import {
   ListItemText,
   Typography,
   Card,
+  Box,
+  Divider,
 } from "@material-ui/core";
 import moment from "moment";
 import { Link } from "react-router-dom";
@@ -52,7 +54,7 @@ const SingleOrder = ({ eachOrder }) => {
       <Card className={classes.root}>
         <List className={classes.reviewList}>
           <Typography
-            variant="body1"
+            variant="h6"
             color="primary"
             className={classes.statusAndDate}
           >
@@ -110,6 +112,9 @@ const SingleOrder = ({ eachOrder }) => {
           </ListItem>
         </List>
       </Card>
+      <Box className={classes.dividerBox}>
+            <Divider className={classes.divider}/>
+        </Box>
     </div>
   );
 };

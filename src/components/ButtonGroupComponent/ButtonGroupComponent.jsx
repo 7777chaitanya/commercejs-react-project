@@ -2,7 +2,8 @@ import React, {useState} from 'react';
 import useStyles from "./styles.js"
 import { Box, Button, ButtonGroup } from '@material-ui/core';
 import Orders from "../Orders/Orders";
-import Addresses from "../Addresses/Addresses"
+import Addresses from "../Addresses/Addresses";
+import YourDetails from "../YourDetails/YourDetails";
 
 const ButtonGroupComponent = ({userDetails, fetchUserDetails}) => {
     const classes = useStyles();
@@ -28,12 +29,12 @@ const ButtonGroupComponent = ({userDetails, fetchUserDetails}) => {
       </Box>
 
       <Box>
-        {/* {currentTab==="posts" && <MyPosts2 />} */}
+        {currentTab==="Your details" && <YourDetails />}
         {currentTab==="Orders" && <Orders userDetails={userDetails} fetchUserDetails={fetchUserDetails} />}
         {currentTab==="Addresses" && <Addresses />}
         
       </Box>
-      <h1>{currentTab}</h1>
+      {/* <h1>{currentTab}</h1> */}
     
     </>
     )

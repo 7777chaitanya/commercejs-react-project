@@ -25,30 +25,7 @@ const Profile = ({ userDetails, fetchUserDetails }) => {
 
   return (
     <Box className={classes.outerMostBox}>
-      <Typography align="center" variant="h3" color="primary">
-        Hi, {userDetails.name}
-      </Typography>
-      <Box className={classes.dividerBox}>
-          <Divider className={classes.divider}/>
-      </Box>
-      <Box>
-        <Typography variant="h5">Email : {currentUser.email}</Typography>
-      </Box>
-      <Box className={classes.dividerBox}>
-          <Divider  className={classes.divider}/>
-      </Box>
-
-      <Box>
-        <Typography variant="h5">Phone : N/A</Typography>
-      </Box>
-      <Box className={classes.dividerBox}>
-          <Divider className={classes.divider}/>
-      </Box>
-      
-      <Box className={classes.ButtonContainer}>
-          <Button variant="outlined" color="primary" component={Link} to="/">Back to Shop</Button>
-          <Button variant="outlined" color="secondary" onClick={handleLogout}>Logout</Button>
-      </Box>
+    
 
       <ButtonGroupComponent userDetails={userDetails} fetchUserDetails={fetchUserDetails}/>
     </Box>

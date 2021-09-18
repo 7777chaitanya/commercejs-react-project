@@ -7,7 +7,7 @@ import Button from "@material-ui/core/Button";
 import Fab from "@material-ui/core/Fab";
 import CheckIcon from "@material-ui/icons/Check";
 import SaveIcon from "@material-ui/icons/Save";
-import {CurrentUserDetailsContext} from "../../contexts/userDetails"
+import {CurrentUserDetailsContext} from "../../contexts/userDetails";
 
 
 const useStyles = makeStyles((theme) => ({

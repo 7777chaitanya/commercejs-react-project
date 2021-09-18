@@ -18,19 +18,20 @@ import FaceIcon from "@material-ui/icons/Face";
 import HouseIcon from "@material-ui/icons/House";
 import MailOutlineIcon from "@material-ui/icons/MailOutline";
 import PersonPinCircleIcon from "@material-ui/icons/PersonPinCircle";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import useStyles from "./styles";
 import commerce from "../../lib/commerce.js";
 import invertedCountriesWithKeys from "../../utils/invertObjectKeysAndValues";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import NavigateNextIcon from "@material-ui/icons/NavigateNext";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import LocationCityIcon from "@material-ui/icons/LocationCity";
 import PublicIcon from "@material-ui/icons/Public";
 import LanguageIcon from "@material-ui/icons/Language";
 import FileCopyIcon from "@material-ui/icons/FileCopy";
 import TextFieldsIcon from "@material-ui/icons/TextFields";
 import Progress from "../Progress/Progress";
+import { CurrentUserDetailsContext } from "../../contexts/userDetails";
 
 const AddressForm = ({ handleActiveStep, handleShippingData, userDetails }) => {
   const classes = useStyles();
@@ -48,6 +49,10 @@ const AddressForm = ({ handleActiveStep, handleShippingData, userDetails }) => {
   const [shippingSubdivisionList, setShippingSubdivisionList] = useState([]);
   const [selectedShippingSubdivision, setSelecteShippingSubdivision] =
     useState("");
+  const [currentUserDoc, setCurrentUserDoc] = useContext(
+    CurrentUserDetailsContext
+  );
+  const location = useLocation();
   // const [shippingOptionsList, setShippingOptionsList] = useState([]);
   // const [selectedShippingOption, setSelectedShippingOption] = useState("");
 
@@ -130,26 +135,25 @@ const AddressForm = ({ handleActiveStep, handleShippingData, userDetails }) => {
   //     handleAddressAutoFill2();
   //     }
   //   setSelecteShippingSubdivision("Andhra Pradesh");
-    
 
   // };
 
   const handleAddressAutoFill = () => {
-    setFirstName(userDetails.name);
+    setFirstName(currentUserDoc?.name);
     setLastName("J");
     setAddress("FF-1, Block-B, M-Apartments");
-    setEmail(userDetails.email);
+    setEmail(currentUserDoc.email);
     setCity("Kakinada");
     setPostalCode("533001");
-    if(shippingCountryList===[]){
+    if (shippingCountryList === []) {
       handleAddressAutoFill();
     }
     setSelectedShippingCountry("India");
     fetchShippingSubDivisions("India");
 
     setSelecteShippingSubdivision("Andhra Pradesh");
-    if(shippingSubdivisionList===[]){
-    handleAddressAutoFill();
+    if (shippingSubdivisionList === []) {
+      handleAddressAutoFill();
     }
   };
 
@@ -177,7 +181,9 @@ const AddressForm = ({ handleActiveStep, handleShippingData, userDetails }) => {
   const handleSubmit = (event) => {
     console.log("submit");
     event.preventDefault();
-    handleActiveStep(1);
+    if (location.pathname !== "/profile") {
+      handleActiveStep(1);
+    }
     handleShippingData({
       firstName,
       lastName,
@@ -368,21 +374,40 @@ const AddressForm = ({ handleActiveStep, handleShippingData, userDetails }) => {
               </Box>
 
               <Box className={classes.buttonBox}>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  size="large"
-                  className={classes.button}
-                  startIcon={
-                    <ShoppingCartIcon className={classes.buttonIcon} />
-                  }
-                  component={Link}
-                  to="/cart"
-                >
-                  <Typography className={classes.buttonIconText}>
-                    Go back to cart page
-                  </Typography>
-                </Button>
+                {location.pathname !== "/profile" && (
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    size="large"
+                    className={classes.button}
+                    startIcon={
+                      <ShoppingCartIcon className={classes.buttonIcon} />
+                    }
+                    component={Link}
+                    to="/cart"
+                  >
+                    <Typography className={classes.buttonIconText}>
+                      Go back to cart page
+                    </Typography>
+                  </Button>
+                )}
+                {location.pathname === "/profile" && (
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    size="large"
+                    className={classes.button}
+                    startIcon={
+                      <ShoppingCartIcon className={classes.buttonIcon} />
+                    }
+                    component={Link}
+                    to="/"
+                  >
+                    <Typography className={classes.buttonIconText}>
+                      Go back to Home page
+                    </Typography>
+                  </Button>
+                )}
                 <Button
                   variant="contained"
                   color="primary"

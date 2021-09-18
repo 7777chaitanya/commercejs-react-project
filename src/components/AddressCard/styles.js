@@ -12,6 +12,8 @@ const useStyles = makeStyles(theme =>({
           [theme.breakpoints.up("sm")]: {
             width : "40vw",
           },
+          paddingTop : "1rem",
+          paddingBottom : "1rem"
     },
     addressBox:{
         paddingLeft : "2rem",
