@@ -408,7 +408,8 @@ const AddressForm = ({ handleActiveStep, handleShippingData, userDetails }) => {
                     </Typography>
                   </Button>
                 )}
-                <Button
+                {location.pathname==="/checkout" &&
+                (<Button
                   variant="contained"
                   color="primary"
                   size="large"
@@ -422,7 +423,23 @@ const AddressForm = ({ handleActiveStep, handleShippingData, userDetails }) => {
                   <Typography className={classes.buttonIconText}>
                     Next
                   </Typography>
-                </Button>
+                </Button>)}
+                {location.pathname==="/profile" &&
+                (<Button
+                  variant="contained"
+                  color="primary"
+                  size="large"
+                  className={classes.button}
+                  startIcon={
+                    <NavigateNextIcon className={classes.buttonIcon} />
+                  }
+                  type="submit"
+                  disabled={checkIfAllFieldsAreFilled()}
+                >
+                  <Typography className={classes.buttonIconText}>
+                    Save
+                  </Typography>
+                </Button>)}
               </Box>
             </Box>
           </form>
