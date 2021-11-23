@@ -12,18 +12,17 @@ import {
 import Alert from "@material-ui/lab/Alert";
 import React, { useRef, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import {Link, useHistory} from 'react-router-dom';
+import { Link, useHistory } from "react-router-dom";
 
 import { useAuth } from "../contexts/AuthContext";
 import { auth } from "./firebase";
-
 
 const useStyles = makeStyles({
   box: {
     display: "flex",
     justifyContent: "center",
     margin: "1rem",
-    flexDirection : "column"
+    flexDirection: "column",
   },
   form: {
     border: "1px solid lightgray",
@@ -35,14 +34,13 @@ const useStyles = makeStyles({
       "0rem 0.1rem 0.1rem 0.1rem linear-gradient(165deg, lightcyan, greenyellow)",
     // backgroundImage: "linear-gradient(165deg, lightcyan, greenyellow)",
     backgroundImage: "linear-gradient(165deg, lightcyan, darkslateblue)",
-
   },
   button: {
     // background: "linear-gradient(135deg, lightgray, greenyellow)",
     backround: "lightgray",
     padding: "0.25rem 2rem",
     // width: "20vw",
-    width : "auto"
+    width: "auto",
   },
   mainForm: {
     display: "flex",
@@ -76,7 +74,7 @@ const useStyles = makeStyles({
   },
   typography: {
     // color: "greenyellow",
-    color: "darkslateblue"
+    color: "darkslateblue",
   },
 });
 
@@ -93,11 +91,10 @@ const LoginForm = () => {
     e && e.preventDefault();
     console.log("sign up method =>", auth);
 
-    
     try {
       setError("");
       setLoading(true);
-    //   setSigninSuccess("");
+      //   setSigninSuccess("");
 
       const result = await login(
         auth,
@@ -105,18 +102,36 @@ const LoginForm = () => {
         passwordRef.current.value
       );
       console.log("result =>", result);
-      history.push('/');
+      history.push("/");
     } catch (error) {
       setError("Failed to log in");
     }
     setLoading(false);
   };
 
-  const handleAutoLogin = () =>{
-    emailRef.current.value = "ratan@tata.com";
-    passwordRef.current.value = "asdfgh";
-    handleSubmit()
-  }
+  const handleAutoLogin = async (e) => {
+    e && e.preventDefault();
+    console.log("sign up method =>", auth);
+
+    try {
+      setError("");
+      setLoading(true);
+      //   setSigninSuccess("");
+
+      const result = await login(
+        auth,
+        "ratan@tata.com",
+        "asdfgh"
+      );
+      console.log("result =>", result);
+      history.push("/");
+    } catch (error) {
+      setError("Failed to log in");
+    }
+    setLoading(false);
+  };
+
+
 
   return (
     <>
@@ -205,12 +220,11 @@ const LoginForm = () => {
           component={Link}
           to="/forgot-password"
           className={classes.link}
-          
         >
           Forgot Password?
         </Typography>
       </Box>
-       <Box className={classes.divider}>
+      <Box className={classes.divider}>
         <Divider />
       </Box>
       <Box className={classes.link}>
