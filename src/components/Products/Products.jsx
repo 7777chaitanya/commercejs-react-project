@@ -52,7 +52,7 @@ const Products = ({
     
       <Box className={classes.productsAndFilterBox}>
         <Box className={classes.filterBox}>
-          <Card elevation={5}>
+          <Card elevation={5} className={classes.filterCard}>
             <h1>elllllllllllllllllllllllllllohelllllllllllllllllllllllllllo</h1>
             <Box className={classes.slider}>
         <ContinuousSlider
