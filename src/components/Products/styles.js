@@ -16,13 +16,9 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "2rem",
   },
   slider: {
-    width: "15vw",
-    marginLeft: "1rem",
-    // marginRight : "auto",
-    // display: "flex",
-    // justifyContent : "center",
-    // alignItems : "center",
-    marginTop: "2rem",
+    marginTop : "1rem",
+    // marginRight : "1rem",
+
   },
   productsAndFilterBox: {
     display: "flex",
@@ -39,6 +35,7 @@ const useStyles = makeStyles((theme) => ({
   filterCard: {
     margin: "0 0.5rem",
     padding: "0 0.5rem",
+    // paddingRight : "6rem",
   },
 }));
 

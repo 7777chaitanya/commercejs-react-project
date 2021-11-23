@@ -49,16 +49,15 @@ const Products = ({
 
   return (
     <div>
-    
       <Box className={classes.productsAndFilterBox}>
         <Box className={classes.filterBox}>
           <Card elevation={5} className={classes.filterCard}>
             <h1>elllllllllllllllllllllllllllohelllllllllllllllllllllllllllo</h1>
             <Box className={classes.slider}>
-        <ContinuousSlider
-          handleProductsValueChange={handleProductsValueChange}
-        />
-      </Box>
+              <ContinuousSlider
+                handleProductsValueChange={handleProductsValueChange}
+              />
+            </Box>
           </Card>
         </Box>
 
