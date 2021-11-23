@@ -6,6 +6,7 @@ const useStyles = makeStyles(theme =>({
     justifyContent: "center",
     alignItems: "center",
     flexDirection: "column",
+    marginTop : "4rem"
   },
   dividerBox: {
     padding: "1rem",

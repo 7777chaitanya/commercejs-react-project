@@ -10,6 +10,9 @@ const useStyles = makeStyles((theme) => ({
         height: theme.spacing(16),
       },
     },
+    checkoutOuterMostBox:{
+      marginTop : "4.5rem"
+    }
   }));
 
 export default useStyles;

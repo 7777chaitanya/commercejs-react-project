@@ -1,4 +1,4 @@
-import { Stepper, Typography, Step, StepLabel } from "@material-ui/core";
+import { Stepper, Typography, Step, StepLabel, Box } from "@material-ui/core";
 import React, { useState, useEffect, useContext } from "react";
 import AddressForm from "../AddressForm.jsx";
 import Confirmation from "../Confirmation.jsx";
@@ -22,7 +22,7 @@ const Checkout = ({cart, emptyCart, userDetails, setUserDetails, fetchUserDetail
 const [referenceNumber, setReferenceNumber] = useState("");
 
   useEffect(() => {
-    fetchUserDetails(currentUserDoc.email);
+    fetchUserDetails(currentUserDoc?.email);
   }, []);
 
   const makeid = () => {
@@ -70,7 +70,7 @@ const [referenceNumber, setReferenceNumber] = useState("");
 
 
   return (
-    <>
+    <Box  className={classes.checkoutOuterMostBox}>
       <Typography variant="h4" align="center" color="primary">
         Checkout
       </Typography>
@@ -84,7 +84,7 @@ const [referenceNumber, setReferenceNumber] = useState("");
         </Stepper>
         {activeStep === steps.length ? <Confirmation userDetails={userDetails} referenceNumber={referenceNumber} /> : <Form />}
       </div>
-    </>
+    </Box>
   );
 };
 
