@@ -52,7 +52,14 @@ const Products = ({
       <Box className={classes.slider}>
       <ContinuousSlider handleProductsValueChange={handleProductsValueChange} />
       </Box>
-      <Grid container spacing={1} justifyContent="center">
+<Box className={classes.productsAndFilterBox}>
+      <Box className={classes.filterBox}>
+
+
+      </Box>
+
+<Box className={classes.productBox}>
+        <Grid container spacing={1} justifyContent="center">
         {productsInCurrentPage &&
           productsInCurrentPage?.map((product) => (
             <Grid key={product.id} item xs={12} sm={6} md={3}>
@@ -66,9 +73,14 @@ const Products = ({
             </Grid>
           ))}
       </Grid>
+
+
       <Box className={classes.paginationBox}>
       <Pagination count={Math.ceil((productsToRender.length)/(8))} onChange={handlePaginationChange} color="primary"/>
       </Box>
+      </Box>
+      </Box>
+
     </div>
   );
 };
