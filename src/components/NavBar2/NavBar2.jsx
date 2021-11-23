@@ -292,7 +292,7 @@ export default function NavBar2({ quantity, userDetails, products }) {
 
   return location.pathname !== "/signup" && location.pathname !== "/login" && location.pathname!=="/forgot-password" ? (
     <div className={classes.grow}>
-      <AppBar position="static">
+      <AppBar position="fixed">
         <Toolbar>
           {/* <IconButton
             edge="start"
