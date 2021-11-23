@@ -2,7 +2,7 @@ import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles(theme =>({
   root: {
-    position: "absolute",
+    position: "fixed",
     maxHeight: "50vh",
     overflowY: "auto",
     [theme.breakpoints.down("sm")]: {
