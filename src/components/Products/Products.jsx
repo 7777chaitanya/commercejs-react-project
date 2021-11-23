@@ -32,7 +32,7 @@ const Products = ({
   console.log("products comp =>", products);
   const { currentUser } = useAuth();
   const [productValue, setproductValue] = useState(30000);
-  const [value, setValue] = React.useState(30000);
+  const [value, setValue] = useState(30000);
 
   const [pageNumber, setPageNumber] = useState(1);
   const itemsPerPage = 9;
@@ -88,6 +88,9 @@ const Products = ({
     setCheckedHighToLow(false);
     setValue(30000);
   }
+if(pageNumber===2){
+  (!productsInCurrentPage?.length) && setPageNumber(1);
+}
 
   return (
     <div>
@@ -213,7 +216,7 @@ const Products = ({
 
           <Box className={classes.paginationBox}>
             <Pagination
-              count={Math.ceil(productsToRender.length / 8)}
+              count={Math.ceil(productsToRender.length / itemsPerPage)}
               onChange={handlePaginationChange}
               color="primary"
             />
