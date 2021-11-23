@@ -23,6 +23,16 @@ const useStyles = makeStyles((theme) => ({
       justifyContent : "center",
       alignItems : "center",
       marginTop : "2rem"
+    },
+    productsAndFilterBox:{
+display : "flex",
+
+    },
+    filterBox: {
+flex : 3
+    },
+    productBox : {
+flex : 8
     }
   }));
 

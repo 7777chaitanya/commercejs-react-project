@@ -62,7 +62,7 @@ const Products = ({
         <Grid container spacing={1} justifyContent="center">
         {productsInCurrentPage &&
           productsInCurrentPage?.map((product) => (
-            <Grid key={product.id} item xs={12} sm={6} md={3}>
+            <Grid key={product.id} item xs={12} sm={6} md={4}>
               <Product
                 product={product}
                 addToCart={addToCart}
