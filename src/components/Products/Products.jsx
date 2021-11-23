@@ -1,4 +1,15 @@
-import { Box, Grid, Card, Typography } from "@material-ui/core";
+import {
+  Box,
+  Grid,
+  Card,
+  Typography,
+  Button,
+  Divider,
+  List,
+  ListItem,
+  Checkbox,
+  FormControlLabel,
+} from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import Product from "./Product/Product";
 import useStyles from "./styles";
@@ -35,10 +46,6 @@ const Products = ({
   let productsToRender = products?.filter(
     (product) => product?.price?.raw <= productValue
   );
-  let productsInCurrentPage = productsToRender.slice(
-    (pageNumber - 1) * itemsPerPage,
-    itemsPerPage * pageNumber
-  );
 
   console.log("new value => ", productsToRender);
 
@@ -47,17 +54,133 @@ const Products = ({
     setPageNumber(value);
   };
 
+  const [checkedLowToHigh, setCheckedLowToHigh] = React.useState(true);
+  const [checkedHighToLow, setCheckedHighToLow] = React.useState(true);
+
+  const handleChangeCheckedLowToHigh = (event) => {
+    setCheckedLowToHigh((p) => !p);
+    setCheckedHighToLow(false);
+  };
+
+  const handleChangeCheckedHighToLow = (event) => {
+    setCheckedHighToLow((p) => !p);
+    setCheckedLowToHigh(false);
+  };
+
+  if (checkedLowToHigh) {
+    productsToRender.sort((a, b) => (a.price.raw > b.price.raw ? 1 : -1));
+  }
+
+  if (checkedHighToLow) {
+    productsToRender.sort((a, b) => (a.price.raw < b.price.raw ? 1 : -1));
+  }
+
+  let productsInCurrentPage = productsToRender.slice(
+    (pageNumber - 1) * itemsPerPage,
+    itemsPerPage * pageNumber
+  );
+
   return (
     <div>
       <Box className={classes.productsAndFilterBox}>
         <Box className={classes.filterBox}>
           <Card elevation={5} className={classes.filterCard}>
-            <h1>elllllllllllllllllllllllllllohelllllllllllllllllllllllllllo</h1>
+            <Box className={classes.filterCardHeader}>
+              <Typography variant="h6" display="inline">
+                FILTER
+              </Typography>
+              <Button variant="outlined">Clear</Button>
+            </Box>
+            <Divider className={classes.divider} />
             <Box className={classes.slider}>
               <ContinuousSlider
                 handleProductsValueChange={handleProductsValueChange}
               />
             </Box>
+            <Divider className={classes.divider} />
+
+            <List className={classes.list}>
+              <ListItem className={classes.listItem}>
+                <FormControlLabel
+                  // value="top"
+                  control={
+                    <Checkbox
+                      checked={checkedLowToHigh}
+                      onChange={handleChangeCheckedLowToHigh}
+                      inputProps={{ "aria-label": "primary checkbox" }}
+                      color="primary"
+                    />
+                  }
+                  label="Price -> Low to High"
+                  labelPlacement="right"
+                />
+              </ListItem>
+              <ListItem className={classes.listItem}>
+                <FormControlLabel
+                  // value="top"
+                  control={
+                    <Checkbox
+                      checked={checkedHighToLow}
+                      onChange={handleChangeCheckedHighToLow}
+                      inputProps={{ "aria-label": "primary checkbox" }}
+                      color="primary"
+                    />
+                  }
+                  label="Price -> High to Low"
+                  labelPlacement="right"
+                />
+              </ListItem>
+            </List>
+
+            <Divider className={classes.divider} />
+
+            <List className={classes.list}>
+              <ListItem className={classes.listItem}>
+                <FormControlLabel
+                  // value="top"
+                  control={
+                    <Checkbox
+                      checked={checkedLowToHigh}
+                      onChange={handleChangeCheckedLowToHigh}
+                      inputProps={{ "aria-label": "primary checkbox" }}
+                      color="primary"
+                    />
+                  }
+                  label="Price -> 0 - 10000"
+                  labelPlacement="right"
+                />
+              </ListItem>
+              <ListItem className={classes.listItem}>
+                <FormControlLabel
+                  // value="top"
+                  control={
+                    <Checkbox
+                      checked={checkedHighToLow}
+                      onChange={handleChangeCheckedHighToLow}
+                      inputProps={{ "aria-label": "primary checkbox" }}
+                      color="primary"
+                    />
+                  }
+                  label="Price -> 10000 - 20000"
+                  labelPlacement="right"
+                />
+              </ListItem>
+              <ListItem className={classes.listItem}>
+                <FormControlLabel
+                  // value="top"
+                  control={
+                    <Checkbox
+                      checked={checkedHighToLow}
+                      onChange={handleChangeCheckedHighToLow}
+                      inputProps={{ "aria-label": "primary checkbox" }}
+                      color="primary"
+                    />
+                  }
+                  label="Price -> 20000 and more"
+                  labelPlacement="right"
+                />
+              </ListItem>
+            </List>
           </Card>
         </Box>
 
