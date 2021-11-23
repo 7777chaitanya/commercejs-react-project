@@ -69,6 +69,34 @@ const Products = ({
     setCheckedLowToHigh(false);
   };
 
+  const [checked0To10000, setChecked0To10000] = React.useState(true);
+  const [checked10000To20000, setChecked10000To20000] = React.useState(true);
+  const [checked20000To30000, setChecked20000To30000] = React.useState(true);
+
+  const handleChangeCheckedChecked0To10000 = (event) => {
+    setChecked0To10000((p) => !p);
+    setChecked10000To20000(false);
+    setChecked20000To30000(false);
+    setValue(10000);
+    setproductValue(10000);
+  };
+
+  const handleChangeCheckedChecked10000To20000 = (event) => {
+    setChecked10000To20000((p) => !p);
+    setChecked0To10000(false);
+    setChecked20000To30000(false);
+    setValue(20000);
+    setproductValue(20000);
+  };
+
+  const handleChangeCheckedChecked20000To30000 = (event) => {
+    setChecked20000To30000((p) => !p);
+    setChecked10000To20000(false);
+    setChecked0To10000(false);
+    setValue(30000);
+    setproductValue(30000);
+  };
+
   if (checkedLowToHigh) {
     productsToRender.sort((a, b) => (a.price.raw > b.price.raw ? 1 : -1));
   }
@@ -87,10 +115,14 @@ const Products = ({
     setCheckedLowToHigh(false);
     setCheckedHighToLow(false);
     setValue(30000);
+    setChecked0To10000(false);
+    setChecked10000To20000(false);
+    setChecked20000To30000(false);
+  };
+  
+  if (pageNumber === 2) {
+    !productsInCurrentPage?.length && setPageNumber(1);
   }
-if(pageNumber===2){
-  (!productsInCurrentPage?.length) && setPageNumber(1);
-}
 
   return (
     <div>
@@ -101,7 +133,13 @@ if(pageNumber===2){
               <Typography variant="h6" display="inline">
                 FILTER
               </Typography>
-              <Button variant="outlined" color="secondary" onClick={handleFilterClearButton}>Clear</Button>
+              <Button
+                variant="outlined"
+                color="secondary"
+                onClick={handleFilterClearButton}
+              >
+                Clear
+              </Button>
             </Box>
             <Divider className={classes.divider} />
             <Box className={classes.slider}>
@@ -154,8 +192,8 @@ if(pageNumber===2){
                   // value="top"
                   control={
                     <Checkbox
-                      checked={checkedLowToHigh}
-                      onChange={handleChangeCheckedLowToHigh}
+                      checked={checked0To10000}
+                      onChange={handleChangeCheckedChecked0To10000}
                       inputProps={{ "aria-label": "primary checkbox" }}
                       color="primary"
                     />
@@ -169,8 +207,8 @@ if(pageNumber===2){
                   // value="top"
                   control={
                     <Checkbox
-                      checked={checkedHighToLow}
-                      onChange={handleChangeCheckedHighToLow}
+                      checked={checked10000To20000}
+                      onChange={handleChangeCheckedChecked10000To20000}
                       inputProps={{ "aria-label": "primary checkbox" }}
                       color="primary"
                     />
@@ -184,8 +222,8 @@ if(pageNumber===2){
                   // value="top"
                   control={
                     <Checkbox
-                      checked={checkedHighToLow}
-                      onChange={handleChangeCheckedHighToLow}
+                      checked={checked20000To30000}
+                      onChange={handleChangeCheckedChecked20000To30000}
                       inputProps={{ "aria-label": "primary checkbox" }}
                       color="primary"
                     />
