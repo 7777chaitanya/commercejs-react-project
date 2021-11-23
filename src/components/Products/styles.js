@@ -30,6 +30,13 @@ const useStyles = makeStyles((theme) => ({
   productBox: {
     flex: 8,
     marginRight: "0.7rem",
+    maxHeight : "90vh",
+    overflow: "auto",
+    overflowX : "hidden",
+    '&::-webkit-scrollbar': {
+      width: '0px'
+    },
+
   },
   filterCard: {
     margin: "0 0.5rem",
