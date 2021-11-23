@@ -32,8 +32,10 @@ const Products = ({
   console.log("products comp =>", products);
   const { currentUser } = useAuth();
   const [productValue, setproductValue] = useState(30000);
+  const [value, setValue] = React.useState(30000);
+
   const [pageNumber, setPageNumber] = useState(1);
-  const itemsPerPage = 8;
+  const itemsPerPage = 9;
 
   const handleProductsValueChange = (value) => {
     setproductValue(value);
@@ -80,6 +82,13 @@ const Products = ({
     itemsPerPage * pageNumber
   );
 
+  const handleFilterClearButton = () => {
+    setproductValue(30000);
+    setCheckedLowToHigh(false);
+    setCheckedHighToLow(false);
+    setValue(30000);
+  }
+
   return (
     <div>
       <Box className={classes.productsAndFilterBox}>
@@ -89,12 +98,14 @@ const Products = ({
               <Typography variant="h6" display="inline">
                 FILTER
               </Typography>
-              <Button variant="outlined">Clear</Button>
+              <Button variant="outlined" color="secondary" onClick={handleFilterClearButton}>Clear</Button>
             </Box>
             <Divider className={classes.divider} />
             <Box className={classes.slider}>
               <ContinuousSlider
                 handleProductsValueChange={handleProductsValueChange}
+                value={value}
+                setValue={setValue}
               />
             </Box>
             <Divider className={classes.divider} />

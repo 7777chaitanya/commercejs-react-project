@@ -15,9 +15,8 @@ const useStyles = makeStyles({
   },
 });
 
-export default function ContinuousSlider({handleProductsValueChange}) {
+export default function ContinuousSlider({handleProductsValueChange, value, setValue}) {
   const classes = useStyles();
-  const [value, setValue] = React.useState(30000);
 
   const handleChange = (event, newValue) => {
 
