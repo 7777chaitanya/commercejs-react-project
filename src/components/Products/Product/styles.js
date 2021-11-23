@@ -6,6 +6,9 @@ const useStyles = makeStyles((theme)=>({
     padding: theme.spacing(1),
     textAlign: "center",
     color: theme.palette.text.secondary,
+    flexGrow: 1,
+
+    minHeight : "20rem",
   },
   media: {
     height: 140,
@@ -14,9 +17,7 @@ const useStyles = makeStyles((theme)=>({
     marginRight : 'auto'
     // height : "auto"
   },
-  root: {
-    flexGrow: 1,
-  },
+ 
   paper: {
     padding: theme.spacing(1),
     textAlign: "center",

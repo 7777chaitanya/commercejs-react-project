@@ -26,6 +26,14 @@ const useStyles = makeStyles({
   pageTitle:{
     marginBottom : "1rem",
     marginTop : '5rem'
+  },
+  wishListContainer:{
+    maxWidth : "90vw",
+    marginLeft : "auto",
+    marginRight : "auto",
+  },
+  gridItem:{
+    minHeight : "20rem"
   }
 });
 
@@ -82,11 +90,11 @@ const Wishlist = ({
        <Typography variant="h4" color="primary" align="center" className={classes.pageTitle}>
         Your Wishlist
       </Typography>
-      <Grid container spacing={1} justifyContent="center">
+      <Grid container spacing={1} justifyContent="center" className={classes.wishListContainer}>
         {localWishlist &&
           (localWishlist.length > 0 ? (
             localWishlist.map((product) => (
-              <Grid key={product.id} item xs={12} sm={6} md={3}>
+              <Grid key={product.id} item xs={12} sm={6} md={3} className={classes.gridItem}>
                 <Product
                   product={product}
                   addToCart={addToCart}
