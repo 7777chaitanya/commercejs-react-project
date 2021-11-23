@@ -16,6 +16,7 @@ const useStyles = makeStyles(theme =>({
       flexDirection: "row",
       width: "90vw",
     },
+    marginTop : "4.5rem"
   },
   innerBoxLeft: {
     flex: 5,
