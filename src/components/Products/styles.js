@@ -22,15 +22,24 @@ const useStyles = makeStyles((theme) => ({
   productsAndFilterBox: {
     display: "flex",
     marginTop: "5rem",
+    // paddingBottom : "10rem"
+    
   },
   filterBox: {
     flex: 3,
     overflow: "auto",
+    maxHeight : "95vh",
+    overflow: "auto",
+    overflowX : "hidden",
+    '&::-webkit-scrollbar': {
+      width: '0px'
+    },
+    
   },
   productBox: {
     flex: 8,
     marginRight: "0.7rem",
-    maxHeight : "90vh",
+    maxHeight : "95vh",
     overflow: "auto",
     overflowX : "hidden",
     '&::-webkit-scrollbar': {
@@ -41,6 +50,9 @@ const useStyles = makeStyles((theme) => ({
   filterCard: {
     margin: "0 0.5rem",
     padding: "0 0.5rem",
+    paddingTop : "1rem",
+    marginBottom : "3rem",
+    marginTop : "0.1rem"
     // paddingRight : "6rem",
   },
   filterCardHeader:{
@@ -50,6 +62,9 @@ const useStyles = makeStyles((theme) => ({
   },
   divider : {
     margin : "1rem"
+  },
+  productGrid:{
+    marginTop : "-0.2rem"
   }
 }));
 

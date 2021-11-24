@@ -112,14 +112,18 @@ const Products = ({
 
   const handleFilterClearButton = () => {
     setproductValue(30000);
-    setCheckedLowToHigh(false);
-    setCheckedHighToLow(false);
+
     setValue(30000);
     setChecked0To10000(false);
     setChecked10000To20000(false);
     setChecked20000To30000(false);
   };
-  
+
+  const handleSortClearButton = () => {
+    setCheckedLowToHigh(false);
+    setCheckedHighToLow(false);
+  }
+
   if (pageNumber === 2) {
     !productsInCurrentPage?.length && setPageNumber(1);
   }
@@ -131,7 +135,7 @@ const Products = ({
           <Card elevation={5} className={classes.filterCard}>
             <Box className={classes.filterCardHeader}>
               <Typography variant="h6" display="inline">
-                FILTER
+                 Filter with price
               </Typography>
               <Button
                 variant="outlined"
@@ -149,40 +153,6 @@ const Products = ({
                 setValue={setValue}
               />
             </Box>
-            <Divider className={classes.divider} />
-
-            <List className={classes.list}>
-              <ListItem className={classes.listItem}>
-                <FormControlLabel
-                  // value="top"
-                  control={
-                    <Checkbox
-                      checked={checkedLowToHigh}
-                      onChange={handleChangeCheckedLowToHigh}
-                      inputProps={{ "aria-label": "primary checkbox" }}
-                      color="primary"
-                    />
-                  }
-                  label="Price -> Low to High"
-                  labelPlacement="right"
-                />
-              </ListItem>
-              <ListItem className={classes.listItem}>
-                <FormControlLabel
-                  // value="top"
-                  control={
-                    <Checkbox
-                      checked={checkedHighToLow}
-                      onChange={handleChangeCheckedHighToLow}
-                      inputProps={{ "aria-label": "primary checkbox" }}
-                      color="primary"
-                    />
-                  }
-                  label="Price -> High to Low"
-                  labelPlacement="right"
-                />
-              </ListItem>
-            </List>
 
             <Divider className={classes.divider} />
 
@@ -233,11 +203,60 @@ const Products = ({
                 />
               </ListItem>
             </List>
+
+            <Divider className={classes.divider} />
+
+            <Box className={classes.filterCardHeader}>
+              <Typography variant="h6" display="inline">
+                 Sort with price
+              </Typography>
+              <Button
+                variant="outlined"
+                color="secondary"
+                onClick={handleSortClearButton}
+              >
+                Clear
+              </Button>
+            </Box>
+            <Divider className={classes.divider} />
+
+            <List className={classes.list}>
+              <ListItem className={classes.listItem}>
+                <FormControlLabel
+                  // value="top"
+                  control={
+                    <Checkbox
+                      checked={checkedLowToHigh}
+                      onChange={handleChangeCheckedLowToHigh}
+                      inputProps={{ "aria-label": "primary checkbox" }}
+                      color="primary"
+                    />
+                  }
+                  label="Price -> Low to High"
+                  labelPlacement="right"
+                />
+              </ListItem>
+              <ListItem className={classes.listItem}>
+                <FormControlLabel
+                  // value="top"
+                  control={
+                    <Checkbox
+                      checked={checkedHighToLow}
+                      onChange={handleChangeCheckedHighToLow}
+                      inputProps={{ "aria-label": "primary checkbox" }}
+                      color="primary"
+                    />
+                  }
+                  label="Price -> High to Low"
+                  labelPlacement="right"
+                />
+              </ListItem>
+            </List>
           </Card>
         </Box>
 
         <Box className={classes.productBox}>
-          <Grid container spacing={1} justifyContent="center">
+          <Grid container spacing={1} justifyContent="center" className={classes.productGrid}>
             {productsInCurrentPage &&
               productsInCurrentPage?.map((product) => (
                 <Grid key={product.id} item xs={12} sm={6} md={4}>
