@@ -42,6 +42,7 @@ const useStyles = makeStyles((theme) => ({
   },
   pageTitle: {
     marginBottom: "1rem",
+    marginTop : "4.5rem"
   },
   [theme.breakpoints.down("sm")]: {
     height: "60vh",
