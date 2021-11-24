@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/core";
 
-const useStyles = makeStyles((theme)=>({
+const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 345,
     padding: theme.spacing(1),
@@ -8,27 +8,32 @@ const useStyles = makeStyles((theme)=>({
     color: theme.palette.text.secondary,
     flexGrow: 1,
 
-    minHeight : "20rem",
+    minHeight: "20rem",
   },
   media: {
     height: 140,
-    width : 200,
-    marginLeft : "auto",
-    marginRight : 'auto'
+    width: 200,
+    marginLeft: "auto",
+    marginRight: "auto",
     // height : "auto"
   },
- 
+
   paper: {
     padding: theme.spacing(1),
     textAlign: "center",
     color: theme.palette.text.secondary,
   },
-  cardActions:{
-  
-  },
-  cardActionGridBox:{
+  cardActions: {},
+  cardActionGridBox: {},
+  dummyBox: {
+    display : "flex",
+    flexDirection : 'column',
+    flex : "grow"
 
-  }
+  },
+  flexGrow: {
+  flex : "grow"
+  },
 }));
 
 export default useStyles;

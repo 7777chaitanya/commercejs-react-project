@@ -20,7 +20,7 @@ const Notifications = ({ userDetails, fetchUserDetails }) => {
         align="center"
         className={classes.pageTitle}
       >
-        Notifications
+        Order details
       </Typography>
 
       {currentUserDoc[0]?.orders?.length === 0 ? (
