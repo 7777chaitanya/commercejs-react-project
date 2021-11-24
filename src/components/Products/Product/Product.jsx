@@ -8,6 +8,7 @@ import {
   IconButton,
   Typography,
   Grid,
+  Box
 } from "@material-ui/core";
 import React, { useState } from "react";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
@@ -99,8 +100,9 @@ const Product = ({
         </CardContent>
       </CardActionArea>
 
-      <CardActions disableSpacing>
-        <Grid container justifyContent="space-evenly">
+      <CardActions disableSpacing >
+        {/* <Box className={classes.cardActionGridBox}> */}
+        <Grid container justifyContent="space-evenly" className={classes.cardActions}>
           <IconButton
             aria-label="Add to cart"
             onClick={() => {
@@ -122,6 +124,7 @@ const Product = ({
             <AddShoppingCartIcon color="primary" />
           </IconButton>
         </Grid>
+        {/* </Box> */}
       </CardActions>
     </Card>
   );

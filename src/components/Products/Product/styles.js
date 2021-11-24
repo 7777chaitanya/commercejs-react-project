@@ -23,6 +23,12 @@ const useStyles = makeStyles((theme)=>({
     textAlign: "center",
     color: theme.palette.text.secondary,
   },
+  cardActions:{
+  
+  },
+  cardActionGridBox:{
+
+  }
 }));
 
 export default useStyles;
