@@ -56,8 +56,8 @@ const Products = ({
     setPageNumber(value);
   };
 
-  const [checkedLowToHigh, setCheckedLowToHigh] = React.useState(true);
-  const [checkedHighToLow, setCheckedHighToLow] = React.useState(true);
+  const [checkedLowToHigh, setCheckedLowToHigh] = React.useState(false);
+  const [checkedHighToLow, setCheckedHighToLow] = React.useState(false);
 
   const handleChangeCheckedLowToHigh = (event) => {
     setCheckedLowToHigh((p) => !p);
@@ -69,9 +69,9 @@ const Products = ({
     setCheckedLowToHigh(false);
   };
 
-  const [checked0To10000, setChecked0To10000] = React.useState(true);
-  const [checked10000To20000, setChecked10000To20000] = React.useState(true);
-  const [checked20000To30000, setChecked20000To30000] = React.useState(true);
+  const [checked0To10000, setChecked0To10000] = React.useState(false);
+  const [checked10000To20000, setChecked10000To20000] = React.useState(false);
+  const [checked20000To30000, setChecked20000To30000] = React.useState(false);
 
   const handleChangeCheckedChecked0To10000 = (event) => {
     setChecked0To10000((p) => !p);
