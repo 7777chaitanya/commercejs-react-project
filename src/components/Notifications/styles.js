@@ -36,6 +36,11 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up("sm")]: {
       height: "80vh",
     },
+    ordersNotificationBox:{
+        width : "100%",
+        display: "flex",
+        justifyContent: "center",
+    }
   }));
 
 export default useStyles;

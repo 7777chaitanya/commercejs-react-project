@@ -1,26 +1,19 @@
 import React, { useEffect, useContext } from "react";
-import {
-  Button,
-  Divider,
-  Grid,
-  makeStyles,
-  Typography,
-} from "@material-ui/core";
-import { Paper, Box } from "@material-ui/core";
-
-import { Link } from "react-router-dom";
-
-import Review from "../CheckoutForm/Review/Review";
-import { useAuth } from "../../contexts/AuthContext";
+import { Typography, Box } from "@material-ui/core";
 import { CurrentUserDetailsContext } from "../../contexts/userDetails";
 import useStyles from "./styles";
 import NoNotifications from "./NoNotifications/NoNotifications";
+import Orders from "../Orders/Orders";
 
 const Notifications = ({ userDetails, fetchUserDetails }) => {
   const classes = useStyles();
   const currentUserDoc = useContext(CurrentUserDetailsContext);
-  const currentUserDetails = currentUserDoc[0];
+  let currentUserDetails = currentUserDoc[0];
   console.log("Notifications =>", currentUserDetails);
+
+  // useEffect(() => {
+  //   fetchUserDetails(currentUserDetails.email);
+  // }, []);
 
   return (
     <div>
@@ -33,9 +26,15 @@ const Notifications = ({ userDetails, fetchUserDetails }) => {
         Notifications
       </Typography>
 
-      
-      <NoNotifications />
-
+      {currentUserDoc[0]?.orders?.length === 0 ? (
+        <NoNotifications />
+      ) : (
+        <Box className={classes.ordersNotificationBox}>
+          <Box>
+            <Orders />
+          </Box>
+        </Box>
+      )}
     </div>
   );
 };
