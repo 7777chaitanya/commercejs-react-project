@@ -83,7 +83,8 @@ const Product = ({
               <Typography
                 display="inline"
                 gutterBottom
-                variant="h6"
+                variant="body1"
+                className={classes.priceText}
                 // component="h2"
               >
                 {product.price.formatted_with_symbol}

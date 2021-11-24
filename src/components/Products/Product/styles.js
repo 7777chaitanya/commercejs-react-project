@@ -23,17 +23,11 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
     color: theme.palette.text.secondary,
   },
-  cardActions: {},
-  cardActionGridBox: {},
-  dummyBox: {
-    display : "flex",
-    flexDirection : 'column',
-    flex : "grow"
-
-  },
-  flexGrow: {
-  flex : "grow"
-  },
+  priceText:{
+    color : "black",
+    paddingLeft : "1rem"
+  }
+  
 }));
 
 export default useStyles;
