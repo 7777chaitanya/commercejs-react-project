@@ -1,7 +1,6 @@
 import { makeStyles } from "@material-ui/core";
 import { FullscreenExitTwoTone } from "@material-ui/icons";
 
-
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
@@ -38,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: "1.8rem",
     paddingRight: "1rem",
   },
-  eachTextFieldIconDropdown:{
+  eachTextFieldIconDropdown: {
     paddingTop: "1.8rem",
     paddingRight: "2rem",
   },
@@ -69,23 +68,36 @@ const useStyles = makeStyles((theme) => ({
       flexDirection: "row",
     },
   },
-  formControl:{
-    paddingRight : "3rem"
+  formControl: {
+    paddingRight: "3rem",
   },
-  buttonIcon:{
-    marginLeft : "1rem"
+  buttonIcon: {
+    marginLeft: "1rem",
   },
-  buttonIconText : {
-    marginRight : "1rem"
+  buttonIconText: {
+    marginRight: "1rem",
   },
-  cardElement:{
+  cardElement: {
     [theme.breakpoints.down("sm")]: {
       // flexDirection: "column",
     },
     [theme.breakpoints.up("sm")]: {
-      marginLeft : "10rem",
-      marginRight : "10rem"
+      marginLeft: "10rem",
+      marginRight: "10rem",
     },
+  },
+  checkCircleIcon: {
+    color: "#4CAF50",
+    fontSize: "2rem",
+    marginLeft : "0.5rem"
+  },
+  paymentSuccessful: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  backToCartButton:{
+    margin : "2rem"
   }
 }));
 
