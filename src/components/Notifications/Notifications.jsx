@@ -11,9 +11,6 @@ const Notifications = ({ userDetails, fetchUserDetails }) => {
   let currentUserDetails = currentUserDoc[0];
   console.log("Notifications =>", currentUserDetails);
 
-  // useEffect(() => {
-  //   fetchUserDetails(currentUserDetails.email);
-  // }, []);
 
   return (
     <div>
@@ -29,11 +26,11 @@ const Notifications = ({ userDetails, fetchUserDetails }) => {
       {currentUserDoc[0]?.orders?.length === 0 ? (
         <NoNotifications />
       ) : (
-        <Box className={classes.ordersNotificationBox}>
+        (<Box className={classes.ordersNotificationBox}>
           <Box>
             <Orders />
           </Box>
-        </Box>
+        </Box>)
       )}
     </div>
   );

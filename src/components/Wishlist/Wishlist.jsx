@@ -49,9 +49,9 @@ const Wishlist = ({
   const classes = useStyles();
   console.log("wishlist => ", userDetails, products);
 
-  useEffect(() => {
-    currentUser && fetchUserDetails(currentUser.email);
-  }, []);
+  // useEffect(() => {
+  //   currentUser && fetchUserDetails(currentUser.email);
+  // }, []);
 
   const EmptyWishlist = () => {
     return (
