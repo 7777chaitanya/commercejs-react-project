@@ -61,7 +61,7 @@ const App = () => {
   const [userDetails, setUserDetails] = useState({});
   const [userEmail, setUserEmail] = useState("");
 
-  console.log("App.js =>", userDetails);
+  // console.log("App.js =>", userDetails);
 
   const fetchUserDetails = async (userEmail) => {
     const docRef = doc(db, "customerDetails", userEmail);

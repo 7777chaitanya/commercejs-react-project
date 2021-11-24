@@ -37,7 +37,7 @@ const Product = ({
 
   const isItemPresentInWishList = () => {
     let flag = 0;
-    console.log("isItemPresentInWishList",product.id,userDetails)
+    // console.log("isItemPresentInWishList",product.id,userDetails)
     Object.keys({...userDetails}).length && (
     userDetails.wishlist.forEach((item) => {
       if (item === product.id) {
