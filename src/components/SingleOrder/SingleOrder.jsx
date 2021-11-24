@@ -19,7 +19,6 @@ const SingleOrder = ({ eachOrder }) => {
     CurrentUserDetailsContext
   );
   let thisOrder = currentUserDoc[eachOrder?.orderNumber];
-  console.log("each order => ", eachOrder);
 
   const calculateTotal = (cart) => {
     let total = 0;

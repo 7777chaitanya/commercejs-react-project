@@ -189,7 +189,7 @@ export default function NavBar2({ quantity, userDetails, products }) {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <MenuItem  component={Link}
+      {/* <MenuItem  component={Link}
           to="/messages"
           onClick={handleMenuClose}>
         <IconButton
@@ -202,7 +202,7 @@ export default function NavBar2({ quantity, userDetails, products }) {
           </Badge>
         </IconButton>
         <p>Messages</p>
-      </MenuItem>
+      </MenuItem> */}
       <MenuItem component={Link}
           to="/notifications"
           onClick={handleMenuClose}>
@@ -362,7 +362,7 @@ export default function NavBar2({ quantity, userDetails, products }) {
                 </Badge>
               </IconButton>
             </Tooltip>
-            <Tooltip title="Messages">
+            {/* <Tooltip title="Messages">
               <IconButton
                 aria-label="show 4 new mails"
                 color="inherit"
@@ -373,7 +373,7 @@ export default function NavBar2({ quantity, userDetails, products }) {
                   <MailIcon />
                 </Badge>
               </IconButton>
-            </Tooltip>
+            </Tooltip> */}
             <Tooltip title="Notifications">
               <IconButton
                 aria-label="show 17 new notifications"
