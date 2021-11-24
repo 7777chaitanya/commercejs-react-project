@@ -16,6 +16,7 @@ import useStyles from "./styles";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import { Link } from 'react-router-dom';
+import "./styles.css";
 
 const Product = ({
   product,
