@@ -168,7 +168,7 @@ const Products = ({
                       color="primary"
                     />
                   }
-                  label="Price -> 0 - 10000"
+                  label="0 - 10000"
                   labelPlacement="right"
                 />
               </ListItem>
@@ -183,7 +183,7 @@ const Products = ({
                       color="primary"
                     />
                   }
-                  label="Price -> 10000 - 20000"
+                  label="10000 - 20000"
                   labelPlacement="right"
                 />
               </ListItem>
@@ -198,7 +198,7 @@ const Products = ({
                       color="primary"
                     />
                   }
-                  label="Price -> 20000 and more"
+                  label="20000 and more"
                   labelPlacement="right"
                 />
               </ListItem>
@@ -232,7 +232,7 @@ const Products = ({
                       color="primary"
                     />
                   }
-                  label="Price -> Low to High"
+                  label="Low to High"
                   labelPlacement="right"
                 />
               </ListItem>
@@ -247,7 +247,7 @@ const Products = ({
                       color="primary"
                     />
                   }
-                  label="Price -> High to Low"
+                  label="High to Low"
                   labelPlacement="right"
                 />
               </ListItem>

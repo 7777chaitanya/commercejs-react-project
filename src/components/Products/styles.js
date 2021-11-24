@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
     
   },
   filterBox: {
-    flex: 3,
+    flex: 22,
     overflow: "auto",
     maxHeight : "95vh",
     overflow: "auto",
@@ -34,16 +34,22 @@ const useStyles = makeStyles((theme) => ({
     '&::-webkit-scrollbar': {
       width: '0px'
     },
+    [theme.breakpoints.down('xs')]: {
+      display : "none"
+    },
     
   },
   productBox: {
-    flex: 8,
+    flex: 78,
     marginRight: "0.7rem",
     maxHeight : "95vh",
     overflow: "auto",
     overflowX : "hidden",
     '&::-webkit-scrollbar': {
       width: '0px'
+    },
+    [theme.breakpoints.down('xs')]: {
+     marginLeft : "0.7rem"
     },
 
   },
