@@ -14,7 +14,7 @@ import Progress from "../Progress/Progress";
 import { doc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore";
 import { db } from "../firebase";
 import { CurrentUserDetailsContext } from "../../contexts/userDetails";
-
+import clsx from "clsx";
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 
@@ -129,6 +129,7 @@ const PaymentForm = ({ cart, handleActiveStep, emptyCart, setUserDetails, userDe
                   variant="contained"
                   color="primary"
                   onClick={() => handleActiveStep(0)}
+                  className={clsx(classes.button,classes.backButton)}
                 >
                   Back
                 </Button>

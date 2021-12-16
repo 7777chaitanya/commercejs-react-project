@@ -98,6 +98,9 @@ const useStyles = makeStyles((theme) => ({
   },
   backToCartButton:{
     margin : "2rem"
+  },
+  backButton:{
+    marginTop : "0.2rem"
   }
 }));
 
